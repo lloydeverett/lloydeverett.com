@@ -5,52 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Lloyd Everett</title>
     <style type="text/css">
-      html, body {
-        height: 100%;
-      }
-      body {
-        background-color: #fff;
-        background: radial-gradient(circle at center, #fff 0%, #f8f8f8 75%, #ebebeb 100%);
-        color: #222;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        font-size: 1rem;
-        line-height: 1.5;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      main {
-        padding: 1rem;
-        text-align: center;
-      }
-      h1 {
-        font-size: 2.5rem;
-        line-height: 1.1;
-        margin: 0;
-      }
-      @media screen and (max-width: 480px) {
-        h1 {
-          font-size: 1.5rem;
+        #background {
+          position: fixed;
+          top: 0; bottom: 0; left: 0; right: 0;
         }
-      }
-      h1::after {
-        content: "";
-        background-color: #ffe800;
-        background: repeating-linear-gradient(45deg, #ffe800, #ffe800 0.5rem, #222 0.5rem, #222 1.0rem);
-        display: block;
-        height: 0.5rem;
-        margin-top: 1rem;
-      }
-      p {
-        margin: 1rem 0 0 0;
-      }
+        /*
+        .main {
+          background: #282828;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          border-radius: 18px;
+        }
+        */
     </style>
   </head>
   <body>
+    <div id="background"></div>
     <main>
-      <h1>lloydeverett.com</h1>
-      <p>This website is under construction.</p>
+        Hello world!
     </main>
+    <script src="./three.min.js"></script>
+    <script src="./vanta.fog.min.js"></script>
+    <script>
+    VANTA.FOG({
+      el: "#background",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      highlightColor: 0xffe1,
+      midtoneColor: 0xffd1,
+      lowlightColor: 0x2dff,
+      baseColor: 0xffffeb,
+      blurFactor: 0.32,
+      speed: 0.15,
+      zoom: 0.50
+    })
+    </script>
   </body>
 </html>
