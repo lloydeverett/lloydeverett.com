@@ -1,0 +1,17 @@
+@font-face {
+    font-display: swap;
+    font-family: 'Cascadia Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: url('fonts/CascadiaMono.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Cascadia Mono';
+    font-style: italic;
+    font-weight: 400;
+    font-feature-settings: "calt", "ss01";
+    src: url('fonts/CascadiaMonoItalic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+

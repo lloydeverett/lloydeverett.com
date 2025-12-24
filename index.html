@@ -1,56 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Lloyd Everett</title>
-    <style type="text/css">
-      html, body {
-        height: 100%;
-      }
-      body {
-        background-color: #fff;
-        background: radial-gradient(circle at center, #fff 0%, #f8f8f8 75%, #ebebeb 100%);
-        color: #222;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        font-size: 1rem;
-        line-height: 1.5;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      main {
-        padding: 1rem;
-        text-align: center;
-      }
-      h1 {
-        font-size: 2.5rem;
-        line-height: 1.1;
-        margin: 0;
-      }
-      @media screen and (max-width: 480px) {
-        h1 {
-          font-size: 1.5rem;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lloydeverett.com</title>
+    <link rel="stylesheet" href="fonts.css">
+</head>
+<body>
+    <div class="main">
+        <i>
+            Hello world.<br>
+        </i>
+    </div>
+    <style>
+        /* CSS Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
         }
-      }
-      h1::after {
-        content: "";
-        background-color: #ffe800;
-        background: repeating-linear-gradient(45deg, #ffe800, #ffe800 0.5rem, #222 0.5rem, #222 1.0rem);
-        display: block;
-        height: 0.5rem;
-        margin-top: 1rem;
-      }
-      p {
-        margin: 1rem 0 0 0;
-      }
+        *:not(dialog) {
+            margin: 0;
+        }
+        @media (prefers-reduced-motion: no-preference) {
+            html {
+                interpolate-size: allow-keywords;
+            }
+        }
+        body {
+            line-height: 1.5;
+        }
+        img, picture, video, canvas, svg {
+            display: block;
+            max-width: 100%;
+        }
+        input, button, textarea, select {
+            font: inherit;
+        }
+        p, h1, h2, h3, h4, h5, h6 {
+            overflow-wrap: break-word;
+        }
+        p {
+            text-wrap: pretty;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            text-wrap: balance;
+        }
+        #root, #__next {
+            isolation: isolate;
+        }
     </style>
-  </head>
-  <body>
-    <main>
-      <h1>lloydeverett.com</h1>
-      <p>This website is under construction.</p>
-    </main>
-  </body>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        html {
+            background-image: url('sunflowers.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            --text-selection-color-bg: #076678;
+            --text-selection-color-fg: #ffffff;
+        }
+        *::selection {
+            background: var(--text-selection-color-bg);
+            color:      var(--text-selection-color-fg);
+        }
+        *::-moz-selection {
+            background: var(--text-selection-color-bg);
+            color:      var(--text-selection-color-fg);
+        }
+        *::-webkit-selection {
+            background: var(--text-selection-color-bg);
+            color:      var(--text-selection-color-fg);
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .main {
+            --main-padding: 1rem;
+            --main-margin: 0.75rem;
+            background-color: #10101099;
+            color: white;
+            width: calc(min(44rem, 100vw - (var(--main-margin) * 2)));
+            height: calc(min(40rem, 100vh - (var(--main-margin) * 2)));
+            border-radius: 16px;
+            padding: var(--main-padding);
+            margin:  var(--main-margin);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter:         blur(10px);
+        }
+        pre {
+            padding: 0;
+            margin: 0;
+        }
+        body, pre {
+            font-family: 'Cascadia Mono';
+            font-weight: 400;
+            font-size: 0.9rem;
+        }
+    </style>
+</body>
 </html>
+
