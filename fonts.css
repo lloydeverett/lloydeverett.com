@@ -3,7 +3,7 @@
     font-family: 'Cascadia Mono';
     font-style: normal;
     font-weight: 400;
-    src: url('fonts/CascadiaMono.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    src: url('fonts/CascadiaMono.woff2') format('woff2');
 }
 
 @font-face {
@@ -12,6 +12,18 @@
     font-style: italic;
     font-weight: 400;
     font-feature-settings: "calt", "ss01";
-    src: url('fonts/CascadiaMonoItalic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    src: url('fonts/CascadiaMonoItalic.woff2') format('woff2');
+}
+
+@font-face {
+    font-display: block;
+    font-family: 'Seti Icons';
+    src: url('fonts/Seti.otf') format('opentype');
+}
+
+.seti-lua:before {
+    font-family: 'Seti Icons';
+    color: #00BFFF;
+    content: "\e520";
 }
 
