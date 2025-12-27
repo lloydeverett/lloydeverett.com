@@ -8,68 +8,46 @@
     <link rel="stylesheet" href="fonts.css">
 </head>
 <body>
-    <div class="main">
-        <div class="layout-vertical">
-            <span>
-                <em>Hello world.</em>
-                <button>Memelord</button>
-                <span>Cannot be said that I am an early bird.</span>
-                <select>
-                  <option value="option1">Option 1</option>
-                  <option value="option2">Option 2</option>
-                  <option value="option3">Option 3</option>
-                </select>
-            </span>
-
-            <!-- Text Input -->
+    <div class="main layout-vertical">
+        <h2>A demo of iced-out CSS styling...</h2>
+        <div class="scroll-container-vertical layout-vertical">
+            <div class="form-group layout-horizontal layout-stretch">
+                <button type="submit">Submit Form</button>
+                <button type="reset">Reset Form</button>
+                <button type="button">Regular Button</button>
+            </div>
             <div class="form-group">
                 <label for="username">Text Input (Username):</label>
                 <input type="text" id="username" name="username" placeholder="Enter your username" required>
             </div>
-
-            <!-- Email Input -->
             <div class="form-group">
                 <label for="email">Email Input:</label>
                 <input type="email" id="email" name="email" placeholder="your@email.com" required>
             </div>
-
-            <!-- Number Input -->
             <div class="form-group">
                 <label for="age">Number Input (Age):</label>
                 <input type="number" id="age" name="age" min="0" max="120" value="25">
             </div>
-
-            <!-- Date Input -->
             <div class="form-group">
                 <label for="birthdate">Date Input:</label>
                 <input type="date" id="birthdate" name="birthdate">
             </div>
-
-            <!-- Time Input -->
             <div class="form-group">
                 <label for="meeting">Time Input:</label>
                 <input type="time" id="meeting" name="meeting">
             </div>
-
-            <!-- Range Input -->
             <div class="form-group">
                 <label for="volume">Range Input (Volume):</label>
                 <input type="range" id="volume" name="volume" min="0" max="100" value="50">
             </div>
-
-            <!-- Color Input -->
             <div class="form-group">
                 <label for="favColor">Color Input:</label>
                 <input type="color" id="favColor" name="favColor" value="#007bff">
             </div>
-
-            <!-- Textarea -->
             <div class="form-group">
                 <label for="message">Textarea (Message):</label>
                 <textarea id="message" name="message" placeholder="Enter your message here..."></textarea>
             </div>
-
-            <!-- Select Dropdown -->
             <div class="form-group">
                 <label for="country">Select Dropdown (Country):</label>
                 <select id="country" name="country">
@@ -81,8 +59,6 @@
                     <option value="au">Australia</option>
                 </select>
             </div>
-
-            <!-- Multiple Select -->
             <div class="form-group">
                 <label for="interests">Multiple Select (Interests):</label>
                 <select id="interests" name="interests" multiple size="4">
@@ -93,11 +69,9 @@
                     <option value="cooking">Cooking</option>
                 </select>
             </div>
-
-            <!-- Checkboxes -->
             <div class="form-group">
                 <label>Checkboxes (Select all that apply):</label>
-                <div class="checkbox-group layout-vertical-with-margin">
+                <div class="checkbox-group layout-vertical-tight-with-margin">
                     <div class="checkbox-item">
                         <input type="checkbox" id="agree" name="agree" value="yes">
                         <label for="agree" style="margin-bottom: 0; font-weight: normal;">I agree to terms</label>
@@ -108,11 +82,9 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Radio Buttons -->
             <div class="form-group">
                 <label>Radio Buttons (Choose one):</label>
-                <div class="radio-group layout-vertical-with-margin">
+                <div class="radio-group layout-vertical-tight-with-margin">
                     <div class="radio-item">
                         <input type="radio" id="male" name="gender" value="male">
                         <label for="male" style="margin-bottom: 0; font-weight: normal;">Male</label>
@@ -127,60 +99,47 @@
                     </div>
                 </div>
             </div>
-
-            <!-- File Input -->
             <div class="form-group">
                 <label for="fileUpload">File Input:</label>
                 <input type="file" id="fileUpload" name="fileUpload" accept=".jpg,.png,.pdf">
             </div>
-
-            <!-- Hidden Input -->
-            <input type="hidden" id="userId" name="userId" value="12345">
-
-            <!-- Buttons -->
-            <div class="form-group">
-                <button type="submit">Submit Form</button>
-                <button type="reset">Reset Form</button>
-                <button type="button" onclick="alert('This is a regular button!')">Regular Button</button>
+        </div>
+        <h2>Projects I've been hacking on lately...</h2>
+        <div class="scroll-container-horizontal layout-horizontal">
+            <div class="card">
+                <div class="card-title">
+                    <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
+                </div>
+                <div class="card-description">
+                    This is the new year... and I don't feel any different.
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title">
+                    <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
+                </div>
+                <div class="card-description">
+                    This is the new year... and I don't feel any different.
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title">
+                    <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
+                </div>
+                <div class="card-description">
+                    This is the new year... and I don't feel any different.
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title">
+                    <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
+                </div>
+                <div class="card-description">
+                    This is the new year... and I don't feel any different.
+                </div>
             </div>
         </div>
-        <div class="spacer"></div>
-        <hr data-label="Projects I've been hacking on lately...">
-        <div class="card-reel">
-           <div class="card">
-               <div class="card-title">
-                   <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
-               </div>
-               <div class="card-description">
-                   This is the new year... and I don't feel any different.
-               </div>
-           </div>
-           <div class="card">
-               <div class="card-title">
-                   <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
-               </div>
-               <div class="card-description">
-                   This is the new year... and I don't feel any different.
-               </div>
-           </div>
-           <div class="card">
-               <div class="card-title">
-                   <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
-               </div>
-               <div class="card-description">
-                   This is the new year... and I don't feel any different.
-               </div>
-           </div>
-           <div class="card">
-               <div class="card-title">
-                   <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
-               </div>
-               <div class="card-description">
-                   This is the new year... and I don't feel any different.
-               </div>
-           </div>
-        </div>
-        <hr>
+        <div></div> <!-- just taking up space -->
     </div>
     <style>
         /* CSS Reset */
@@ -234,7 +193,7 @@
             --main-margin: 0.75rem;
             --main-border-radius: 16px;
             --main-content-padding: 1rem;
-            --main-content-padding-small: 0.5rem;
+            --main-content-padding-tight: 0.5rem;
             --accent-color: #076678;
             --text-selection-color-bg: var(--accent-color);
             --text-selection-color-fg: #ffffff;
@@ -275,7 +234,7 @@
             color:      var(--text-selection-color-fg);
         }
         p {
-            margin: 1em 0;
+            margin: 0;
         }
         input, textarea, select, button, input::file-selector-button {
             background-color: var(--overlay-bg);
@@ -299,7 +258,7 @@
             cursor: pointer;
         }
         input::placeholder, textarea::placeholder {
-            color: rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.5);
         }
         input[type=range] {
             vertical-align: middle;
@@ -321,17 +280,6 @@
             width: 3em;
             height: 1.5em;
         }
-        .layout-vertical, .layout-vertical-with-margin {
-            display: flex;
-            flex-direction: column;
-            gap: var(--main-content-padding-small);
-        }
-        .layout-vertical-with-margin {
-            margin: var(--main-content-padding-small) 0;
-        }
-        .spacer {
-            flex: 1;
-        }
         .main {
             background-color: rgba(16, 16, 16, 0.65);
             width: calc(min(55rem, 100vw - (var(--main-margin) * 2)));
@@ -348,43 +296,48 @@
             flex-direction: column;
             padding: var(--main-content-padding);
         }
-        .main > hr {
-            margin-top: var(--main-content-padding);
-            margin-bottom: calc(var(--main-content-padding) + var(--layout-border-width));
+        .main hr {
             margin-left: calc(-1 * var(--main-content-padding));
             width: calc(100% + (2 * var(--main-content-padding)));
             outline: 0;
             border: 0;
             border-bottom: var(--layout-border);
         }
-        .main > hr[data-label]::before {
-            content: attr(data-label);
+        .main h2 {
+            font-size: 1em;
             font-style: italic;
-            margin-left: var(--main-content-padding);
-            margin-right: var(--main-content-padding);
-            display: block;
-            /* 2x hr margin less the experimentaly confirmed y-height of overhangs in this font :D */
-            padding-bottom: calc(var(--main-content-padding) - ((7.0 / 28.0) * 1cap));
+            font-weight: 400;
             color: var(--text-subdued-color);
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--main-content-padding-tight);
+        }
+        .scroll-container-vertical {
+            padding: var(--main-content-padding);
+            margin-left: calc(-1 * var(--main-content-padding));
+            width: calc(100% + (2 * var(--main-content-padding)));
+            border-top: var(--layout-border);
+            border-bottom: var(--layout-border);
+            display: flex;
+            flex-direction: column;
+            height: 30rem;
+            overflow-y: auto;
+        }
+        .scroll-container-horizontal {
+            padding: var(--main-content-padding);
+            margin-left: calc(-1 * var(--main-content-padding));
+            width: calc(100% + (2 * var(--main-content-padding)));
+            border-top: var(--layout-border);
+            border-bottom: var(--layout-border);
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto;
         }
         .card-reel {
             --card-reel-gap: var(--main-content-padding);
-            overflow-x: auto;
-            overflow-y: visible;
-            width: 100%;
-            display: flex;
-            flex-direction: row;
             gap: var(--card-reel-gap);
-            margin-left: calc(-1 * var(--main-content-padding));
-            padding-bottom: calc(var(--main-content-padding));
-            margin-bottom: calc(-1 * var(--main-content-padding));
-            width: calc(100% + (2 * var(--main-content-padding)));
-        }
-        .card:first-child {
-            margin-left: calc(var(--card-reel-gap));
-        }
-        .card:last-child {
-            margin-right: calc(var(--card-reel-gap));
         }
         .card {
             --card-width: 35ch;
@@ -419,13 +372,42 @@
                 font-size: 0.8rem;
             }
         }
+
+        /* these rules should override others, so keep them last to maintain specificity */
+        .layout-vertical, .layout-vertical-with-margin {
+            display: flex;
+            flex-direction: column;
+            gap: var(--main-content-padding);
+        }
+        .layout-vertical-with-margin {
+            margin: var(--main-content-padding) 0;
+        }
+        .layout-vertical-tight, .layout-vertical-tight-with-margin {
+            display: flex;
+            flex-direction: column;
+            gap: var(--main-content-padding-tight);
+        }
+        .layout-vertical-tight-with-margin {
+            margin: var(--main-content-padding-tight) 0;
+        }
+        .layout-horizontal, .layout-horizontal-with-margin {
+            display: flex;
+            flex-direction: row;
+            gap: var(--main-content-padding);
+        }
+        .layout-horizontal-with-margin {
+            margin: 0 var(--main-content-padding);
+        }
+        .layout-stretch > *, .spacer {
+            flex: 1;
+        }
     </style>
     <script>
-        /* allow scrolling through reel horizontally via vertical mouse wheel */
-        const cardReels = document.querySelectorAll(".card-reel");
+        /* allow scrolling through horizontal scroll containers via vertical mouse wheel */
+        const scrollContainers = document.querySelectorAll(".scroll-container-horizontal");
         let preventingHorizontalScrollTimer = null;
-        for (const cardReel of cardReels) {
-            cardReel.addEventListener("wheel", function(e) {
+        for (const scrollContainer of scrollContainers) {
+            scrollContainer.addEventListener("wheel", function(e) {
                 if (Math.abs(e.deltaX) > 0) {
                     clearTimeout(preventingHorizontalScrollTimer);
                     preventingHorizontalScrollTimer = window.setTimeout(() => {
@@ -435,7 +417,7 @@
                 }
                 if (preventingHorizontalScrollTimer === null && Math.abs(e.deltaY) > 0) {
                     e.preventDefault();
-                    cardReel.scrollLeft += e.deltaY;
+                    scrollContainer.scrollLeft += e.deltaY;
                 }
             });
         }
