@@ -106,35 +106,35 @@
         </div>
         <h2>Projects I've been hacking on lately...</h2>
         <div class="scroll-container-horizontal layout-horizontal">
-            <div class="card">
-                <div class="card-title">
+            <div class="subcard">
+                <div class="subcard-title">
                     <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
                 </div>
-                <div class="card-description">
+                <div class="subcard-description">
                     This is the new year... and I don't feel any different.
                 </div>
             </div>
-            <div class="card">
-                <div class="card-title">
+            <div class="subcard">
+                <div class="subcard-title">
                     <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
                 </div>
-                <div class="card-description">
+                <div class="subcard-description">
                     This is the new year... and I don't feel any different.
                 </div>
             </div>
-            <div class="card">
-                <div class="card-title">
+            <div class="subcard">
+                <div class="subcard-title">
                     <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
                 </div>
-                <div class="card-description">
+                <div class="subcard-description">
                     This is the new year... and I don't feel any different.
                 </div>
             </div>
-            <div class="card">
-                <div class="card-title">
+            <div class="subcard">
+                <div class="subcard-title">
                     <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
                 </div>
-                <div class="card-description">
+                <div class="subcard-description">
                     This is the new year... and I don't feel any different.
                 </div>
             </div>
@@ -335,35 +335,35 @@
             flex-direction: row;
             overflow-x: auto;
         }
-        .card-reel {
-            --card-reel-gap: var(--main-content-padding);
-            gap: var(--card-reel-gap);
+        .subcard-reel {
+            --subcard-reel-gap: var(--main-content-padding);
+            gap: var(--subcard-reel-gap);
         }
-        .card {
-            --card-width: 35ch;
+        .subcard {
+            --subcard-width: 35ch;
             border: var(--layout-border);
             background-color: var(--overlay-bg);
             padding: 2ch;
             border-radius: 12px;
             height: 9rem;
-            width: var(--card-width);
-            min-width: var(--card-width);
+            width: var(--subcard-width);
+            min-width: var(--subcard-width);
             font-size: 0.75rem;
             cursor: pointer;
             -webkit-user-select: none;
             user-select: none;
             transition: background-color var(--transition-duration) var(--transition-timing-function);
         }
-        .card:hover {
+        .subcard:hover {
             background-color: var(--overlay-bg-active);
         }
-        .card-title {
+        .subcard-title {
             font-style: italic;
         }
-        .card-title > * {
+        .subcard-title > * {
             font-style: normal;
         }
-        .card-description {
+        .subcard-description {
             margin-top: 0.5rem;
             color: var(--text-subdued-color);
         }
