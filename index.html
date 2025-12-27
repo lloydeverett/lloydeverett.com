@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="fonts.css">
 </head>
 <body>
-    <div class="main layout-vertical">
+    <div class="surface layout-vertical">
         <h2>A demo of iced-out-css...</h2>
-        <div class="scroll-container-vertical layout-vertical">
+        <div class="scroll-container-vertical layout-vertical" style="height: 30rem;">
             <div class="form-group layout-horizontal layout-stretch">
                 <button type="submit">Submit Form</button>
                 <button type="reset">Reset Form</button>
@@ -190,10 +190,10 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            --main-margin: 0.75rem;
-            --main-border-radius: 16px;
-            --main-content-padding: 1rem;
-            --main-content-padding-tight: 0.5rem;
+            --surface-margin: 0.75rem;
+            --surface-border-radius: 16px;
+            --surface-content-padding: 1rem;
+            --surface-content-padding-tight: 0.5rem;
             --accent-color: #076678;
             --text-selection-color-bg: var(--accent-color);
             --text-selection-color-fg: #ffffff;
@@ -285,30 +285,30 @@
             width: 3em;
             height: 1.5em;
         }
-        .main {
+        .surface {
             background-color: rgba(16, 16, 16, 0.65);
-            width: calc(min(55rem, 100vw - (var(--main-margin) * 2)));
-            min-height: calc(min(40rem, 100vh - (var(--main-margin) * 2)));
-            border-radius: var(--main-border-radius);
-            margin:  var(--main-margin);
+            width: calc(min(55rem, 100vw - (var(--surface-margin) * 2)));
+            min-height: calc(min(40rem, 100vh - (var(--surface-margin) * 2)));
+            border-radius: var(--surface-border-radius);
+            margin:  var(--surface-margin);
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter:         blur(10px);
             box-shadow:
                 inset 0 0 0 1px rgba(255, 255, 255, 0.15), /* inner white border/highlight */
                 0 0 0 0.5px rgba(0, 0, 0, 0.65),           /* outer subtle black border */
-                0 18px 50px rgba(0, 0, 0, 0.52);           /* main drop shadow with a vertical offset */
+                0 18px 50px rgba(0, 0, 0, 0.52);           /* surface drop shadow with a vertical offset */
             display: flex;
             flex-direction: column;
-            padding: var(--main-content-padding);
+            padding: var(--surface-content-padding);
         }
-        .main hr {
-            margin-left: calc(-1 * var(--main-content-padding));
-            width: calc(100% + (2 * var(--main-content-padding)));
+        .surface hr {
+            margin-left: calc(-1 * var(--surface-content-padding));
+            width: calc(100% + (2 * var(--surface-content-padding)));
             outline: 0;
             border: 0;
             border-bottom: var(--layout-border);
         }
-        .main h2 {
+        .surface h2 {
             font-size: 1em;
             font-style: italic;
             font-weight: 400;
@@ -317,12 +317,12 @@
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: var(--main-content-padding-tight);
+            gap: var(--surface-content-padding-tight);
         }
         .scroll-container-vertical {
-            padding: var(--main-content-padding);
-            margin-left: calc(-1 * var(--main-content-padding));
-            width: calc(100% + (2 * var(--main-content-padding)));
+            padding: var(--surface-content-padding);
+            margin-left: calc(-1 * var(--surface-content-padding));
+            width: calc(100% + (2 * var(--surface-content-padding)));
             border-top: var(--layout-border);
             border-bottom: var(--layout-border);
             display: flex;
@@ -330,9 +330,9 @@
             overflow-y: auto;
         }
         .scroll-container-horizontal {
-            padding: var(--main-content-padding);
-            margin-left: calc(-1 * var(--main-content-padding));
-            width: calc(100% + (2 * var(--main-content-padding)));
+            padding: var(--surface-content-padding);
+            margin-left: calc(-1 * var(--surface-content-padding));
+            width: calc(100% + (2 * var(--surface-content-padding)));
             border-top: var(--layout-border);
             border-bottom: var(--layout-border);
             display: flex;
@@ -340,7 +340,7 @@
             overflow-x: auto;
         }
         .subcard-reel {
-            --subcard-reel-gap: var(--main-content-padding);
+            --subcard-reel-gap: var(--surface-content-padding);
             gap: var(--subcard-reel-gap);
         }
         .subcard {
@@ -372,35 +372,35 @@
             color: var(--text-subdued-color);
         }
         @media (max-width: 576px) {
-            .main-content > hr::before {
+            .surface-content > hr::before {
                 font-size: 0.8rem;
             }
         }
 
-        /* these rules should override others, so keep them last to maintain specificity */
+        /* these rules should override others, so keep them last to surfacetain specificity */
         .layout-vertical, .layout-vertical-with-margin {
             display: flex;
             flex-direction: column;
-            gap: var(--main-content-padding);
+            gap: var(--surface-content-padding);
         }
         .layout-vertical-with-margin {
-            margin: var(--main-content-padding) 0;
+            margin: var(--surface-content-padding) 0;
         }
         .layout-vertical-tight, .layout-vertical-tight-with-margin {
             display: flex;
             flex-direction: column;
-            gap: var(--main-content-padding-tight);
+            gap: var(--surface-content-padding-tight);
         }
         .layout-vertical-tight-with-margin {
-            margin: var(--main-content-padding-tight) 0;
+            margin: var(--surface-content-padding-tight) 0;
         }
         .layout-horizontal, .layout-horizontal-with-margin {
             display: flex;
             flex-direction: row;
-            gap: var(--main-content-padding);
+            gap: var(--surface-content-padding);
         }
         .layout-horizontal-with-margin {
-            margin: 0 var(--main-content-padding);
+            margin: 0 var(--surface-content-padding);
         }
         .layout-stretch > *, .spacer {
             flex: 1;
