@@ -3,53 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
     <title>lloydeverett.com</title>
     <link rel="stylesheet" href="fonts.css">
 </head>
 <body>
     <div class="main">
-        <div class="main-content">
-            <i>Hello world.</i><br>
-            <div class="spacer"></div>
-            <hr>
-            <div class="card-reel-container">
-                <div class="card-reel">
-                   <div class="card">
-                       <div class="card-title">
-                           <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
-                       </div>
-                       <div class="card-description">
-                           This is the new year... and I don't feel any different.
-                       </div>
-                   </div>
-                   <div class="card">
-                       <div class="card-title">
-                           <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
-                       </div>
-                       <div class="card-description">
-                           This is the new year... and I don't feel any different.
-                       </div>
-                   </div>
-                   <div class="card">
-                       <div class="card-title">
-                           <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
-                       </div>
-                       <div class="card-description">
-                           This is the new year... and I don't feel any different.
-                       </div>
-                   </div>
-                   <div class="card">
-                       <div class="card-title">
-                           <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
-                       </div>
-                       <div class="card-description">
-                           This is the new year... and I don't feel any different.
-                       </div>
-                   </div>
+        <div class="layout-vertical">
+            <span>
+                <em>Hello world.</em>
+                <button>Memelord</button>
+                <span>Cannot be said that I am an early bird.</span>
+                <select>
+                  <option value="option1">Option 1</option>
+                  <option value="option2">Option 2</option>
+                  <option value="option3">Option 3</option>
+                </select>
+            </span>
+
+            <!-- Text Input -->
+            <div class="form-group">
+                <label for="username">Text Input (Username):</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+
+            <!-- Email Input -->
+            <div class="form-group">
+                <label for="email">Email Input:</label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+
+            <!-- Number Input -->
+            <div class="form-group">
+                <label for="age">Number Input (Age):</label>
+                <input type="number" id="age" name="age" min="0" max="120" value="25">
+            </div>
+
+            <!-- Date Input -->
+            <div class="form-group">
+                <label for="birthdate">Date Input:</label>
+                <input type="date" id="birthdate" name="birthdate">
+            </div>
+
+            <!-- Time Input -->
+            <div class="form-group">
+                <label for="meeting">Time Input:</label>
+                <input type="time" id="meeting" name="meeting">
+            </div>
+
+            <!-- Range Input -->
+            <div class="form-group">
+                <label for="volume">Range Input (Volume):</label>
+                <input type="range" id="volume" name="volume" min="0" max="100" value="50">
+            </div>
+
+            <!-- Color Input -->
+            <div class="form-group">
+                <label for="favColor">Color Input:</label>
+                <input type="color" id="favColor" name="favColor" value="#007bff">
+            </div>
+
+            <!-- Textarea -->
+            <div class="form-group">
+                <label for="message">Textarea (Message):</label>
+                <textarea id="message" name="message" placeholder="Enter your message here..."></textarea>
+            </div>
+
+            <!-- Select Dropdown -->
+            <div class="form-group">
+                <label for="country">Select Dropdown (Country):</label>
+                <select id="country" name="country">
+                    <option value="">-- Select a country --</option>
+                    <option value="za">South Africa</option>
+                    <option value="us">United States</option>
+                    <option value="uk">United Kingdom</option>
+                    <option value="ca">Canada</option>
+                    <option value="au">Australia</option>
+                </select>
+            </div>
+
+            <!-- Multiple Select -->
+            <div class="form-group">
+                <label for="interests">Multiple Select (Interests):</label>
+                <select id="interests" name="interests" multiple size="4">
+                    <option value="sports">Sports</option>
+                    <option value="music">Music</option>
+                    <option value="reading">Reading</option>
+                    <option value="gaming">Gaming</option>
+                    <option value="cooking">Cooking</option>
+                </select>
+            </div>
+
+            <!-- Checkboxes -->
+            <div class="form-group">
+                <label>Checkboxes (Select all that apply):</label>
+                <div class="checkbox-group layout-vertical-with-margin">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="agree" name="agree" value="yes">
+                        <label for="agree" style="margin-bottom: 0; font-weight: normal;">I agree to terms</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="newsletter" name="newsletter" value="yes">
+                        <label for="newsletter" style="margin-bottom: 0; font-weight: normal;">Subscribe to newsletter</label>
+                    </div>
                 </div>
             </div>
-            <hr>
+
+            <!-- Radio Buttons -->
+            <div class="form-group">
+                <label>Radio Buttons (Choose one):</label>
+                <div class="radio-group layout-vertical-with-margin">
+                    <div class="radio-item">
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male" style="margin-bottom: 0; font-weight: normal;">Male</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female" style="margin-bottom: 0; font-weight: normal;">Female</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="other" name="gender" value="other">
+                        <label for="other" style="margin-bottom: 0; font-weight: normal;">Other</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- File Input -->
+            <div class="form-group">
+                <label for="fileUpload">File Input:</label>
+                <input type="file" id="fileUpload" name="fileUpload" accept=".jpg,.png,.pdf">
+            </div>
+
+            <!-- Hidden Input -->
+            <input type="hidden" id="userId" name="userId" value="12345">
+
+            <!-- Buttons -->
+            <div class="form-group">
+                <button type="submit">Submit Form</button>
+                <button type="reset">Reset Form</button>
+                <button type="button" onclick="alert('This is a regular button!')">Regular Button</button>
+            </div>
         </div>
+        <div class="spacer"></div>
+        <hr data-label="Projects I've been hacking on lately...">
+        <div class="card-reel">
+           <div class="card">
+               <div class="card-title">
+                   <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
+               </div>
+               <div class="card-description">
+                   This is the new year... and I don't feel any different.
+               </div>
+           </div>
+           <div class="card">
+               <div class="card-title">
+                   <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
+               </div>
+               <div class="card-description">
+                   This is the new year... and I don't feel any different.
+               </div>
+           </div>
+           <div class="card">
+               <div class="card-title">
+                   <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
+               </div>
+               <div class="card-description">
+                   This is the new year... and I don't feel any different.
+               </div>
+           </div>
+           <div class="card">
+               <div class="card-title">
+                   <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
+               </div>
+               <div class="card-description">
+                   This is the new year... and I don't feel any different.
+               </div>
+           </div>
+        </div>
+        <hr>
     </div>
     <style>
         /* CSS Reset */
@@ -68,7 +199,7 @@
             display: block;
             max-width: 100%;
         }
-        input, button, textarea, select {
+        input, button, textarea, select, input::file-selector-button {
             font: inherit;
         }
         p, h1, h2, h3, h4, h5, h6 {
@@ -88,17 +219,48 @@
         html, body {
             margin: 0;
             padding: 0;
-            width: 100%;
-            height: 100%;
+            overscroll-behavior: none;
         }
         html {
+            width: 100%;
+            height: 100%;
+            font-size: 1em;
+            line-height: 1em;
             background-image: url('sunflowers.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            --text-selection-color-bg: #076678;
+            --main-margin: 0.75rem;
+            --main-border-radius: 16px;
+            --main-content-padding: 1rem;
+            --main-content-padding-small: 0.5rem;
+            --accent-color: #076678;
+            --text-selection-color-bg: var(--accent-color);
             --text-selection-color-fg: #ffffff;
+            --overlay-bg: #00000020;
+            --overlay-bg-active: #00000040;
+            --layout-border-width: 1px;
+            --layout-border: var(--layout-border-width) solid rgba(255, 255, 255, 0.15);
+            --layout-border-focus: 1px solid rgba(255, 255, 255, 0.4);
+            --transition-duration: 0.1s;
+            --transition-timing-function: ease;
+            accent-color: var(--accent-color);
+        }
+        body {
+            font-family: 'Cascadia Mono';
+            font-weight: 400;
+            font-size: 0.9rem;
+            display: flex;
+            min-height: 100%;
+            justify-content: center;
+            align-items: center;
+            --text-primary-color: #ffffff;
+            --text-subdued-color: #d0d0d0;
+            color: var(--text-primary-color);
+        }
+        button {
+            font-style: italic;
         }
         *::selection {
             background: var(--text-selection-color-bg);
@@ -112,29 +274,68 @@
             background: var(--text-selection-color-bg);
             color:      var(--text-selection-color-fg);
         }
-        body {
-            font-family: 'Cascadia Mono';
-            line-height: 1.5
-            font-weight: 400;
-            font-size: 0.9rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
         p {
             margin: 1em 0;
+        }
+        input, textarea, select, button, input::file-selector-button {
+            background-color: var(--overlay-bg);
+            border: var(--layout-border);
+            transition: all var(--transition-duration) var(--transition-timing-function);
+            padding: 0.2rem 1.5ch;
+        }
+        select {
+            padding-left: 1ch;
+            padding-right: 1ch;
+        }
+        input:hover, textarea:hover, select:hover, button:hover, input::file-selector-button:hover {
+            background-color: var(--overlay-bg-active);
+            border: var(--layout-border);
+        }
+        input:focus, textarea:focus, select:focus, button:focus, input::file-selector-button:focus {
+            outline: none;
+            border: var(--layout-border-focus);
+        }
+        button, input::file-selector-button {
+            cursor: pointer;
+        }
+        input::placeholder, textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        input[type=range] {
+            vertical-align: middle;
+        }
+        input[type=number] {
+            appearance: textfield;
+        }
+        select option:checked {
+            color: var(--text-primary-color);
+            background-color: var(--accent-color);
+        }
+        select[multiple] {
+            vertical-align: top;
+        }
+        select[multiple]:focus option:checked {
+            background: var(--accent-color) linear-gradient(0deg, var(--accent-color) 0%, var(--accent-color) 100%);
+        }
+        input[type="color"] {
+            width: 3em;
+            height: 1.5em;
+        }
+        .layout-vertical, .layout-vertical-with-margin {
+            display: flex;
+            flex-direction: column;
+            gap: var(--main-content-padding-small);
+        }
+        .layout-vertical-with-margin {
+            margin: var(--main-content-padding-small) 0;
         }
         .spacer {
             flex: 1;
         }
         .main {
-            --main-margin: 0.75rem;
-            --main-border-radius: 16px;
-            --layout-border-color: rgba(255, 255, 255, 0.15);
             background-color: rgba(16, 16, 16, 0.65);
-            color: white;
             width: calc(min(55rem, 100vw - (var(--main-margin) * 2)));
-            height: calc(min(40rem, 100vh - (var(--main-margin) * 2)));
+            min-height: calc(min(40rem, 100vh - (var(--main-margin) * 2)));
             border-radius: var(--main-border-radius);
             margin:  var(--main-margin);
             -webkit-backdrop-filter: blur(10px);
@@ -145,38 +346,39 @@
                 0 18px 50px rgba(0, 0, 0, 0.52);           /* main drop shadow with a vertical offset */
             display: flex;
             flex-direction: column;
-        }
-        .main-content {
-            --main-content-padding: 1rem;
             padding: var(--main-content-padding);
-            display: flex;
-            flex-direction: column;
-            flex: 1;
         }
-        .main-content > hr {
+        .main > hr {
             margin-top: var(--main-content-padding);
-            margin-bottom: calc(var(--main-content-padding) + 1px);
+            margin-bottom: calc(var(--main-content-padding) + var(--layout-border-width));
             margin-left: calc(-1 * var(--main-content-padding));
             width: calc(100% + (2 * var(--main-content-padding)));
             outline: 0;
             border: 0;
-            height: 0;
-            border-bottom: 1px solid var(--layout-border-color);
+            border-bottom: var(--layout-border);
         }
-        .card-reel-container {
-            margin-top: calc(-1 * var(--main-content-padding));
-            margin-left: calc(-1 * var(--main-content-padding));
-            width: calc(100% + (2 * var(--main-content-padding)));
+        .main > hr[data-label]::before {
+            content: attr(data-label);
+            font-style: italic;
+            margin-left: var(--main-content-padding);
+            margin-right: var(--main-content-padding);
+            display: block;
+            /* 2x hr margin less the experimentaly confirmed y-height of overhangs in this font :D */
+            padding-bottom: calc(var(--main-content-padding) - ((7.0 / 28.0) * 1cap));
+            color: var(--text-subdued-color);
         }
         .card-reel {
-            --card-reel-gap: 1rem;
-            margin-top: calc(var(--main-content-padding));
+            --card-reel-gap: var(--main-content-padding);
             overflow-x: auto;
+            overflow-y: visible;
             width: 100%;
-            height: 100%;
             display: flex;
             flex-direction: row;
             gap: var(--card-reel-gap);
+            margin-left: calc(-1 * var(--main-content-padding));
+            padding-bottom: calc(var(--main-content-padding));
+            margin-bottom: calc(-1 * var(--main-content-padding));
+            width: calc(100% + (2 * var(--main-content-padding)));
         }
         .card:first-child {
             margin-left: calc(var(--card-reel-gap));
@@ -186,8 +388,8 @@
         }
         .card {
             --card-width: 35ch;
-            border: 1px solid var(--layout-border-color);
-            background-color: #00000020;
+            border: var(--layout-border);
+            background-color: var(--overlay-bg);
             padding: 2ch;
             border-radius: 12px;
             height: 9rem;
@@ -197,10 +399,10 @@
             cursor: pointer;
             -webkit-user-select: none;
             user-select: none;
-            transition: background-color 0.1s ease;
+            transition: background-color var(--transition-duration) var(--transition-timing-function);
         }
         .card:hover {
-            background-color: #00000040;
+            background-color: var(--overlay-bg-active);
         }
         .card-title {
             font-style: italic;
@@ -210,9 +412,34 @@
         }
         .card-description {
             margin-top: 0.5rem;
-            color: #d0d0d0;
+            color: var(--text-subdued-color);
+        }
+        @media (max-width: 576px) {
+            .main-content > hr::before {
+                font-size: 0.8rem;
+            }
         }
     </style>
+    <script>
+        /* allow scrolling through reel horizontally via vertical mouse wheel */
+        const cardReels = document.querySelectorAll(".card-reel");
+        let preventingHorizontalScrollTimer = null;
+        for (const cardReel of cardReels) {
+            cardReel.addEventListener("wheel", function(e) {
+                if (Math.abs(e.deltaX) > 0) {
+                    clearTimeout(preventingHorizontalScrollTimer);
+                    preventingHorizontalScrollTimer = window.setTimeout(() => {
+                        preventingHorizontalScrollTimer = null;
+                    }, 4000);
+                    return;
+                }
+                if (preventingHorizontalScrollTimer === null && Math.abs(e.deltaY) > 0) {
+                    e.preventDefault();
+                    cardReel.scrollLeft += e.deltaY;
+                }
+            });
+        }
+    </script>
 </body>
 </html>
 
