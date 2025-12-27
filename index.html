@@ -10,7 +10,7 @@
 <body>
     <div class="card layout-vertical">
         <h2>A demo of iced-out-css...</h2>
-        <div class="scroll-container-vertical layout-vertical">
+        <div class="scroll-container-vertical layout-vertical" style="height: 30rem;">
             <div class="form-group layout-horizontal layout-stretch">
                 <button type="submit">Submit Form</button>
                 <button type="reset">Reset Form</button>
@@ -38,7 +38,7 @@
             </div>
             <div class="form-group">
                 <label for="volume">Range Input (Volume):</label>
-                <input type="range" id="volume" name="volume" min="0" max="100" value="50">
+                <input type="range" id="volume" name="volume" min="0" max="100" value="100">
             </div>
             <div class="form-group">
                 <label for="favColor">Color Input:</label>
@@ -270,6 +270,11 @@
             color: var(--text-primary-color);
             background-color: var(--accent-color);
         }
+        textarea {
+            min-height: 4em;
+            min-width: 100%;
+            max-width: 100%;
+        }
         select[multiple], textarea {
             vertical-align: top;
         }
@@ -322,7 +327,6 @@
             border-bottom: var(--layout-border);
             display: flex;
             flex-direction: column;
-            height: 30rem;
             overflow-y: auto;
         }
         .scroll-container-horizontal {
