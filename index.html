@@ -7,8 +7,9 @@
     <title>lloydeverett.com</title>
     <link rel="stylesheet" href="fonts.css">
 </head>
-<body>
-    <div class="surface layout-vertical">
+<body class="layout-horizontal">
+    <div class="surface surface-circular"><span class="chevron-left"></span></div>
+    <div class="surface layout-vertical" style="max-width: 70rem;">
         <h2>A demo of iced-out-css...</h2>
         <div class="scroll-container-vertical layout-vertical" style="height: 30rem;">
             <div class="form-group layout-horizontal layout-stretch">
@@ -141,6 +142,7 @@
         </div>
         <div></div> <!-- just taking up space -->
     </div>
+    <div class="surface surface-circular"><span class="chevron-right"></span></div>
     <style>
         /* CSS Reset */
         *, *::before, *::after {
@@ -176,21 +178,11 @@
     </style>
     <style>
         html, body {
-            margin: 0;
-            padding: 0;
             overscroll-behavior: none;
         }
         html {
-            width: 100%;
-            height: 100%;
-            font-size: 1em;
-            line-height: 1em;
-            background-image: url('sunflowers.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            --surface-margin: 0.75rem;
+            --surface-bg: rgba(16, 16, 16, 0.675);
+            --surface-bg-active: rgba(16, 16, 16, 0.75);
             --surface-border-radius: 16px;
             --surface-content-padding: 1rem;
             --surface-content-padding-tight: 0.5rem;
@@ -204,6 +196,19 @@
             --layout-border-focus: 1px solid rgba(255, 255, 255, 0.4);
             --transition-duration: 0.1s;
             --transition-timing-function: ease;
+            --content-margin: 0.75rem;
+            --text-primary-color: #ffffff;
+            --text-subdued-color: #d0d0d0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 1em;
+            line-height: 1em;
+            background-image: url('sunflowers.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             accent-color: var(--accent-color);
         }
         body {
@@ -212,11 +217,12 @@
             font-size: 0.9rem;
             display: flex;
             min-height: 100%;
+            display: flex;
             justify-content: center;
             align-items: center;
-            --text-primary-color: #ffffff;
-            --text-subdued-color: #d0d0d0;
             color: var(--text-primary-color);
+            margin: 0;
+            padding: var(--content-margin);
         }
         button {
             font-style: italic;
@@ -286,11 +292,8 @@
             height: 1.5em;
         }
         .surface {
-            background-color: rgba(16, 16, 16, 0.65);
-            width: calc(min(55rem, 100vw - (var(--surface-margin) * 2)));
-            min-height: calc(min(40rem, 100vh - (var(--surface-margin) * 2)));
+            background-color: var(--surface-bg);
             border-radius: var(--surface-border-radius);
-            margin:  var(--surface-margin);
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter:         blur(10px);
             box-shadow:
@@ -300,6 +303,32 @@
             display: flex;
             flex-direction: column;
             padding: var(--surface-content-padding);
+            width: 0px;
+            flex: 1;
+        }
+        .surface-fit-content {
+            width: fit-content;
+            height: fit-content;
+            flex: 0;
+        }
+        .surface-circular {
+            --diameter: 3rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+            position: relative;
+            border-radius: 50%;
+            min-width:  var(--diameter);
+            min-height: var(--diameter);
+            max-width:  var(--diameter);
+            max-height: var(--diameter);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 0;
+            transition: background-color var(--transition-duration) var(--transition-timing-function);
+        }
+        .surface-circular:hover {
+            background-color: var(--surface-bg-active);
         }
         .surface hr {
             margin-left: calc(-1 * var(--surface-content-padding));
