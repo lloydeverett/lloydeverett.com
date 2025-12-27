@@ -1,0 +1,28 @@
+@font-face {
+    font-display: block;
+    font-family: 'Seti Icons';
+    src: url('fonts/Seti.otf') format('opentype');
+}
+
+@font-face {
+    font-display: block;
+    font-family: 'Material Design Icons';
+    src: url('fonts/MaterialDesign.otf') format('opentype');
+}
+
+.chevron-left:before {
+    font-family: 'Material Design Icons';
+    content: "\f141";
+}
+
+.chevron-right:before {
+    font-family: 'Material Design Icons';
+    content: "\f142";
+}
+
+.seti-lua:before {
+    font-family: 'Seti Icons';
+    color: #00BFFF;
+    content: "\e520";
+}
+
