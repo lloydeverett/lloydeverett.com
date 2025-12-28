@@ -10,18 +10,35 @@
     src: url('fonts/MaterialDesign.otf') format('opentype');
 }
 
-.chevron-left:before {
+.mdi-chevron-left:before {
     font-family: 'Material Design Icons';
+    font-style: normal;
+    font-size: 1.2em;
     content: "\f141";
 }
 
-.chevron-right:before {
+.mdi-chevron-right:before {
     font-family: 'Material Design Icons';
+    font-style: normal;
+    font-size: 1.2em;
     content: "\f142";
+}
+
+.mdi-clock:before {
+    font-family: 'Material Design Icons';
+    font-style: normal;
+    content: "\f150";
+}
+
+.mdi-cube-outline:before {
+    font-family: 'Material Design Icons';
+    font-style: normal;
+    content: "\f1a7";
 }
 
 .seti-lua:before {
     font-family: 'Seti Icons';
+    font-style: normal;
     color: #00BFFF;
     content: "\e520";
 }

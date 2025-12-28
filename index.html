@@ -7,462 +7,180 @@
     <title>lloydeverett.com</title>
     <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="icons.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="layout-vertical">
-    <div class="surface"></div>
-    <div class="layout-horizontal layout-align-center layout-justify-center stretch">
-        <div class="surface surface-circular"><span class="chevron-left"></span></div>
-        <div class="surface layout-vertical widthless stretch" style="max-width: 70rem;">
-            <h2>A demo of retro-glass.css...</h2>
-            <div class="scroll-container-vertical layout-vertical" style="height: 30rem;">
-                <div class="form-group layout-horizontal layout-stretch">
-                    <button type="submit">Submit Form</button>
-                    <button type="reset">Reset Form</button>
-                    <button type="button">Regular Button</button>
-                </div>
-                <div class="form-group">
-                    <label for="username">Text Input (Username):</label>
-                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Input:</label>
-                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="age">Number Input (Age):</label>
-                    <input type="number" id="age" name="age" min="0" max="120" value="25">
-                </div>
-                <div class="form-group">
-                    <label for="birthdate">Date Input:</label>
-                    <input type="date" id="birthdate" name="birthdate">
-                </div>
-                <div class="form-group">
-                    <label for="meeting">Time Input:</label>
-                    <input type="time" id="meeting" name="meeting">
-                </div>
-                <div class="form-group">
-                    <label for="volume">Range Input (Volume):</label>
-                    <input type="range" id="volume" name="volume" min="0" max="100" value="100">
-                </div>
-                <div class="form-group">
-                    <label for="favColor">Color Input:</label>
-                    <input type="color" id="favColor" name="favColor" value="#007bff">
-                </div>
-                <div class="form-group">
-                    <label for="message">Textarea (Message):</label>
-                    <textarea id="message" name="message" placeholder="Enter your message here..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="country">Select Dropdown (Country):</label>
-                    <select id="country" name="country">
-                        <option value="">-- Select a country --</option>
-                        <option value="za">South Africa</option>
-                        <option value="us">United States</option>
-                        <option value="uk">United Kingdom</option>
-                        <option value="ca">Canada</option>
-                        <option value="au">Australia</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="interests">Multiple Select (Interests):</label>
-                    <select id="interests" name="interests" multiple size="4">
-                        <option value="sports">Sports</option>
-                        <option value="music">Music</option>
-                        <option value="reading">Reading</option>
-                        <option value="gaming">Gaming</option>
-                        <option value="cooking">Cooking</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Checkboxes (Select all that apply):</label>
-                    <div class="checkbox-group layout-vertical-tight-with-margin">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="agree" name="agree" value="yes">
-                            <label for="agree" style="margin-bottom: 0; font-weight: normal;">I agree to terms</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="newsletter" name="newsletter" value="yes">
-                            <label for="newsletter" style="margin-bottom: 0; font-weight: normal;">Subscribe to newsletter</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Radio Buttons (Choose one):</label>
-                    <div class="radio-group layout-vertical-tight-with-margin">
-                        <div class="radio-item">
-                            <input type="radio" id="male" name="gender" value="male">
-                            <label for="male" style="margin-bottom: 0; font-weight: normal;">Male</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" id="female" name="gender" value="female">
-                            <label for="female" style="margin-bottom: 0; font-weight: normal;">Female</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" id="other" name="gender" value="other">
-                            <label for="other" style="margin-bottom: 0; font-weight: normal;">Other</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="fileUpload">File Input:</label>
-                    <input type="file" id="fileUpload" name="fileUpload" accept=".jpg,.png,.pdf">
-                </div>
-            </div>
-            <h2>Projects I've been hacking on lately...</h2>
-            <div class="scroll-container-horizontal layout-horizontal">
-                <div class="subcard">
-                    <div class="subcard-title">
-                        <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
-                    </div>
-                    <div class="subcard-description">
-                        This is the new year... and I don't feel any different.
-                    </div>
-                </div>
-                <div class="subcard">
-                    <div class="subcard-title">
-                        <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
-                    </div>
-                    <div class="subcard-description">
-                        This is the new year... and I don't feel any different.
-                    </div>
-                </div>
-                <div class="subcard">
-                    <div class="subcard-title">
-                        <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
-                    </div>
-                    <div class="subcard-description">
-                        This is the new year... and I don't feel any different.
-                    </div>
-                </div>
-                <div class="subcard">
-                    <div class="subcard-title">
-                        <span class="seti-lua"></span>&nbsp;lua-cosmopolitan
-                    </div>
-                    <div class="subcard-description">
-                        This is the new year... and I don't feel any different.
-                    </div>
-                </div>
-            </div>
-            <div></div> <!-- just taking up space -->
+<body class="layout-vertical toolbar-floating">
+    <div class="surface layout-horizontal layout-align-center layout-contain no-user-select toolbar">
+        <div>
+            <span class="mdi-cube-outline icon-right-pad"></span>
+            <select id="theme" name="theme">
+                <option value="">iced-out-retroglass</option>
+                <option value="">iced-out-everforest</option>
+            </select>
         </div>
-        <div class="surface surface-circular"><span class="chevron-right"></span></div>
+        <div class="spacer"></div>
+        <div class="checkbox-item">
+            <input type="checkbox" id="float-toolbar" name="float-toolbar" checked>
+            <label for="float-toolbar">Float toolbars</label>
+        </div>
+        <div>
+            <span class="mdi-clock icon-right-pad"></span>
+            <span class="clock-text"></span>
+        </div>
     </div>
-    <div class="surface"></div>
-    <style>
-        /* CSS Reset */
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-        *:not(dialog) {
-            margin: 0;
-        }
-        @media (prefers-reduced-motion: no-preference) {
-            html {
-                interpolate-size: allow-keywords;
-            }
-        }
-        img, picture, video, canvas, svg {
-            display: block;
-            max-width: 100%;
-        }
-        input, button, textarea, select, input::file-selector-button {
-            font: inherit;
-        }
-        p, h1, h2, h3, h4, h5, h6 {
-            overflow-wrap: break-word;
-        }
-        p {
-            text-wrap: pretty;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            text-wrap: balance;
-        }
-        #root, #__next {
-            isolation: isolate;
-        }
-    </style>
-    <style>
-        html, body {
-            overscroll-behavior: none;
-        }
-        html {
-            --surface-bg: rgba(16, 16, 16, 0.675);
-            --surface-bg-active: rgba(16, 16, 16, 0.75);
-            --surface-border-radius: 16px;
-            --surface-content-padding: 1rem;
-            --surface-content-padding-tight: 0.5rem;
-            --accent-color: #076678;
-            --text-selection-color-bg: var(--accent-color);
-            --text-selection-color-fg: #ffffff;
-            --overlay-bg: #00000020;
-            --overlay-bg-active: #00000040;
-            --layout-border-width: 1px;
-            --layout-border: var(--layout-border-width) solid rgba(255, 255, 255, 0.15);
-            --layout-border-focus: 1px solid rgba(255, 255, 255, 0.4);
-            --transition-duration: 0.1s;
-            --transition-timing-function: ease;
-            --content-margin: 0.75rem;
-            --text-primary-color: #ffffff;
-            --text-subdued-color: #d0d0d0;
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            font-size: 1em;
-            line-height: 1em;
-            background-image: url('sunflowers.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            accent-color: var(--accent-color);
-        }
-        body {
-            font-family: 'Cascadia Mono';
-            font-weight: 400;
-            font-size: 0.9rem;
-            display: flex;
-            min-height: 100%;
-            display: flex;
-            color: var(--text-primary-color);
-            margin: 0;
-            padding: var(--content-margin);
-        }
-        button {
-            font-style: italic;
-        }
-        *::selection {
-            background: var(--text-selection-color-bg);
-            color:      var(--text-selection-color-fg);
-        }
-        *::-moz-selection {
-            background: var(--text-selection-color-bg);
-            color:      var(--text-selection-color-fg);
-        }
-        *::-webkit-selection {
-            background: var(--text-selection-color-bg);
-            color:      var(--text-selection-color-fg);
-        }
-        p {
-            margin: 0;
-        }
-        input, textarea, select, button, input::file-selector-button {
-            background-color: var(--overlay-bg);
-            border: var(--layout-border);
-            transition: all var(--transition-duration) var(--transition-timing-function);
-            padding: 0.2rem 1.5ch;
-        }
-        select {
-            padding-left: 1ch;
-            padding-right: 1ch;
-        }
-        input:hover, textarea:hover, select:hover, button:hover, input::file-selector-button:hover {
-            background-color: var(--overlay-bg-active);
-            border: var(--layout-border);
-        }
-        input:focus, textarea:focus, select:focus, button:focus, input::file-selector-button:focus {
-            outline: none;
-            border: var(--layout-border-focus);
-        }
-        button, input::file-selector-button {
-            cursor: pointer;
-        }
-        input::placeholder, textarea::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-        input[type=range] {
-            vertical-align: middle;
-        }
-        input[type=number] {
-            appearance: textfield;
-        }
-        select option:checked {
-            color: var(--text-primary-color);
-            background-color: var(--accent-color);
-        }
-        textarea {
-            min-height: 4em;
-            min-width: 100%;
-            max-width: 100%;
-        }
-        select[multiple], textarea {
-            vertical-align: top;
-        }
-        select[multiple]:focus option:checked {
-            background: var(--accent-color) linear-gradient(0deg, var(--accent-color) 0%, var(--accent-color) 100%);
-        }
-        input[type="color"] {
-            width: 3em;
-            height: 1.5em;
-        }
-        .surface {
-            background-color: var(--surface-bg);
-            border-radius: var(--surface-border-radius);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter:         blur(10px);
-            box-shadow:
-                inset 0 0 0 1px rgba(255, 255, 255, 0.15), /* inner white border/highlight */
-                0 0 0 0.5px rgba(0, 0, 0, 0.65),           /* outer subtle black border */
-                0 18px 50px rgba(0, 0, 0, 0.52);           /* surface drop shadow with a vertical offset */
-            display: flex;
-            flex-direction: column;
-            padding: var(--surface-content-padding);
-        }
-        .surface-circular {
-            --diameter: 3rem;
-            cursor: pointer;
-            font-size: 1.2rem;
-            position: relative;
-            border-radius: 50%;
-            min-width:  var(--diameter);
-            min-height: var(--diameter);
-            max-width:  var(--diameter);
-            max-height: var(--diameter);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex: 0;
-            transition: background-color var(--transition-duration) var(--transition-timing-function);
-        }
-        .surface-circular:hover {
-            background-color: var(--surface-bg-active);
-        }
-        .surface hr {
-            margin-left: calc(-1 * var(--surface-content-padding));
-            width: calc(100% + (2 * var(--surface-content-padding)));
-            outline: 0;
-            border: 0;
-            border-bottom: var(--layout-border);
-        }
-        .surface h2 {
-            font-size: 1em;
-            font-style: italic;
-            font-weight: 400;
-            color: var(--text-subdued-color);
-        }
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: var(--surface-content-padding-tight);
-        }
-        .scroll-container-vertical {
-            padding: var(--surface-content-padding);
-            margin-left: calc(-1 * var(--surface-content-padding));
-            width: calc(100% + (2 * var(--surface-content-padding)));
-            border-top: var(--layout-border);
-            border-bottom: var(--layout-border);
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-        }
-        .scroll-container-horizontal {
-            padding: var(--surface-content-padding);
-            margin-left: calc(-1 * var(--surface-content-padding));
-            width: calc(100% + (2 * var(--surface-content-padding)));
-            border-top: var(--layout-border);
-            border-bottom: var(--layout-border);
-            display: flex;
-            flex-direction: row;
-            overflow-x: auto;
-        }
-        .subcard-reel {
-            --subcard-reel-gap: var(--surface-content-padding);
-            gap: var(--subcard-reel-gap);
-        }
-        .subcard {
-            --subcard-width: 35ch;
-            border: var(--layout-border);
-            background-color: var(--overlay-bg);
-            padding: 2ch;
-            border-radius: 12px;
-            height: 9rem;
-            width: var(--subcard-width);
-            min-width: var(--subcard-width);
-            font-size: 0.75rem;
-            cursor: pointer;
-            -webkit-user-select: none;
-            user-select: none;
-            transition: background-color var(--transition-duration) var(--transition-timing-function);
-        }
-        .subcard:hover {
-            background-color: var(--overlay-bg-active);
-        }
-        .subcard-title {
-            font-style: italic;
-        }
-        .subcard-title > * {
-            font-style: normal;
-        }
-        .subcard-description {
-            margin-top: 0.5rem;
-            color: var(--text-subdued-color);
-        }
-        @media (max-width: 576px) {
-            .surface-content > hr::before {
-                font-size: 0.8rem;
-            }
-        }
-
-        /* these rules should override others, so keep them last to surfacetain specificity */
-        .layout-vertical, .layout-vertical-with-margin {
-            display: flex;
-            flex-direction: column;
-            gap: var(--surface-content-padding);
-        }
-        .layout-vertical-with-margin {
-            margin: var(--surface-content-padding) 0;
-        }
-        .layout-vertical-tight, .layout-vertical-tight-with-margin {
-            display: flex;
-            flex-direction: column;
-            gap: var(--surface-content-padding-tight);
-        }
-        .layout-vertical-tight-with-margin {
-            margin: var(--surface-content-padding-tight) 0;
-        }
-        .layout-horizontal, .layout-horizontal-with-margin {
-            display: flex;
-            flex-direction: row;
-            gap: var(--surface-content-padding);
-        }
-        .layout-horizontal-with-margin {
-            margin: 0 var(--surface-content-padding);
-        }
-        .layout-align-center {
-            align-items: center;
-        }
-        .layout-justify-center {
-            justify-content: center;
-        }
-        .layout-stretch > *, .spacer, .stretch {
-            flex: 1;
-        }
-        .widthless {
-            width: 0px;
-        }
-        .heightless {
-            height: 0px;
-        }
-    </style>
-    <script>
-        /* allow scrolling through horizontal scroll containers via vertical mouse wheel */
-        const scrollContainers = document.querySelectorAll(".scroll-container-horizontal");
-        let preventingHorizontalScrollTimer = null;
-        for (const scrollContainer of scrollContainers) {
-            scrollContainer.addEventListener("wheel", function(e) {
-                if (Math.abs(e.deltaX) > 0) {
-                    clearTimeout(preventingHorizontalScrollTimer);
-                    preventingHorizontalScrollTimer = window.setTimeout(() => {
-                        preventingHorizontalScrollTimer = null;
-                    }, 4000);
-                    return;
-                }
-                if (preventingHorizontalScrollTimer === null && Math.abs(e.deltaY) > 0) {
-                    e.preventDefault();
-                    scrollContainer.scrollLeft += e.deltaY;
-                }
-            });
-        }
-    </script>
+    <div class="layout-horizontal layout-align-center layout-justify-center stretch layout-contain">
+        <div class="surface surface-circular layout-contain md"><span class="mdi-chevron-left"></span></div>
+        <div class="layout-vertical layout-justify-center widthless stretch align-stretch layout-contain obey-max-width" style="--max-width: 70rem;">
+            <div class="surface stretch layout-vertical layout-contain md-obey-max-height" style="--max-height: 45rem;">
+                <h2>A demo of form controls...</h2>
+                <form class="scroll-container-vertical layout-vertical heightless stretch bottomless">
+                    <div class="form-group layout-horizontal layout-stretch">
+                        <button type="submit">Submit Form</button>
+                        <button type="reset">Reset Form</button>
+                        <button type="button">Regular Button</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Text Input</label>
+                        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Input</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Number Input</label>
+                        <input type="number" id="age" name="age" min="0" max="120" value="25">
+                    </div>
+                    <div class="form-group">
+                        <label for="birthdate">Date Input</label>
+                        <input type="date" id="birthdate" name="birthdate">
+                    </div>
+                    <div class="form-group">
+                        <label for="meeting">Time Input</label>
+                        <input type="time" id="meeting" name="meeting">
+                    </div>
+                    <div class="form-group">
+                        <label for="volume">Range Input</label>
+                        <input type="range" id="volume" name="volume" min="0" max="100" value="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="favColor">Color Input</label>
+                        <input type="color" id="favColor" name="favColor" value="#007bff">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Textarea</label>
+                        <textarea id="message" name="message" placeholder="Enter your message here..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Select Dropdown</label>
+                        <select id="country" name="country">
+                            <option value="">-- Select a country --</option>
+                            <option value="za">South Africa</option>
+                            <option value="us">United States</option>
+                            <option value="uk">United Kingdom</option>
+                            <option value="ca">Canada</option>
+                            <option value="au">Australia</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="interests">Multiple Select</label>
+                        <select id="interests" name="interests" multiple size="4">
+                            <option value="sports">Sports</option>
+                            <option value="music">Music</option>
+                            <option value="reading">Reading</option>
+                            <option value="gaming">Gaming</option>
+                            <option value="cooking">Cooking</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Checkboxes</label>
+                        <div class="checkbox-group layout-vertical-tight-with-margin">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="agree" name="agree" value="yes">
+                                <label for="agree">I agree to terms</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="newsletter" name="newsletter" value="yes">
+                                <label for="newsletter">Subscribe to newsletter</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Radio Buttons</label>
+                        <div class="radio-group layout-vertical-tight-with-margin">
+                            <div class="radio-item">
+                                <input type="radio" id="male" name="gender" value="male">
+                                <label for="male">Male</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="female" name="gender" value="female">
+                                <label for="female">Female</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="other" name="gender" value="other">
+                                <label for="other">Other</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fileUpload">File Input</label>
+                        <input type="file" id="fileUpload" name="fileUpload" accept=".jpg,.png,.pdf">
+                    </div>
+                </form>
+                <!--  TODO: this needs to move to a next card on the carousel -->
+                <!--
+                <h2>Projects I've been hacking on lately...</h2>
+                <div class="scroll-container-horizontal layout-horizontal">
+                    <div class="subcard no-user-select">
+                        <div class="subcard-title">
+                            <span class="seti-lua icon-right-pad"></span>
+                            <span>lua-cosmopolitan</span>
+                        </div>
+                        <div class="subcard-description">
+                            This is the new year... and I don't feel any different.
+                        </div>
+                    </div>
+                    <div class="subcard no-user-select">
+                        <div class="subcard-title">
+                            <span class="seti-lua icon-right-pad"></span>
+                            <span>lua-cosmopolitan</span>
+                        </div>
+                        <div class="subcard-description">
+                            This is the new year... and I don't feel any different.
+                        </div>
+                    </div>
+                    <div class="subcard no-user-select">
+                        <div class="subcard-title">
+                            <span class="seti-lua icon-right-pad"></span>
+                            <span>lua-cosmopolitan</span>
+                        </div>
+                        <div class="subcard-description">
+                            This is the new year... and I don't feel any different.
+                        </div>
+                    </div>
+                    <div class="subcard no-user-select">
+                        <div class="subcard-title">
+                            <span class="seti-lua icon-right-pad"></span>
+                            <span>lua-cosmopolitan</span>
+                        </div>
+                        <div class="subcard-description">
+                            This is the new year... and I don't feel any different.
+                        </div>
+                    </div>
+                </div>
+                -->
+            </div>
+        </div>
+        <div class="surface surface-circular layout-contain md"><span class="mdi-chevron-right"></span></div>
+    </div>
+    <div class="surface layout-horizontal layout-align-center layout-contain no-user-select toolbar">
+        <span class="mdi-chevron-left no-md"></span>
+        <div class="spacer"></div>
+        <span class="stylized">Form controls example</span>
+        <div class="spacer"></div>
+        <span class="mdi-chevron-right no-md"></span>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>
 
