@@ -1,0 +1,64 @@
+
+body {
+    position: relative;
+}
+
+.parallax {
+    position: absolute;
+    image-rendering: pixelated;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: var(--img-url);
+    background-size: var(--img-width) calc(max(var(--img-height), 100vh));
+    background-position: center;
+    background-repeat: repeat-x;
+    background-attachment: fixed;
+    width: calc(var(--img-width) * 2);
+    min-width: calc(var(--img-width) * 2);
+    animation: background-pan var(--img-period) linear infinite;
+}
+
+@keyframes background-pan {
+    0% {
+        background-position-x: 0;
+    }
+    100% {
+        background-position-x: calc(-1 * var(--img-width));
+    }
+}
+
+.parallax.parallax-1 {
+    --img-url:    var(--img-url-1);
+    --img-period: var(--img-period-1);
+}
+
+.parallax.parallax-2 {
+    --img-url:    var(--img-url-2);
+    --img-period: var(--img-period-2);
+}
+
+.parallax.parallax-3 {
+    --img-url:    var(--img-url-3);
+    --img-period: var(--img-period-3);
+}
+
+.parallax.parallax-4 {
+    --img-url:    var(--img-url-4);
+    --img-period: var(--img-period-4);
+}
+
+.parallax-theme-orange-sunset {
+    --img-width: calc(576px * 4);
+    --img-height: calc(324px * 4);
+    --img-url-1: url("orange-sunset/1.png");
+    --img-period-1: 40s;
+    --img-url-2: url("orange-sunset/2.png");
+    --img-period-2: 40s;
+    --img-url-3: url("orange-sunset/3.png");
+    --img-period-3: 35s;
+    --img-url-4: url("orange-sunset/4.png");
+    --img-period-4: 30s;
+}
+

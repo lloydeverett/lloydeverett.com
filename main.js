@@ -32,8 +32,8 @@ updateClocks();
 window.setInterval(updateClocks, 1000);
 
 /* floating toolbar toggle */
-document.querySelector("#float-toolbar").checked = true;
+document.querySelector("#float-toolbar").checked = false;
 document.querySelector("#float-toolbar").addEventListener("change", function() {
-    document.querySelector("body").classList.toggle("toolbar-floating", this.checked);
+    document.querySelector("body").classList.toggle("floating-toolbars", this.checked);
 });
 
