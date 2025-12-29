@@ -40,7 +40,7 @@ html {
     --surface-border-radius: 16px;
     --surface-content-padding: 1rem;
     --surface-content-padding-tight: 0.5rem;
-    --accent-color: #076678;
+    --accent-color: var(--parallax-accent-color, #076678);
     --text-selection-color-bg: var(--accent-color);
     --text-selection-color-fg: #ffffff;
     --overlay-bg: #00000020;

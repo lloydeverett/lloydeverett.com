@@ -1,32 +1,32 @@
 
-@property --viewport-width-px {
+@property --parallax-viewport-width-px {
     syntax: '<length>';
     inherits: true;
     initial-value: 0px;
 }
 
-@property --viewport-height-px {
+@property --parallax-viewport-height-px {
     syntax: '<length>';
     inherits: true;
     initial-value: 0px;
 }
 
-@property --scale-factor {
+@property --parallax-scale-factor {
     syntax: '<number>';
     inherits: true;
     initial-value: 0.5;
 }
 
 html {
-    --img-speed-multiplier: 1.0;
-    --img-period-1: calc(160s / var(--img-speed-multiplier));
-    --img-period-2: calc(160s / var(--img-speed-multiplier));
-    --img-period-3: calc(140s / var(--img-speed-multiplier));
-    --img-period-4: calc(120s / var(--img-speed-multiplier));
-    --viewport-width-px: 100vw;
-    --viewport-height-px: 100vh;
+    --parallax-img-speed-multiplier: 1.0;
+    --parallax-img-period-1: calc(160s / var(--parallax-img-speed-multiplier));
+    --parallax-img-period-2: calc(160s / var(--parallax-img-speed-multiplier));
+    --parallax-img-period-3: calc(140s / var(--parallax-img-speed-multiplier));
+    --parallax-img-period-4: calc(120s / var(--parallax-img-speed-multiplier));
+    --parallax-viewport-width-px: 100vw;
+    --parallax-viewport-height-px: 100vh;
     /*  HACK: calc doesn't support division, so use tan(atan2(a, b)) == a / b */
-    --scale-factor: calc(tan(atan2(max(var(--viewport-height-px), var(--img-height)), var(--img-height))));
+    --parallax-scale-factor: calc(tan(atan2(max(var(--parallax-viewport-height-px), var(--parallax-img-height)), var(--parallax-img-height))));
 }
 
 body {
@@ -40,32 +40,32 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: var(--img-url);
-    background-size: var(--img-width) var(--img-height);
+    background-image: var(--parallax-img-url);
+    background-size: var(--parallax-img-width) var(--parallax-img-height);
     background-position: center;
     background-repeat: repeat-x;
-    animation: background-pan var(--img-period) linear infinite;
-    transform: scale(calc(var(--scale-factor)));
+    animation: background-pan var(--parallax-img-period) linear infinite;
+    transform: scale(calc(var(--parallax-scale-factor)));
 }
 
 .parallax.parallax-1 {
-    --img-url:    var(--img-url-1);
-    --img-period: var(--img-period-1);
+    --parallax-img-url:    var(--parallax-img-url-1);
+    --parallax-img-period: var(--parallax-img-period-1);
 }
 
 .parallax.parallax-2 {
-    --img-url:    var(--img-url-2);
-    --img-period: var(--img-period-2);
+    --parallax-img-url:    var(--parallax-img-url-2);
+    --parallax-img-period: var(--parallax-img-period-2);
 }
 
 .parallax.parallax-3 {
-    --img-url:    var(--img-url-3);
-    --img-period: var(--img-period-3);
+    --parallax-img-url:    var(--parallax-img-url-3);
+    --parallax-img-period: var(--parallax-img-period-3);
 }
 
 .parallax.parallax-4 {
-    --img-url:    var(--img-url-4);
-    --img-period: var(--img-period-4);
+    --parallax-img-url:    var(--parallax-img-url-4);
+    --parallax-img-period: var(--parallax-img-period-4);
 }
 
 @keyframes background-pan {
@@ -73,17 +73,17 @@ body {
         background-position-x: 0;
     }
     100% {
-        background-position-x: calc(-1 * var(--img-width));
+        background-position-x: calc(-1 * var(--parallax-img-width));
     }
 }
 
 html:has(.parallax-theme-orange-sunset) {
-    --img-width:  calc(576px * 4);
-    --img-height: calc(324px * 4);
-    --img-url-1:  url("orange-sunset/1.png");
-    --img-url-2:  url("orange-sunset/2.png");
-    --img-url-3:  url("orange-sunset/3.png");
-    --img-url-4:  url("orange-sunset/4.png");
-    --accent-color: #506ca1;
+    --parallax-img-width:  calc(576px * 4);
+    --parallax-img-height: calc(324px * 4);
+    --parallax-img-url-1:  url("orange-sunset/1.png");
+    --parallax-img-url-2:  url("orange-sunset/2.png");
+    --parallax-img-url-3:  url("orange-sunset/3.png");
+    --parallax-img-url-4:  url("orange-sunset/4.png");
+    --parallax-accent-color: #506ca1;
 }
 
