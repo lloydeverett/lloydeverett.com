@@ -1,10 +1,32 @@
 
+@property --viewport-width-px {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 0px;
+}
+
+@property --viewport-height-px {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 0px;
+}
+
+@property --scale-factor {
+    syntax: '<number>';
+    inherits: true;
+    initial-value: 0.5;
+}
+
 html {
-    --img-speed-multiplier: 10.0;
+    --img-speed-multiplier: 1.0;
     --img-period-1: calc(160s / var(--img-speed-multiplier));
     --img-period-2: calc(160s / var(--img-speed-multiplier));
     --img-period-3: calc(140s / var(--img-speed-multiplier));
     --img-period-4: calc(120s / var(--img-speed-multiplier));
+    --viewport-width-px: 100vw;
+    --viewport-height-px: 100vh;
+    /*  HACK: calc doesn't support division, so use tan(atan2(a, b)) == a / b */
+    --scale-factor: calc(tan(atan2(max(var(--viewport-height-px), var(--img-height)), var(--img-height))));
 }
 
 body {
@@ -19,10 +41,11 @@ body {
     right: 0;
     bottom: 0;
     background-image: var(--img-url);
-    background-size: var(--img-width) calc(max(var(--img-height), 100vh));
+    background-size: var(--img-width) var(--img-height);
     background-position: center;
     background-repeat: repeat-x;
     animation: background-pan var(--img-period) linear infinite;
+    transform: scale(calc(var(--scale-factor)));
 }
 
 .parallax.parallax-1 {
