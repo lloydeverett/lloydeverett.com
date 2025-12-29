@@ -1,4 +1,12 @@
 
+html {
+    --img-speed-multiplier: 1.0;
+    --img-period-1: calc(160s / var(--img-speed-multiplier));
+    --img-period-2: calc(160s / var(--img-speed-multiplier));
+    --img-period-3: calc(140s / var(--img-speed-multiplier));
+    --img-period-4: calc(120s / var(--img-speed-multiplier));
+}
+
 body {
     position: relative;
 }
@@ -14,22 +22,9 @@ body {
     background-size: var(--img-width) calc(max(var(--img-height), 100vh));
     background-position: center;
     background-repeat: repeat-x;
-    width: calc(var(--img-width) * 2);
-    min-width: calc(var(--img-width) * 2);
+    width: calc(var(--img-width));
+    min-width: calc(var(--img-width));
     animation: background-pan var(--img-period) linear infinite;
-    --img-period-1: 160s;
-    --img-period-2: 160s;
-    --img-period-3: 140s;
-    --img-period-4: 120s;
-}
-
-@keyframes background-pan {
-    0% {
-        background-position-x: 0;
-    }
-    100% {
-        background-position-x: calc(-1 * var(--img-width));
-    }
 }
 
 .parallax.parallax-1 {
@@ -52,12 +47,22 @@ body {
     --img-period: var(--img-period-4);
 }
 
-.parallax-theme-orange-sunset {
-    --img-width: calc(576px * 4);
+@keyframes background-pan {
+    0% {
+        background-position-x: 0;
+    }
+    100% {
+        background-position-x: calc(-1 * var(--img-width));
+    }
+}
+
+html:has(.parallax-theme-orange-sunset) {
+    --img-width:  calc(576px * 4);
     --img-height: calc(324px * 4);
-    --img-url-1: url("orange-sunset/1.png");
-    --img-url-2: url("orange-sunset/2.png");
-    --img-url-3: url("orange-sunset/3.png");
-    --img-url-4: url("orange-sunset/4.png");
+    --img-url-1:  url("orange-sunset/1.png");
+    --img-url-2:  url("orange-sunset/2.png");
+    --img-url-3:  url("orange-sunset/3.png");
+    --img-url-4:  url("orange-sunset/4.png");
+    --accent-color: #506ca1;
 }
 

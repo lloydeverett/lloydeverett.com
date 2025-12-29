@@ -36,7 +36,7 @@ html, body {
 }
 html {
     --surface-bg: rgba(16, 16, 16, 0.675);
-    --surface-bg-active: rgba(16, 16, 16, 0.75);
+    --surface-bg-active: rgba(16, 16, 16, 0.8);
     --surface-border-radius: 16px;
     --surface-content-padding: 1rem;
     --surface-content-padding-tight: 0.5rem;
@@ -49,6 +49,7 @@ html {
     --layout-border: var(--layout-border-width) solid rgba(255, 255, 255, 0.15);
     --layout-border-focus: 1px solid rgba(255, 255, 255, 0.4);
     --transition-duration: 0.1s;
+    --surface-bg-transition-duration: 0.2s;
     --transition-timing-function: ease;
     --content-margin: 0.75rem;
     --icon-padding: 0.1rem;
@@ -188,7 +189,7 @@ input[type="color"] {
     justify-content: center;
     align-items: center;
     flex: 0;
-    transition: background-color var(--transition-duration) var(--transition-timing-function);
+    transition: background-color var(--surface-bg-transition-duration) var(--transition-timing-function);
 }
 .surface-circular:hover {
     background-color: var(--surface-bg-active);
