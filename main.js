@@ -1,3 +1,17 @@
+(function() {
+
+/* if has query parameter parallax-demo, remove most of the DOM elements, style and early exit script */
+if (new URLSearchParams(window.location.search).has("parallax-demo")) {
+    const bodyChildren = Array.from(document.body.children);
+    bodyChildren.forEach(child => {
+        if (!child.classList.contains('parallax')) {
+            child.remove();
+        }
+    });
+    document.documentElement.style = "border-top: 1px solid #404040; --parallax-img-speed-multiplier: 0.25;";
+    return;
+}
+
 /* allow scrolling through horizontal scroll containers via vertical mouse wheel */
 const scrollContainers = document.querySelectorAll(".scroll-container-horizontal");
 let preventingHorizontalScrollTimer = null;
@@ -37,3 +51,4 @@ document.querySelector("#float-toolbar").addEventListener("change", function() {
     document.querySelector("body").classList.toggle("floating-toolbars", this.checked);
 });
 
+})();
