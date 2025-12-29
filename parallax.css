@@ -1,6 +1,6 @@
 
 html {
-    --img-speed-multiplier: 1.0;
+    --img-speed-multiplier: 10.0;
     --img-period-1: calc(160s / var(--img-speed-multiplier));
     --img-period-2: calc(160s / var(--img-speed-multiplier));
     --img-period-3: calc(140s / var(--img-speed-multiplier));
@@ -22,8 +22,6 @@ body {
     background-size: var(--img-width) calc(max(var(--img-height), 100vh));
     background-position: center;
     background-repeat: repeat-x;
-    width: calc(var(--img-width));
-    min-width: calc(var(--img-width));
     animation: background-pan var(--img-period) linear infinite;
 }
 
