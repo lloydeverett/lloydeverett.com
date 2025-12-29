@@ -271,6 +271,9 @@ input[type="color"] {
         border var(--transition-duration) var(--transition-timing-function),
         border-radius var(--transition-duration) var(--transition-timing-function);
 }
+.toolbar > * {
+    flex-shrink: 0;
+}
 .toolbar:not(.floating-toolbars .toolbar) {
     margin-left: calc((-1 * var(--content-margin)) - 1px);
     margin-right: calc((-1 * var(--content-margin)) - 1px);
