@@ -14,11 +14,11 @@
 @property --parallax-scale-factor {
     syntax: '<number>';
     inherits: true;
-    initial-value: 0.5;
+    initial-value: 1.0;
 }
 
 html {
-    --parallax-img-speed-multiplier: 1.0;
+    --parallax-img-speed-multiplier: 0.5;
     --parallax-img-period-1: calc(200s / var(--parallax-img-speed-multiplier));
     --parallax-img-period-2: calc(200s / var(--parallax-img-speed-multiplier));
     --parallax-img-period-3: calc(160s / var(--parallax-img-speed-multiplier));
