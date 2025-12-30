@@ -8,7 +8,7 @@
 const frameInterval = 1000 / 24; /* 24fps */
 
 const animations = Array.from(document.querySelectorAll('.parallax'))
-                      .flatMap(e => e.getAnimations());
+                       .flatMap(e => e.getAnimations());
 
 function startInterval() {
     return setInterval(function() {
