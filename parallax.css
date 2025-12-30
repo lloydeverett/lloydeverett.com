@@ -19,9 +19,9 @@
 
 html {
     --parallax-img-speed-multiplier: 1.0;
-    --parallax-img-period-1: calc(160s / var(--parallax-img-speed-multiplier));
-    --parallax-img-period-2: calc(160s / var(--parallax-img-speed-multiplier));
-    --parallax-img-period-3: calc(140s / var(--parallax-img-speed-multiplier));
+    --parallax-img-period-1: calc(200s / var(--parallax-img-speed-multiplier));
+    --parallax-img-period-2: calc(200s / var(--parallax-img-speed-multiplier));
+    --parallax-img-period-3: calc(160s / var(--parallax-img-speed-multiplier));
     --parallax-img-period-4: calc(120s / var(--parallax-img-speed-multiplier));
     --parallax-viewport-width-px: 100vw;
     --parallax-viewport-height-px: 100vh;
@@ -45,7 +45,21 @@ body {
     background-position: center;
     background-repeat: repeat-x;
     animation: background-pan var(--parallax-img-period) linear infinite;
+    animation-play-state: paused;
     transform: scale(calc(var(--parallax-scale-factor)));
+}
+
+@media (scripting: none) {
+    .parallax {
+        /* can't slow down framerate without JS, so just leave it up to the browser in this case */
+        animation-play-state: running;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .parallax {
+        animation: none;
+    }
 }
 
 .parallax.parallax-1 {
