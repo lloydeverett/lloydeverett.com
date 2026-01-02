@@ -99,6 +99,7 @@ input, textarea, select, button, input::file-selector-button {
     padding: 0.2rem 1.5ch;
 }
 select {
+    width: max-content;
     padding-left: 1ch;
     padding-right: 1ch;
 }
@@ -145,6 +146,15 @@ input[type="color"] {
     border: none;
     padding-left: 0;
     background-color: unset;
+    width: calc(1ch * var(--selected-text-length) + 4ch);
+    margin-left: -0.25rem;
+    margin-right: 0.5rem;
+}
+@-moz-document url-prefix() {
+    /* mozilla select padding is a bit wider, so apply a smaller margin for firefox */
+    .toolbar select, .toolbar select:hover, .toolbar select:focus {
+        margin-left: -0.15rem;
+    }
 }
 .toolbar input[type="checkbox"] {
     display: none;

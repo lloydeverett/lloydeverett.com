@@ -125,7 +125,7 @@ html:has(.parallax-theme-day-clouds) {
     --parallax-img-display-4: block;
 }
 html {
-    --parallax-theme-name-day-clouds: "day-clouds";
+    --parallax-theme-name-day-clouds: day-clouds;
 }
 
 html:has(.parallax-theme-alt-day-clouds) {
@@ -141,7 +141,7 @@ html:has(.parallax-theme-alt-day-clouds) {
     --parallax-img-display-4: block;
 }
 html {
-    --parallax-theme-name-alt-day-clouds: "alt-day-clouds";
+    --parallax-theme-name-alt-day-clouds: alt-day-clouds;
 }
 
 html:has(.parallax-theme-dithered-blue-clouds) {
@@ -161,7 +161,7 @@ html:has(.parallax-theme-dithered-blue-clouds) {
     --parallax-img-display-6: block;
 }
 html {
-    --parallax-theme-name-dithered-blue-clouds: "dithered-blue-clouds";
+    --parallax-theme-name-dithered-blue-clouds: dithered-blue-clouds;
 }
 
 html:has(.parallax-theme-dithered-day-clouds) {
@@ -177,7 +177,7 @@ html:has(.parallax-theme-dithered-day-clouds) {
     --parallax-img-display-4: block;
 }
 html {
-    --parallax-theme-name-dithered-day-clouds: "dithered-day-clouds";
+    --parallax-theme-name-dithered-day-clouds: dithered-day-clouds;
 }
 
 html:has(.parallax-theme-dithered-pink-clouds) {
@@ -193,7 +193,7 @@ html:has(.parallax-theme-dithered-pink-clouds) {
     --parallax-img-display-4: block;
 }
 html {
-    --parallax-theme-name-dithered-pink-clouds: "dithered-pink-clouds";
+    --parallax-theme-name-dithered-pink-clouds: dithered-pink-clouds;
 }
 
 html:has(.parallax-theme-gray-clouds) {
@@ -207,7 +207,7 @@ html:has(.parallax-theme-gray-clouds) {
     --parallax-img-display-3: block;
 }
 html {
-    --parallax-theme-name-gray-clouds: "gray-clouds";
+    --parallax-theme-name-gray-clouds: gray-clouds;
 }
 
 html:has(.parallax-theme-icy-clouds) {
@@ -223,7 +223,7 @@ html:has(.parallax-theme-icy-clouds) {
     --parallax-img-display-4: block;
 }
 html {
-    --parallax-theme-name-icy-clouds: "icy-clouds";
+    --parallax-theme-name-icy-clouds: icy-clouds;
 }
 
 html:has(.parallax-theme-mellow-clouds) {
@@ -241,7 +241,7 @@ html:has(.parallax-theme-mellow-clouds) {
     --parallax-img-display-5: block;
 }
 html {
-    --parallax-theme-name-mellow-clouds: "mellow-clouds";
+    --parallax-theme-name-mellow-clouds: mellow-clouds;
 }
 
 html:has(.parallax-theme-night-clouds) {
@@ -257,7 +257,7 @@ html:has(.parallax-theme-night-clouds) {
     --parallax-img-display-4: block;
 }
 html {
-    --parallax-theme-name-night-clouds: "night-clouds";
+    --parallax-theme-name-night-clouds: night-clouds;
 }
 
 html:has(.parallax-theme-orange-clouds) {
@@ -276,7 +276,7 @@ html:has(.parallax-theme-orange-clouds) {
     --parallax-img-display-5: block;
 }
 html {
-    --parallax-theme-name-orange-clouds: "orange-clouds";
+    --parallax-theme-name-orange-clouds: orange-clouds;
 }
 
 html:has(.parallax-theme-pink-clouds) {
@@ -294,7 +294,7 @@ html:has(.parallax-theme-pink-clouds) {
     --parallax-img-display-5: block;
 }
 html {
-    --parallax-theme-name-pink-clouds: "pink-clouds";
+    --parallax-theme-name-pink-clouds: pink-clouds;
 }
 
 html:has(.parallax-theme-purple-clouds) {
@@ -308,7 +308,7 @@ html:has(.parallax-theme-purple-clouds) {
     --parallax-img-display-3: block;
 }
 html {
-    --parallax-theme-name-purple-clouds: "purple-clouds";
+    --parallax-theme-name-purple-clouds: purple-clouds;
 }
 
 html:has(.parallax-theme-purple-night-clouds) {
@@ -324,7 +324,7 @@ html:has(.parallax-theme-purple-night-clouds) {
     --parallax-img-display-4: block;
 }
 html {
-    --parallax-theme-name-purple-night-clouds: "purple-night-clouds";
+    --parallax-theme-name-purple-night-clouds: purple-night-clouds;
 }
 
 html:has(.parallax-theme-sunrise-clouds) {
@@ -342,6 +342,6 @@ html:has(.parallax-theme-sunrise-clouds) {
     --parallax-img-display-5: block;
 }
 html {
-    --parallax-theme-name-sunrise-clouds: "sunrise-clouds";
+    --parallax-theme-name-sunrise-clouds: sunrise-clouds;
 }
 

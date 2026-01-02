@@ -36,6 +36,12 @@
     content: "\f1a7";
 }
 
+.mdi-image-filter:before {
+    font-family: 'Material Design Icons';
+    font-style: normal;
+    content: "\f2ef";
+}
+
 .seti-lua:before {
     font-family: 'Seti Icons';
     font-style: normal;
