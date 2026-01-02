@@ -341,6 +341,9 @@ html:has(.parallax-theme-sunrise-clouds) {
     --parallax-img-display-4: block;
     --parallax-img-display-5: block;
 }
+html:has(.parallax-theme-sunrise-clouds) .parallax.parallax-2 {
+    animation: none; /* don't move the sun 'cause that's weird */
+}
 html {
     --parallax-theme-name-sunrise-clouds: sunrise-clouds;
 }
