@@ -1,3 +1,5 @@
+const body = document.querySelector("body");
+
 (function() {
 
 /* if has query parameter parallax-demo, remove most of the DOM elements, style and early exit script */
@@ -35,8 +37,8 @@ for (const scrollContainer of scrollContainers) {
 function updateClocks() {
     const clocks = document.querySelectorAll(".clock-text");
     const now = new Date().toLocaleTimeString("en-US", {
-      hour: "2-digit",
-      minute: "2-digit"
+        hour: "2-digit",
+        minute: "2-digit"
     });
     for (const clock of clocks) {
         clock.innerText = now;
@@ -45,7 +47,17 @@ function updateClocks() {
 updateClocks();
 window.setInterval(updateClocks, 1000);
 
-/* parallax theme select */
+/* helper function to obtain current parallax theme */
+function currentParallaxTheme() {
+    for (className of body.classList) {
+        if (className.startsWith("parallax-theme-")) {
+            return className.substring("parallax-theme-".length);
+        }
+    }
+    return null;
+}
+
+/* parallax theme select: populate elements */
 const parallaxThemeSelect = document.querySelector("#parallax-theme-select");
 const documentStyles = getComputedStyle(document.documentElement);
 for (const propertyName of documentStyles) {
@@ -56,11 +68,19 @@ for (const propertyName of documentStyles) {
     const option = document.createElement('option');
     option.value = themeName;
     option.textContent = themeName;
+    if (themeName === currentParallaxTheme()) {
+        option.selected = true;
+    }
     parallaxThemeSelect.appendChild(option);
 }
 
+/* parallax theme select: apply selection */
+parallaxThemeSelect.addEventListener('change', function() {
+    body.classList.toggle("parallax-theme-" + currentParallaxTheme(), false);
+    body.classList.toggle("parallax-theme-" + parallaxThemeSelect.value, true);
+});
+
 /* floating toolbar toggle */
-const body = document.querySelector("body");
 const floatToolbarInput = document.querySelector("#float-toolbar");
 floatToolbarInput.checked = false;
 floatToolbarInput.addEventListener("change", function() {
