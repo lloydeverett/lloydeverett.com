@@ -4,13 +4,11 @@
     inherits: true;
     initial-value: 0px;
 }
-
 @property --parallax-viewport-height-px {
     syntax: '<length>';
     inherits: true;
     initial-value: 0px;
 }
-
 @property --parallax-scale-factor {
     syntax: '<number>';
     inherits: true;
@@ -18,14 +16,16 @@
 }
 
 html {
-    --parallax-img-speed-multiplier: 0.5;
-    --parallax-img-period-1: calc(200s / var(--parallax-img-speed-multiplier));
-    --parallax-img-period-2: calc(200s / var(--parallax-img-speed-multiplier));
-    --parallax-img-period-3: calc(160s / var(--parallax-img-speed-multiplier));
-    --parallax-img-period-4: calc(120s / var(--parallax-img-speed-multiplier));
+    --parallax-img-speed-multiplier: 1.0;
+    --parallax-img-period-1: calc(400s / var(--parallax-img-speed-multiplier));
+    --parallax-img-period-2: calc(400s / var(--parallax-img-speed-multiplier));
+    --parallax-img-period-3: calc(320s / var(--parallax-img-speed-multiplier));
+    --parallax-img-period-4: calc(240s / var(--parallax-img-speed-multiplier));
+    --parallax-img-period-5: calc(160s / var(--parallax-img-speed-multiplier));
+    --parallax-img-period-6: calc(120s / var(--parallax-img-speed-multiplier));
     --parallax-viewport-width-px: 100vw;
     --parallax-viewport-height-px: 100vh;
-    /*  HACK: calc doesn't support division, so use tan(atan2(a, b)) == a / b */
+    /* calc doesn't support division for values with units, so use tan(atan2(a, b)) == a / b */
     --parallax-scale-factor: calc(tan(atan2(max(var(--parallax-viewport-height-px), var(--parallax-img-height)), var(--parallax-img-height))));
 }
 
@@ -40,13 +40,19 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: var(--parallax-img-url);
+    background-image: var(--parallax-img-url, none);
     background-size: var(--parallax-img-width) var(--parallax-img-height);
     background-position: center;
     background-repeat: repeat-x;
     animation: background-pan var(--parallax-img-period) linear infinite;
     animation-play-state: paused;
     transform: scale(calc(var(--parallax-scale-factor)));
+    display: var(--parallax-img-display, none);
+}
+
+.parallax.parallax-1 {
+    /* the display of the first image is invariant under horizontal movement, so don't bother animating */
+    animation: none;
 }
 
 @media (scripting: none) {
@@ -62,26 +68,6 @@ body {
     }
 }
 
-.parallax.parallax-1 {
-    --parallax-img-url:    var(--parallax-img-url-1);
-    --parallax-img-period: var(--parallax-img-period-1);
-}
-
-.parallax.parallax-2 {
-    --parallax-img-url:    var(--parallax-img-url-2);
-    --parallax-img-period: var(--parallax-img-period-2);
-}
-
-.parallax.parallax-3 {
-    --parallax-img-url:    var(--parallax-img-url-3);
-    --parallax-img-period: var(--parallax-img-period-3);
-}
-
-.parallax.parallax-4 {
-    --parallax-img-url:    var(--parallax-img-url-4);
-    --parallax-img-period: var(--parallax-img-period-4);
-}
-
 @keyframes background-pan {
     0% {
         background-position-x: 0;
@@ -91,13 +77,271 @@ body {
     }
 }
 
-html:has(.parallax-theme-orange-sunset) {
-    --parallax-img-width:  calc(576px * 4);
-    --parallax-img-height: calc(324px * 4);
-    --parallax-img-url-1:  url("orange-sunset/1.png");
-    --parallax-img-url-2:  url("orange-sunset/2.png");
-    --parallax-img-url-3:  url("orange-sunset/3.png");
-    --parallax-img-url-4:  url("orange-sunset/4.png");
-    --parallax-accent-color: #506ca1;
+/*  TODO: Accent colors for each theme */
+
+/*  TODO: Attribution for assets */
+
+.parallax.parallax-1 {
+    --parallax-img-url:     var(--parallax-img-url-1);
+    --parallax-img-period:  var(--parallax-img-period-1);
+    --parallax-img-display: var(--parallax-img-display-1);
+}
+.parallax.parallax-2 {
+    --parallax-img-url:     var(--parallax-img-url-2);
+    --parallax-img-period:  var(--parallax-img-period-2);
+    --parallax-img-display: var(--parallax-img-display-2);
+}
+.parallax.parallax-3 {
+    --parallax-img-url:     var(--parallax-img-url-3);
+    --parallax-img-period:  var(--parallax-img-period-3);
+    --parallax-img-display: var(--parallax-img-display-3);
+}
+.parallax.parallax-4 {
+    --parallax-img-url:     var(--parallax-img-url-4);
+    --parallax-img-period:  var(--parallax-img-period-4);
+    --parallax-img-display: var(--parallax-img-display-4);
+}
+.parallax.parallax-5 {
+    --parallax-img-url:     var(--parallax-img-url-5);
+    --parallax-img-period:  var(--parallax-img-period-5);
+    --parallax-img-display: var(--parallax-img-display-5);
+}
+.parallax.parallax-6 {
+    --parallax-img-url:     var(--parallax-img-url-6);
+    --parallax-img-period:  var(--parallax-img-period-6);
+    --parallax-img-display: var(--parallax-img-display-6);
+}
+
+html:has(.parallax-theme-day-clouds) {
+    --parallax-img-width:     calc(576px * 4);
+    --parallax-img-height:    calc(324px * 4);
+    --parallax-img-url-1:     url("parallaxes/day-clouds/1.png");
+    --parallax-img-url-2:     url("parallaxes/day-clouds/2.png");
+    --parallax-img-url-3:     url("parallaxes/day-clouds/3.png");
+    --parallax-img-url-4:     url("parallaxes/day-clouds/4.png");
+    --parallax-img-display-1: block;
+    --parallax-img-display-2: block;
+    --parallax-img-display-3: block;
+    --parallax-img-display-4: block;
+}
+html {
+    --parallax-theme-name-day-clouds: "day-clouds";
+}
+
+html:has(.parallax-theme-alt-day-clouds) {
+    --parallax-img-width:     calc(576px * 4);
+    --parallax-img-height:    calc(324px * 4);
+    --parallax-img-url-1:     url("parallaxes/alt-day-clouds/1.png");
+    --parallax-img-url-2:     url("parallaxes/alt-day-clouds/2.png");
+    --parallax-img-url-3:     url("parallaxes/alt-day-clouds/3.png");
+    --parallax-img-url-4:     url("parallaxes/alt-day-clouds/4.png");
+    --parallax-img-display-1: block;
+    --parallax-img-display-2: block;
+    --parallax-img-display-3: block;
+    --parallax-img-display-4: block;
+}
+html {
+    --parallax-theme-name-alt-day-clouds: "alt-day-clouds";
+}
+
+html:has(.parallax-theme-dithered-blue-clouds) {
+    --parallax-img-width:     calc(576px * 4);
+    --parallax-img-height:    calc(324px * 4);
+    --parallax-img-url-1:     url("parallaxes/dithered-blue-clouds/1.png");
+    --parallax-img-url-2:     url("parallaxes/dithered-blue-clouds/2.png");
+    --parallax-img-url-3:     url("parallaxes/dithered-blue-clouds/3.png");
+    --parallax-img-url-4:     url("parallaxes/dithered-blue-clouds/4.png");
+    --parallax-img-url-5:     url("parallaxes/dithered-blue-clouds/5.png");
+    --parallax-img-url-6:     url("parallaxes/dithered-blue-clouds/6.png");
+    --parallax-img-display-1: block;
+    --parallax-img-display-2: block;
+    --parallax-img-display-3: block;
+    --parallax-img-display-4: block;
+    --parallax-img-display-5: block;
+    --parallax-img-display-6: block;
+}
+html {
+    --parallax-theme-name-dithered-blue-clouds: "dithered-blue-clouds";
+}
+
+html:has(.parallax-theme-dithered-day-clouds) {
+    --parallax-img-width:     calc(576px * 4);
+    --parallax-img-height:    calc(324px * 4);
+    --parallax-img-url-1:     url("parallaxes/dithered-day-clouds/1.png");
+    --parallax-img-url-2:     url("parallaxes/dithered-day-clouds/2.png");
+    --parallax-img-url-3:     url("parallaxes/dithered-day-clouds/3.png");
+    --parallax-img-url-4:     url("parallaxes/dithered-day-clouds/4.png");
+    --parallax-img-display-1: block;
+    --parallax-img-display-2: block;
+    --parallax-img-display-3: block;
+    --parallax-img-display-4: block;
+}
+html {
+    --parallax-theme-name-dithered-day-clouds: "dithered-day-clouds";
+}
+
+html:has(.parallax-theme-dithered-pink-clouds) {
+    --parallax-img-width:     calc(576px * 4);
+    --parallax-img-height:    calc(324px * 4);
+    --parallax-img-url-1:     url("parallaxes/dithered-pink-clouds/1.png");
+    --parallax-img-url-2:     url("parallaxes/dithered-pink-clouds/2.png");
+    --parallax-img-url-3:     url("parallaxes/dithered-pink-clouds/3.png");
+    --parallax-img-url-4:     url("parallaxes/dithered-pink-clouds/4.png");
+    --parallax-img-display-1: block;
+    --parallax-img-display-2: block;
+    --parallax-img-display-3: block;
+    --parallax-img-display-4: block;
+}
+html {
+    --parallax-theme-name-dithered-pink-clouds: "dithered-pink-clouds";
+}
+
+html:has(.parallax-theme-gray-clouds) {
+    --parallax-img-width:     calc(576px * 4);
+    --parallax-img-height:    calc(324px * 4);
+    --parallax-img-url-1:     url("parallaxes/gray-clouds/1.png");
+    --parallax-img-url-2:     url("parallaxes/gray-clouds/2.png");
+    --parallax-img-url-3:     url("parallaxes/gray-clouds/3.png");
+    --parallax-img-display-1: block;
+    --parallax-img-display-2: block;
+    --parallax-img-display-3: block;
+}
+html {
+    --parallax-theme-name-gray-clouds: "gray-clouds";
+}
+
+html:has(.parallax-theme-icy-clouds) {
+    --parallax-img-width:     calc(576px * 4);
+    --parallax-img-height:    calc(324px * 4);
+    --parallax-img-url-1:     url("parallaxes/icy-clouds/1.png");
+    --parallax-img-url-2:     url("parallaxes/icy-clouds/2.png");
+    --parallax-img-url-3:     url("parallaxes/icy-clouds/3.png");
+    --parallax-img-url-4:     url("parallaxes/icy-clouds/4.png");
+    --parallax-img-display-1: block;
+    --parallax-img-display-2: block;
+    --parallax-img-display-3: block;
+    --parallax-img-display-4: block;
+}
+html {
+    --parallax-theme-name-icy-clouds: "icy-clouds";
+}
+
+html:has(.parallax-theme-mellow-clouds) {
+    --parallax-img-width:     calc(576px * 4);
+    --parallax-img-height:    calc(324px * 4);
+    --parallax-img-url-1:     url("parallaxes/mellow-clouds/1.png");
+    --parallax-img-url-2:     url("parallaxes/mellow-clouds/2.png");
+    --parallax-img-url-3:     url("parallaxes/mellow-clouds/3.png");
+    --parallax-img-url-4:     url("parallaxes/mellow-clouds/4.png");
+    --parallax-img-url-5:     url("parallaxes/mellow-clouds/5.png");
+    --parallax-img-display-1: block;
+    --parallax-img-display-2: block;
+    --parallax-img-display-3: block;
+    --parallax-img-display-4: block;
+    --parallax-img-display-5: block;
+}
+html {
+    --parallax-theme-name-mellow-clouds: "mellow-clouds";
+}
+
+html:has(.parallax-theme-night-clouds) {
+    --parallax-img-width:     calc(576px * 4);
+    --parallax-img-height:    calc(324px * 4);
+    --parallax-img-url-1:     url("parallaxes/night-clouds/1.png");
+    --parallax-img-url-2:     url("parallaxes/night-clouds/2.png");
+    --parallax-img-url-3:     url("parallaxes/night-clouds/3.png");
+    --parallax-img-url-4:     url("parallaxes/night-clouds/4.png");
+    --parallax-img-display-1: block;
+    --parallax-img-display-2: block;
+    --parallax-img-display-3: block;
+    --parallax-img-display-4: block;
+}
+html {
+    --parallax-theme-name-night-clouds: "night-clouds";
+}
+
+html:has(.parallax-theme-orange-clouds) {
+    --parallax-accent-color:  #506ca1;
+    --parallax-img-width:     calc(576px * 4);
+    --parallax-img-height:    calc(324px * 4);
+    --parallax-img-url-1:     url("parallaxes/orange-clouds/1.png");
+    --parallax-img-url-2:     url("parallaxes/orange-clouds/2.png");
+    --parallax-img-url-3:     url("parallaxes/orange-clouds/3.png");
+    --parallax-img-url-4:     url("parallaxes/orange-clouds/4.png");
+    --parallax-img-url-5:     url("parallaxes/orange-clouds/5.png");
+    --parallax-img-display-1: block;
+    --parallax-img-display-2: block;
+    --parallax-img-display-3: block;
+    --parallax-img-display-4: block;
+    --parallax-img-display-5: block;
+}
+html {
+    --parallax-theme-name-orange-clouds: "orange-clouds";
+}
+
+html:has(.parallax-theme-pink-clouds) {
+    --parallax-img-width:     calc(576px * 4);
+    --parallax-img-height:    calc(324px * 4);
+    --parallax-img-url-1:     url("parallaxes/pink-clouds/1.png");
+    --parallax-img-url-2:     url("parallaxes/pink-clouds/2.png");
+    --parallax-img-url-3:     url("parallaxes/pink-clouds/3.png");
+    --parallax-img-url-4:     url("parallaxes/pink-clouds/4.png");
+    --parallax-img-url-5:     url("parallaxes/pink-clouds/5.png");
+    --parallax-img-display-1: block;
+    --parallax-img-display-2: block;
+    --parallax-img-display-3: block;
+    --parallax-img-display-4: block;
+    --parallax-img-display-5: block;
+}
+html {
+    --parallax-theme-name-pink-clouds: "pink-clouds";
+}
+
+html:has(.parallax-theme-purple-clouds) {
+    --parallax-img-width:     calc(576px * 4);
+    --parallax-img-height:    calc(324px * 4);
+    --parallax-img-url-1:     url("parallaxes/purple-clouds/1.png");
+    --parallax-img-url-2:     url("parallaxes/purple-clouds/2.png");
+    --parallax-img-url-3:     url("parallaxes/purple-clouds/3.png");
+    --parallax-img-display-1: block;
+    --parallax-img-display-2: block;
+    --parallax-img-display-3: block;
+}
+html {
+    --parallax-theme-name-purple-clouds: "purple-clouds";
+}
+
+html:has(.parallax-theme-purple-night-clouds) {
+    --parallax-img-width:     calc(576px * 4);
+    --parallax-img-height:    calc(324px * 4);
+    --parallax-img-url-1:     url("parallaxes/purple-night-clouds/1.png");
+    --parallax-img-url-2:     url("parallaxes/purple-night-clouds/2.png");
+    --parallax-img-url-3:     url("parallaxes/purple-night-clouds/3.png");
+    --parallax-img-url-4:     url("parallaxes/purple-night-clouds/4.png");
+    --parallax-img-display-1: block;
+    --parallax-img-display-2: block;
+    --parallax-img-display-3: block;
+    --parallax-img-display-4: block;
+}
+html {
+    --parallax-theme-name-purple-night-clouds: "purple-night-clouds";
+}
+
+html:has(.parallax-theme-sunrise-clouds) {
+    --parallax-img-width:     calc(576px * 4);
+    --parallax-img-height:    calc(324px * 4);
+    --parallax-img-url-1:     url("parallaxes/sunrise-clouds/1.png");
+    --parallax-img-url-2:     url("parallaxes/sunrise-clouds/2.png");
+    --parallax-img-url-3:     url("parallaxes/sunrise-clouds/3.png");
+    --parallax-img-url-4:     url("parallaxes/sunrise-clouds/4.png");
+    --parallax-img-url-5:     url("parallaxes/sunrise-clouds/5.png");
+    --parallax-img-display-1: block;
+    --parallax-img-display-2: block;
+    --parallax-img-display-3: block;
+    --parallax-img-display-4: block;
+    --parallax-img-display-5: block;
+}
+html {
+    --parallax-theme-name-sunrise-clouds: "sunrise-clouds";
 }
 
