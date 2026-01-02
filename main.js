@@ -8,7 +8,7 @@ if (new URLSearchParams(window.location.search).has("parallax-demo")) {
             child.remove();
         }
     });
-    document.documentElement.style = "border-top: 1px solid #404040; --parallax-img-speed-multiplier: 0.25;";
+    document.documentElement.style = "border-top: 1px solid #404040; --parallax-img-speed-multiplier: 0.5;";
     return;
 }
 
