@@ -15,6 +15,12 @@
     initial-value: 1.0;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
 html {
     --parallax-img-speed-multiplier: 1.0;
     --parallax-img-period-1: calc(400s / var(--parallax-img-speed-multiplier));

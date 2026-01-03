@@ -1,3 +1,4 @@
+(function() {
 
 /* the styles load animations with "animation-play-state: paused;" so that, in this script,
  * we can use JS to step through the animations at a slow, fixed framerate (rather than using
@@ -31,4 +32,6 @@ document.addEventListener('visibilitychange', () => {
         intervalId = startInterval();
     }
 });
+
+})();
 

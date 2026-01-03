@@ -1,10 +1,5 @@
 (function() {
 
-/* early exit if there's no parallax-demo query parameter */
-if (!(new URLSearchParams(window.location.search).has("parallax-demo"))) {
-    return;
-}
-
 /* keep parallax clock up to date */
 function updateClocks() {
     const now = new Date();
