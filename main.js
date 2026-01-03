@@ -1,12 +1,12 @@
-const body = document.querySelector("body");
-
 (function() {
+
+const body = document.querySelector("body");
 
 /* if has query parameter parallax-demo, remove most of the DOM elements, style and early exit script */
 if (new URLSearchParams(window.location.search).has("parallax-demo")) {
     const bodyChildren = Array.from(document.body.children);
     bodyChildren.forEach(child => {
-        if (!child.classList.contains('parallax')) {
+        if (!child.classList.contains('parallax') && !child.classList.contains('parallax-clock')) {
             child.remove();
         }
     });
@@ -33,15 +33,17 @@ for (const scrollContainer of scrollContainers) {
     });
 }
 
-/* update clock display */
+/* keep toolbar clock up to date */
 function updateClocks() {
-    const clocks = document.querySelectorAll(".clock-text");
+    const clocks = document.querySelectorAll(".toolbar-clock-text");
     const now = new Date().toLocaleTimeString("en-US", {
         hour: "2-digit",
         minute: "2-digit"
     });
     for (const clock of clocks) {
-        clock.innerText = now;
+        if (clock.innerText !== now) {
+            clock.innerText = now;
+        }
     }
 }
 updateClocks();
