@@ -28,6 +28,7 @@
     font-family: 'Material Design Icons';
     font-style: normal;
     content: "\f150";
+    vertical-align: bottom;
 }
 
 .mdi-cube-outline:before {
@@ -40,6 +41,22 @@
     font-family: 'Material Design Icons';
     font-style: normal;
     content: "\f2ef";
+}
+
+.mdi-github-box:before {
+    vertical-align: bottom;
+    font-family: 'Material Design Icons';
+    font-style: normal;
+    font-size: 1.2em;
+    content: "\f2a3";
+}
+
+.mdi-github-circle:before {
+    vertical-align: bottom;
+    font-family: 'Material Design Icons';
+    font-style: normal;
+    font-size: 1.2em;
+    content: "\f2a4";
 }
 
 .seti-lua:before {
