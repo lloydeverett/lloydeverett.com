@@ -85,5 +85,46 @@ for (const select of document.querySelectorAll("select:not([multiple])")) {
     });
 }
 
+/* browser bugs mean snapping scroll container can sometimes get stuck in a non-snapped position;
+ * attach a handler to the scroll event that forces an eventual snap */
+function scrollToNearestXScrollTarget(scrollContainer, scrollTargets, behavior) {
+    if (!behavior) { behavior = 'smooth'; }
+    const nearest = nearestXScrollTarget(scrollContainer, scrollTargets);
+    if (nearest === null || nearest.scrollLeft === scrollContainer.scrollLeft) {
+        return;
+    }
+    scrollContainer.scrollTo({
+        left: nearest.offsetLeft,
+        top: nearest.offsetTop,
+        behavior: behavior
+    });
+}
+function nearestXScrollTarget(scrollContainer, scrollTargets) {
+    if (scrollTargets.length === 0) {
+        return null;
+    }
+    let minDistance = Math.abs(scrollTargets[0].offsetLeft - scrollContainer.scrollLeft);
+    let elem = scrollTargets[0];
+    for (let i = 1; i < scrollTargets.length; i++) {
+        let distance = Math.abs(scrollTargets[i].offsetLeft - scrollContainer.scrollLeft);
+        if (distance < minDistance) {
+            minDistance = distance;
+            elem = scrollTargets[i];
+        }
+    }
+    return elem;
+}
+for (const scrollContainer of document.querySelectorAll(".snapping-carousel")) {
+    let snapTimeout = null;
+    scrollContainer.addEventListener('scroll', () => {
+        if (snapTimeout !== null) {
+            clearTimeout(snapTimeout);
+        }
+        snapTimeout = window.setTimeout(() => {
+            scrollToNearestXScrollTarget(scrollContainer, Array.from(scrollContainer.children));
+        }, 750);
+    }, { passive: true });
+}
+
 })();
 
