@@ -45,8 +45,8 @@ html, body {
     overscroll-behavior: none;
 }
 html {
-    --surface-bg: rgba(16, 16, 16, 0.675);
-    --surface-bg-active: rgba(16, 16, 16, 0.8);
+    --surface-bg: rgba(20, 20, 20, 0.7);
+    --surface-bg-active: rgba(20, 20, 20, 0.8);
     --surface-border-radius: 16px;
     --surface-content-padding: 1rem;
     --surface-content-padding-tight: 0.5rem;
