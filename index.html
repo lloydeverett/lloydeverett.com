@@ -49,9 +49,11 @@
         <!--  TODO: Get these working again, probably via absolute positioning -->
         <!-- <div class="surface surface-circular layout-contain md"><span class="mdi-chevron-left"></span></div> -->
         <!-- <div class="surface surface-circular layout-contain md"><span class="mdi-chevron-right"></span></div> -->
-        <div class="layout-justify-center widthless stretch align-stretch layout-contain snapping-carousel">
+        <div id="content-carousel" class="layout-justify-center widthless stretch align-stretch layout-contain snapping-carousel">
             <div class="snapping-carousel-slide">
                 <div class="surface layout-vertical layout-contain md-obey-max-height obey-max-width obey-width obey-height" style="--width: 100%; height: 100%; --max-height: 45rem; --max-width: 70rem;">
+                    <div class="attach-snapping-carousel-navigation-left md"></div>
+                    <div class="attach-snapping-carousel-navigation-right md"></div>
                     <form class="scroll-container-vertical layout-vertical heightless stretch bottomless topless">
                         <div class="form-group layout-horizontal layout-stretch">
                             <button type="submit">Submit Form</button>
@@ -150,6 +152,8 @@
             </div>
             <div class="snapping-carousel-slide">
                 <div class="surface layout-vertical layout-contain md-obey-max-height obey-max-width obey-width obey-height" style="--width: 100%; height: 100%; --max-height: 45rem; --max-width: 70rem;">
+                    <div class="attach-snapping-carousel-navigation-left md"></div>
+                    <div class="attach-snapping-carousel-navigation-right md"></div>
                     <h2>Cards in a horizontal scroll container...</h2>
                     <div class="scroll-container-horizontal layout-horizontal">
                         <div class="card no-user-select">
@@ -157,7 +161,7 @@
                                 <span class="seti-lua icon-right-pad"></span>
                                 <span>lorem-ipsum</span>
                             </div>
-                            <div class="card-description">
+                            <div class="card-description stylized">
                                 Quisque molestie tortor faucibus mi interdum semper. Donec ac scelerisque velit, sed rhoncus nunc.
                             </div>
                         </div>
@@ -166,7 +170,7 @@
                                 <span class="seti-lua icon-right-pad"></span>
                                 <span>lorem-ipsum</span>
                             </div>
-                            <div class="card-description">
+                            <div class="card-description stylized">
                                 Quisque molestie tortor faucibus mi interdum semper. Donec ac scelerisque velit, sed rhoncus nunc.
                             </div>
                         </div>
@@ -175,7 +179,7 @@
                                 <span class="seti-lua icon-right-pad"></span>
                                 <span>lorem-ipsum</span>
                             </div>
-                            <div class="card-description">
+                            <div class="card-description stylized">
                                 Quisque molestie tortor faucibus mi interdum semper. Donec ac scelerisque velit, sed rhoncus nunc.
                             </div>
                         </div>
@@ -184,7 +188,7 @@
                                 <span class="seti-lua icon-right-pad"></span>
                                 <span>lorem-ipsum</span>
                             </div>
-                            <div class="card-description">
+                            <div class="card-description stylized">
                                 Quisque molestie tortor faucibus mi interdum semper. Donec ac scelerisque velit, sed rhoncus nunc.
                             </div>
                         </div>
@@ -193,7 +197,7 @@
                                 <span class="seti-lua icon-right-pad"></span>
                                 <span>lorem-ipsum</span>
                             </div>
-                            <div class="card-description">
+                            <div class="card-description stylized">
                                 Quisque molestie tortor faucibus mi interdum semper. Donec ac scelerisque velit, sed rhoncus nunc.
                             </div>
                         </div>
@@ -211,11 +215,11 @@
         </div>
     </div>
     <div class="surface layout-horizontal layout-align-center layout-contain no-user-select toolbar toolbar-bottom">
-        <span class="mdi-chevron-left no-md"></span>
+        <button class="mdi-chevron-left no-md carousel-previous-button" data-carousel="#content-carousel"></button>
         <div class="spacer"></div>
         <span class="stylized">Form controls example</span>
         <div class="spacer"></div>
-        <span class="mdi-chevron-right no-md"></span>
+        <button class="mdi-chevron-right no-md carousel-next-button" data-carousel="#content-carousel"></button>
     </div>
     <script src="main.js"></script>
     <script src="parallax.js"></script>

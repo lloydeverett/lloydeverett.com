@@ -50,6 +50,7 @@ html {
     --surface-border-radius: 16px;
     --surface-content-padding: 1rem;
     --surface-content-padding-tight: 0.5rem;
+    --surface-circular-diameter: 3rem;
     --accent-color: var(--parallax-accent-color, #076678);
     --text-selection-color-bg: var(--accent-color);
     --text-selection-color-fg: #ffffff;
@@ -85,9 +86,6 @@ body {
     margin: 0;
     overflow: hidden;
     position: relative;
-}
-button {
-    font-style: italic;
 }
 *::selection {
     background: var(--text-selection-color-bg);
@@ -173,6 +171,12 @@ input[type="color"] {
     text-decoration: none;
     cursor: pointer;
 }
+.toolbar button {
+    padding-left: 0;
+    padding-right: 0;
+    border: none;
+    background: transparent;
+}
 .toolbar input[type="checkbox"] {
     display: none;
 }
@@ -188,7 +192,9 @@ input[type="color"] {
 .toolbar input[type="checkbox"]:checked + label::before {
     content: var(--mdi-checkbox-marked);
 }
-.surface {
+.surface,
+.attach-snapping-carousel-navigation-left,
+.attach-snapping-carousel-navigation-right {
     background-color: var(--surface-bg);
     border-radius: var(--surface-border-radius);
     -webkit-backdrop-filter: blur(10px);
@@ -201,22 +207,25 @@ input[type="color"] {
     flex-direction: column;
     padding: var(--surface-content-padding);
 }
-.surface-circular {
-    --diameter: 3rem;
+.surface-circular,
+.attach-snapping-carousel-navigation-left,
+.attach-snapping-carousel-navigation-right {
     cursor: pointer;
     position: relative;
     border-radius: 50%;
-    min-width:  var(--diameter);
-    min-height: var(--diameter);
-    max-width:  var(--diameter);
-    max-height: var(--diameter);
+    min-width:  var(--surface-circular-diameter);
+    min-height: var(--surface-circular-diameter);
+    max-width:  var(--surface-circular-diameter);
+    max-height: var(--surface-circular-diameter);
     display: flex;
     justify-content: center;
     align-items: center;
     flex: 0;
     transition: background-color var(--surface-bg-transition-duration) var(--transition-timing-function);
 }
-.surface-circular:hover {
+.surface-circular:hover,
+.attach-snapping-carousel-navigation-left:hover,
+.attach-snapping-carousel-navigation-right:hover {
     background-color: var(--surface-bg-active);
 }
 .surface hr {
@@ -435,6 +444,52 @@ input[type="color"] {
     align-items: center;
 }
 
+*:has(> .attach-snapping-carousel-navigation-left) {
+    position: relative;
+    margin-left: calc(var(--surface-circular-diameter) + var(--content-margin));
+}
+
+*:has(> .attach-snapping-carousel-navigation-right) {
+    position: relative;
+    margin-right: calc(var(--surface-circular-diameter) + var(--content-margin));
+}
+
+.attach-snapping-carousel-navigation-left {
+    position: absolute;
+    right: calc(100% + var(--content-margin));
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.attach-snapping-carousel-navigation-left::before {
+    content: var(--mdi-chevron-left);
+    font-family: var(--font-family-mdi);
+    font-style: normal;
+    font-size: 1.2em;
+}
+
+.attach-snapping-carousel-navigation-right {
+    position: absolute;
+    left: calc(100% + var(--content-margin));
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.attach-snapping-carousel-navigation-right::before {
+    content: var(--mdi-chevron-right);
+    font-family: var(--font-family-mdi);
+    font-style: normal;
+    font-size: 1.2em;
+}
+
+.snapping-carousel-slide:last-child .attach-snapping-carousel-navigation-right {
+    display: none;
+}
+
+.snapping-carousel-slide:first-child .attach-snapping-carousel-navigation-left {
+    display: none;
+}
+
 /* this is necessary because of some peculiar layout behaviour with Chrome and Firefox
  * that I don't care to delve into any further - fortunately this seems to work
  **/
@@ -463,6 +518,14 @@ input[type="color"] {
 @media (max-width: 576px) /* < md */ {
     .md {
         display: none;
+    }
+    *:has(> .attach-snapping-carousel-navigation-left.md) {
+        position: relative;
+        margin-left: 0;
+    }
+    *:has(> .attach-snapping-carousel-navigation-right.md) {
+        position: relative;
+        margin-right: 0;
     }
 }
 @media (min-width: 577px) /* >= md */ {
