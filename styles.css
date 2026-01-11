@@ -180,13 +180,13 @@ input[type="color"] {
     position: relative;
 }
 .toolbar input[type="checkbox"] + label::before {
-    content: '\f131';
+    font-family: var(--font-family-mdi);
+    content: var(--mdi-checkbox-blank-outline);
     padding-right: 0.5rem;
-    font-family: 'Material Design Icons';
     font-style: normal;
 }
 .toolbar input[type="checkbox"]:checked + label::before {
-    content: '\f132';
+    content: var(--mdi-checkbox-marked);
 }
 .surface {
     background-color: var(--surface-bg);

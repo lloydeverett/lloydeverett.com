@@ -10,59 +10,74 @@
     src: url('fonts/MaterialDesign.otf') format('opentype');
 }
 
+:root {
+    --font-family-mdi:              "Material Design Icons";
+    --mdi-chevron-left:             "\f141";
+    --mdi-chevron-right:            "\f142";
+    --mdi-clock:                    "\f150";
+    --mdi-cube-outline:             "\f1a7";
+    --mdi-image-filter:             "\f2ef";
+    --mdi-github-box:               "\f2a3";
+    --mdi-github-circle:            "\f2a4";
+    --mdi-checkbox-blank-outline:   "\f131";
+    --mdi-checkbox-marked:          "\f132";
+    --font-family-seti:             "Seti Icons";
+    --seti-lua:                     "\e520";
+}
+
 .mdi-chevron-left:before {
-    font-family: 'Material Design Icons';
+    font-family: var(--font-family-mdi);
     font-style: normal;
     font-size: 1.2em;
-    content: "\f141";
+    content: var(--mdi-chevron-left);
 }
 
 .mdi-chevron-right:before {
-    font-family: 'Material Design Icons';
+    font-family: var(--font-family-mdi);
     font-style: normal;
     font-size: 1.2em;
-    content: "\f142";
+    content: var(--mdi-chevron-right);
 }
 
 .mdi-clock:before {
-    font-family: 'Material Design Icons';
+    font-family: var(--font-family-mdi);
     font-style: normal;
-    content: "\f150";
+    content: var(--mdi-clock);
     vertical-align: bottom;
 }
 
 .mdi-cube-outline:before {
-    font-family: 'Material Design Icons';
+    font-family: var(--font-family-mdi);
     font-style: normal;
-    content: "\f1a7";
+    content: var(--mdi-cube-outline);
 }
 
 .mdi-image-filter:before {
-    font-family: 'Material Design Icons';
+    font-family: var(--font-family-mdi);
     font-style: normal;
-    content: "\f2ef";
+    content: var(--mdi-image-filter);
 }
 
 .mdi-github-box:before {
+    font-family: var(--font-family-mdi);
     vertical-align: bottom;
-    font-family: 'Material Design Icons';
     font-style: normal;
     font-size: 1.2em;
-    content: "\f2a3";
+    content: var(--mdi-github-box);
 }
 
 .mdi-github-circle:before {
+    font-family: var(--font-family-mdi);
     vertical-align: bottom;
-    font-family: 'Material Design Icons';
     font-style: normal;
     font-size: 1.2em;
-    content: "\f2a4";
+    content: var(--mdi-github-circle);
 }
 
 .seti-lua:before {
-    font-family: 'Seti Icons';
+    font-family: var(--font-family-seti);
     font-style: normal;
     color: #00BFFF;
-    content: "\e520";
+    content: var(--seti-lua);
 }
 
