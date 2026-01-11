@@ -21,6 +21,12 @@
     --mdi-github-circle:            "\f2a4";
     --mdi-checkbox-blank-outline:   "\f131";
     --mdi-checkbox-marked:          "\f132";
+    --mdi-settings:                 "\f493";
+    --mdi-settings-box:             "\f494";
+    --mdi-dots-horizontal:          "\f1d8";
+    --mdi-dots-vertical:            "\f1d9";
+    --mdi-dots-horizontal-circle:   "\f7c2";
+    --mdi-dots-vertical-circle:     "\f7c3";
     --font-family-seti:             "Seti Icons";
     --seti-lua:                     "\e520";
 }
@@ -72,6 +78,48 @@
     font-style: normal;
     font-size: 1.2em;
     content: var(--mdi-github-circle);
+}
+
+.mdi-settings:before {
+    font-family: var(--font-family-mdi);
+    font-style: normal;
+    content: var(--mdi-settings);
+}
+
+.mdi-settings-box:before {
+    font-family: var(--font-family-mdi);
+    font-style: normal;
+    content: var(--mdi-settings-box);
+}
+
+.mdi-dots-horizontal:before {
+    font-family: var(--font-family-mdi);
+    font-style: normal;
+    font-size: 1.2em;
+    display: inline-block;
+    transform: translateY(1px);
+    content: var(--mdi-dots-horizontal);
+}
+
+.mdi-dots-vertical:before {
+    font-family: var(--font-family-mdi);
+    font-style: normal;
+    font-size: 1.2em;
+    display: inline-block;
+    transform: translateY(1px);
+    content: var(--mdi-dots-vertical);
+}
+
+.mdi-dots-horizontal-circle:before {
+    font-family: var(--font-family-mdi);
+    font-style: normal;
+    content: var(--mdi-dots-horizontal-circle);
+}
+
+.mdi-dots-vertical-circle:before {
+    font-family: var(--font-family-mdi);
+    font-style: normal;
+    content: var(--mdi-dots-vertical-circle);
 }
 
 .seti-lua:before {
