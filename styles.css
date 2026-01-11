@@ -176,6 +176,11 @@ input[type="color"] {
     padding-right: 0;
     border: none;
     background: transparent;
+    cursor: default;
+}
+.toolbar button[disabled] {
+    visibility: hidden;
+    pointer-events: none;
 }
 .toolbar input[type="checkbox"] {
     display: none;

@@ -50,8 +50,7 @@ function currentParallaxTheme() {
 /* helper functions for snapping carousel scroll targets */
 function scrollToNearestXScrollTarget(scrollContainer, behavior, offset) {
     if (!behavior) { behavior = 'smooth'; }
-    const scrollTargets = Array.from(scrollContainer.children);
-    const nearest = nearestXScrollTarget(scrollContainer, scrollTargets, offset);
+    const nearest = nearestXScrollTarget(scrollContainer, offset);
     if (nearest === null) {
         return;
     }
@@ -61,7 +60,8 @@ function scrollToNearestXScrollTarget(scrollContainer, behavior, offset) {
         behavior: behavior
     });
 }
-function nearestXScrollTarget(scrollContainer, scrollTargets, offset) {
+function nearestXScrollTarget(scrollContainer, offset) {
+    const scrollTargets = Array.from(scrollContainer.children);
     if (scrollTargets.length === 0) {
         return null;
     }
@@ -156,42 +156,55 @@ for (const nextSlideButton of document.querySelectorAll(".attach-snapping-carous
     });
 }
 
-/* click handlers for permanent carousel navigation controls */
-function carouselNavigate(button, next) {
+/* event handlers for permanent carousel navigation controls */
+function getCarouselByDataAttr(button) {
     const carouselAttr = button.dataset.carousel;
     if (!carouselAttr) {
-        throw Error("navigation slide button is missing a data-carousel attribute (should specify an element selector to obtain the associated carousel)");
+        throw Error("slide navigation button is missing a data-carousel attribute (should specify an element selector to obtain the associated carousel)");
     }
     const carousel = document.querySelector(carouselAttr);
     if (!carousel) {
         throw Error("click handler for navigation button could not find the carousel specified by the data-carousel attribute (is it a valid selector?)");
     }
+    return carousel;
+}
+function carouselNavigate(carousel, next) {
     carousel.dispatchEvent(new CustomEvent('clear-snap-timeout', { detail: { } }));
     scrollToNearestXScrollTarget(carousel, 'smooth', next ? 1 : -1);
 }
 for (const previousSlideButton of document.querySelectorAll(".carousel-previous-button")) {
+    const carousel = getCarouselByDataAttr(previousSlideButton);
     previousSlideButton.addEventListener('click', function() {
-        carouselNavigate(previousSlideButton, false);
+        carouselNavigate(carousel, false);
     });
+    carousel.addEventListener('scroll', function() {
+        previousSlideButton.disabled = !(nearestXScrollTarget(carousel)?.previousElementSibling);
+    }, { passive: true });
+    previousSlideButton.disabled = !(nearestXScrollTarget(carousel)?.previousElementSibling);
 }
 for (const nextSlideButton of document.querySelectorAll(".carousel-next-button")) {
+    const carousel = getCarouselByDataAttr(nextSlideButton);
     nextSlideButton.addEventListener('click', function() {
-        carouselNavigate(nextSlideButton, true);
+        carouselNavigate(carousel, true);
     });
+    carousel.addEventListener('scroll', function() {
+        nextSlideButton.disabled = !(nearestXScrollTarget(carousel)?.nextElementSibling);
+    }, { passive: true });
+    nextSlideButton.disabled = !(nearestXScrollTarget(carousel)?.nextElementSibling);
 }
 
 /* browser bugs mean snapping scroll container can sometimes get stuckin a non-snapped position;
  * attach a handler to the scroll event that forces an eventual snap */
 for (const scrollContainer of document.querySelectorAll(".snapping-carousel")) {
     let snapTimeout = null;
-    scrollContainer.addEventListener('scroll', () => {
+    scrollContainer.addEventListener('scroll', function() {
         if (snapTimeout !== null) {
             clearTimeout(snapTimeout);
         }
         snapTimeout = window.setTimeout(() => {
             scrollToNearestXScrollTarget(scrollContainer);
         }, 750);
-    }, { passive: false });
+    }, { passive: true });
     scrollContainer.addEventListener('clear-snap-timeout', () => {
         // allow manually clearing the timeout
         clearTimeout(snapTimeout);
