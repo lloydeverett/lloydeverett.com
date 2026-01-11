@@ -228,9 +228,7 @@ input[type="color"] {
 }
 .surface h2 {
     font-size: 1em;
-    font-style: italic;
     font-weight: 400;
-    color: var(--text-subdued-color);
 }
 .form-group {
     display: flex;
@@ -289,6 +287,9 @@ input[type="color"] {
 }
 .stylized {
     font-style: italic;
+}
+.subdued {
+    color: var(--text-subdued-color);
 }
 .toolbar {
     font-size: 0.8rem;
