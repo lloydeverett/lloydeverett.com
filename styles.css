@@ -255,33 +255,33 @@ input[type="color"] {
     flex-direction: row;
     overflow-x: auto;
 }
-.subcard-reel {
-    --subcard-reel-gap: var(--surface-content-padding);
-    gap: var(--subcard-reel-gap);
+.card-reel {
+    --card-reel-gap: var(--surface-content-padding);
+    gap: var(--card-reel-gap);
 }
-.subcard {
-    --subcard-width: 35ch;
+.card {
+    --card-width: 35ch;
     border: var(--layout-border);
     background-color: var(--overlay-bg);
     padding: 2ch;
     border-radius: 12px;
     height: 9rem;
-    width: var(--subcard-width);
-    min-width: var(--subcard-width);
+    width: var(--card-width);
+    min-width: var(--card-width);
     font-size: 0.75rem;
     cursor: pointer;
     transition: background-color var(--transition-duration) var(--transition-timing-function);
 }
-.subcard:hover {
+.card:hover {
     background-color: var(--overlay-bg-active);
 }
-.subcard-title {
+.card-title {
     font-style: italic;
 }
-.subcard-title > * {
+.card-title > * {
     font-style: normal;
 }
-.subcard-description {
+.card-description {
     margin-top: 0.5rem;
     color: var(--text-subdued-color);
 }
