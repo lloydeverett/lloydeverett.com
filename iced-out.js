@@ -2,6 +2,10 @@
 
 //  TODO: Consider defining with LitJS + component for bottom bar
 
+/*
+ * CAROUSELS
+ */
+
 /* helper functions for snapping carousel scroll targets */
 function scrollToNearestXScrollTarget(scrollContainer, behavior, offset) {
     if (!behavior) { behavior = 'smooth'; }
@@ -135,6 +139,41 @@ window.addEventListener('resize', function() {
         scrollToNearestXScrollTarget(scrollContainer, 'instant');
     }
 });
+
+/*
+ * SCROLL CONTAINERS
+ */
+
+/* allow scrolling through horizontal scroll containers via vertical mouse wheel */
+const scrollContainers = document.querySelectorAll(".scroll-container-horizontal");
+let preventingHorizontalScrollTimer = null;
+for (const scrollContainer of scrollContainers) {
+    scrollContainer.addEventListener("wheel", function(e) {
+        if (Math.abs(e.deltaX) > 0) {
+            clearTimeout(preventingHorizontalScrollTimer);
+            preventingHorizontalScrollTimer = window.setTimeout(() => {
+                preventingHorizontalScrollTimer = null;
+            }, 4000);
+            return;
+        }
+        if (preventingHorizontalScrollTimer === null && Math.abs(e.deltaY) > 0) {
+            e.preventDefault();
+            scrollContainer.scrollLeft += e.deltaY;
+        }
+    });
+}
+
+/*
+ * SELECT INPUTS
+ */
+
+/* allow styling based on the width of select elements, by setting the length of the currently-selected item as an attribute */
+for (const select of document.querySelectorAll("select:not([multiple])")) {
+    select.style.setProperty('--selected-text-length', select.options[select.selectedIndex].text.length);
+    select.addEventListener('change', function() {
+        select.style.setProperty('--selected-text-length', select.options[select.selectedIndex].text.length);
+    });
+}
 
 })();
 
