@@ -9,6 +9,14 @@
     <link rel="stylesheet" href="icons.css">
     <link rel="stylesheet" href="parallax.css">
     <link rel="stylesheet" href="styles.css">
+    <script type="module">
+        import { LitElement, html } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
+        window.LitElement = LitElement;
+        window.html = html;
+    </script>
+    <script src="main.js" defer></script>
+    <script src="iced-out.js" defer></script>
+    <script src="parallax.js" defer></script>
 </head>
 <body class="layout-vertical gapless parallax-theme-orange-clouds">
     <div class="parallax parallax-1"></div>
@@ -218,9 +226,6 @@
         <div class="spacer"></div>
         <button class="mdi-chevron-right no-md carousel-next-button" disabled data-carousel="#content-carousel"></button>
     </div>
-    <script src="main.js"></script>
-    <script src="iced-out.js"></script>
-    <script src="parallax.js"></script>
 </body>
 </html>
 

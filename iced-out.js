@@ -3,6 +3,30 @@
 //  TODO: Consider defining with LitJS + component for bottom bar
 
 /*
+     TODO: Add dialog control - something like this
+
+    import { LitElement, html } from 'lit';
+    import { customElement } from 'lit/decorators.js';
+    import { ref, createRef } from 'lit/directives/ref.js';
+
+    @customElement('example-app')
+    export class ExampleApp extends LitElement {
+      dialogRef = createRef<HTMLDialogElement>();
+
+      render() {
+        return html`
+          <h1>lit-modal-portal Dialog Example</h1>
+          <button @click=${() => this.dialogRef.value?.showModal()}>Show Dialog</button>
+          <dialog ${ref(this.dialogRef)}>
+            <p>This is the dialog</p>
+            <button @click=${() => this.dialogRef.value?.close()}>Close Dialog</button>
+          </dialog>
+        `;
+      }
+    }
+*/
+
+/*
  * CAROUSELS
  */
 
