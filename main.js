@@ -45,6 +45,14 @@ for (const propertyName of documentStyles) {
     parallaxThemeSelect.appendChild(option);
 }
 
+/* allow styling based on the width of select elements, by setting the length of the currently-selected item as an attribute */
+for (const select of document.querySelectorAll("select:not([multiple])")) {
+    select.style.setProperty('--selected-text-length', select.options[select.selectedIndex].text.length);
+    select.addEventListener('change', function() {
+        select.style.setProperty('--selected-text-length', select.options[select.selectedIndex].text.length);
+    });
+}
+
 /* parallax theme select: apply selection */
 parallaxThemeSelect.addEventListener('change', function() {
     body.classList.toggle("parallax-theme-" + currentParallaxTheme(), false);

@@ -46,6 +46,7 @@ html, body {
 }
 html {
     --surface-bg: rgba(20, 20, 20, 0.7);
+    --overlay-surface-bg: rgba(40, 40, 40, 1.0);
     --surface-bg-active: rgba(20, 20, 20, 0.8);
     --surface-border-radius: 16px;
     --surface-content-padding: 1rem;
@@ -152,6 +153,9 @@ input[type="color"] {
     width: 3em;
     height: 1.5em;
 }
+.toolbar {
+    z-index: 1000;
+}
 .toolbar select, .toolbar select:hover, .toolbar select:focus {
     border: none;
     padding-left: 0;
@@ -171,14 +175,14 @@ input[type="color"] {
     text-decoration: none;
     cursor: pointer;
 }
-.toolbar button {
+.toolbar button, .toolbar carousel-previous-button, .toolbar carousel-next-button {
     padding-left: 0;
     padding-right: 0;
     border: none;
     background: transparent;
     cursor: default;
 }
-.toolbar button[disabled] {
+.toolbar carousel-previous-button.disabled, .toolbar carousel-next-button.disabled {
     visibility: hidden;
     pointer-events: none;
 }
@@ -198,8 +202,9 @@ input[type="color"] {
     content: var(--mdi-checkbox-marked);
 }
 .surface,
-.attach-snapping-carousel-navigation-left,
-.attach-snapping-carousel-navigation-right {
+.overlay-surface,
+attach-snapping-carousel-navigation-left,
+attach-snapping-carousel-navigation-right {
     background-color: var(--surface-bg);
     border-radius: var(--surface-border-radius);
     -webkit-backdrop-filter: blur(10px);
@@ -212,9 +217,18 @@ input[type="color"] {
     flex-direction: column;
     padding: var(--surface-content-padding);
 }
+.overlay-surface {
+    background-color: var(--overlay-surface-bg);
+    -webkit-backdrop-filter: none;
+    backdrop-filter:         none;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.15), /* inner white border/highlight */
+        0 0 0 0.5px rgba(0, 0, 0, 0.65),           /* outer subtle black border */
+        0 4px 6px rgba(0, 0, 0, 0.1);              /* subtle surface drop shadow */
+}
 .surface-circular,
-.attach-snapping-carousel-navigation-left,
-.attach-snapping-carousel-navigation-right {
+attach-snapping-carousel-navigation-left,
+attach-snapping-carousel-navigation-right {
     cursor: pointer;
     position: relative;
     border-radius: 50%;
@@ -229,8 +243,8 @@ input[type="color"] {
     transition: background-color var(--surface-bg-transition-duration) var(--transition-timing-function);
 }
 .surface-circular:hover,
-.attach-snapping-carousel-navigation-left:hover,
-.attach-snapping-carousel-navigation-right:hover {
+attach-snapping-carousel-navigation-left:hover,
+attach-snapping-carousel-navigation-right:hover {
     background-color: var(--surface-bg-active);
 }
 .surface hr {
@@ -249,7 +263,7 @@ input[type="color"] {
     flex-direction: column;
     gap: var(--surface-content-padding-tight);
 }
-.scroll-container-vertical {
+scroll-container-vertical {
     padding: var(--surface-content-padding);
     margin-left: calc(-1 * var(--surface-content-padding));
     width: calc(100% + (2 * var(--surface-content-padding)));
@@ -259,7 +273,7 @@ input[type="color"] {
     flex-direction: column;
     overflow-y: auto;
 }
-.scroll-container-horizontal {
+scroll-container-horizontal {
     padding: var(--surface-content-padding);
     margin-left: calc(-1 * var(--surface-content-padding));
     width: calc(100% + (2 * var(--surface-content-padding)));
@@ -419,14 +433,7 @@ input[type="color"] {
     gap: 0;
 }
 
-.snapping-carousel-wrapper {
-    background: pink;
-    overflow-x: scroll;
-    display: flex;
-    flex-direction: row;
-}
-
-.snapping-carousel {
+snapping-carousel {
     display: flex;
     flex-direction: row;
     overflow-x: scroll;
@@ -435,7 +442,7 @@ input[type="color"] {
     scroll-behavior: smooth;
 }
 
-.snapping-carousel-slide {
+snapping-carousel-slide {
     scroll-snap-align: start;
     scroll-snap-stop: always;
     padding: var(--snapping-carousel-padding);
@@ -449,60 +456,60 @@ input[type="color"] {
     align-items: center;
 }
 
-*:has(> .attach-snapping-carousel-navigation-left) {
+*:has(> attach-snapping-carousel-navigation-left) {
     position: relative;
     margin-left: calc(var(--surface-circular-diameter) + var(--content-margin));
 }
 
-*:has(> .attach-snapping-carousel-navigation-right) {
+*:has(> attach-snapping-carousel-navigation-right) {
     position: relative;
     margin-right: calc(var(--surface-circular-diameter) + var(--content-margin));
 }
 
-.attach-snapping-carousel-navigation-left {
+attach-snapping-carousel-navigation-left {
     position: absolute;
     right: calc(100% + var(--content-margin));
     top: 50%;
     transform: translateY(-50%);
 }
 
-.attach-snapping-carousel-navigation-left::before {
+attach-snapping-carousel-navigation-left::before {
     content: var(--mdi-chevron-left);
     font-family: var(--font-family-mdi);
     font-style: normal;
     font-size: 1.2em;
 }
 
-.attach-snapping-carousel-navigation-right {
+attach-snapping-carousel-navigation-right {
     position: absolute;
     left: calc(100% + var(--content-margin));
     top: 50%;
     transform: translateY(-50%);
 }
 
-.attach-snapping-carousel-navigation-right::before {
+attach-snapping-carousel-navigation-right::before {
     content: var(--mdi-chevron-right);
     font-family: var(--font-family-mdi);
     font-style: normal;
     font-size: 1.2em;
 }
 
-.snapping-carousel-slide:last-child .attach-snapping-carousel-navigation-right {
+snapping-carousel-slide:last-child attach-snapping-carousel-navigation-right {
     display: none;
 }
 
-.snapping-carousel-slide:first-child .attach-snapping-carousel-navigation-left {
+snapping-carousel-slide:first-child attach-snapping-carousel-navigation-left {
     display: none;
 }
 
 /* this is necessary because of some peculiar layout behaviour with Chrome and Firefox
  * that I don't care to delve into any further - fortunately this seems to work
  **/
-.snapping-carousel::before {
+snapping-carousel::before {
     content: '';
     margin-right: -100%
 }
-.snapping-carousel-slide {
+snapping-carousel-slide {
     margin-left: 100%;
     margin-right: -100%;
 }
@@ -524,11 +531,11 @@ input[type="color"] {
     .md {
         display: none;
     }
-    *:has(> .attach-snapping-carousel-navigation-left.md) {
+    *:has(> attach-snapping-carousel-navigation-left.md) {
         position: relative;
         margin-left: 0;
     }
-    *:has(> .attach-snapping-carousel-navigation-right.md) {
+    *:has(> attach-snapping-carousel-navigation-right.md) {
         position: relative;
         margin-right: 0;
     }

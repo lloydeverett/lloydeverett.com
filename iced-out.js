@@ -1,36 +1,145 @@
 (function() {
 
-//  TODO: Consider defining with LitJS + component for bottom bar
+const LitElement = Lit.LitElement;
+const html = Lit.html;
+const css = Lit.css;
+
+//  TODO: component for bottom bar
 
 /*
-     TODO: Add dialog control - something like this
+ * DROPDOWNS
+ */
 
-    import { LitElement, html } from 'lit';
-    import { customElement } from 'lit/decorators.js';
-    import { ref, createRef } from 'lit/directives/ref.js';
-
-    @customElement('example-app')
-    export class ExampleApp extends LitElement {
-      dialogRef = createRef<HTMLDialogElement>();
-
-      render() {
-        return html`
-          <h1>lit-modal-portal Dialog Example</h1>
-          <button @click=${() => this.dialogRef.value?.showModal()}>Show Dialog</button>
-          <dialog ${ref(this.dialogRef)}>
-            <p>This is the dialog</p>
-            <button @click=${() => this.dialogRef.value?.close()}>Close Dialog</button>
-          </dialog>
-        `;
-      }
+class DropdownControl extends LitElement {
+    static styles = css`
+        .control-wrapper {
+            position: relative;
+            display: inline;
+            width: 100%;
+        }
+        .control-container {
+            display: contents;
+        }
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            z-index: 1000;
+            display: none;
+            min-width: 200px;
+            max-width: 90vw;
+            margin: -0.25rem;
+            margin-top: 0;
+            overflow: visible;
+        }
+        .dropdown.open {
+            display: block;
+        }
+        .dropdown.align-left {
+            left: 0;
+            right: auto;
+        }
+        .dropdown.align-right {
+            right: 0;
+            left: auto;
+        }
+        .dropdown-content {
+            padding: 0.25rem;
+            overflow-y: auto;
+            max-height: 400px;
+        }
+    `;
+    static properties = {
+        isOpen: { type: Boolean },
+        alignRight: { type: Boolean }
+    };
+    constructor() {
+        super();
+        this.isOpen = false;
+        this.alignRight = false;
+        this.handleClickOutside = this.handleClickOutside.bind(this);
+        this.handleResize = this.handleResize.bind(this);
     }
-*/
+    render() {
+        return html`
+            <div class="control-wrapper">
+                <div class="control-container" @click="${this.toggleDropdown}">
+                    <slot name="control"></slot>
+                </div>
+                <div
+                    class="dropdown ${this.isOpen ? 'open' : ''} ${this.alignRight ? 'align-right' : 'align-left'}"
+                    @click="${(e) => e.stopPropagation()}"
+                >
+                    <div class="dropdown-content">
+                        <slot name="content"></slot>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    toggleDropdown() {
+        this.isOpen = !this.isOpen;
+        if (this.isOpen) {
+            // Use requestAnimationFrame to ensure DOM is updated before measuring
+            requestAnimationFrame(() => {
+                this.checkDropdownAlignment();
+                this.attachClickOutsideListener();
+                window.addEventListener('resize', this.handleResize);
+            });
+        } else {
+            this.removeClickOutsideListener();
+            window.removeEventListener('resize', this.handleResize);
+        }
+    }
+    checkDropdownAlignment() {
+        const dropdown = this.shadowRoot.querySelector('.dropdown');
+        if (!dropdown) return;
+
+        const wrapper = this.shadowRoot.querySelector('.control-wrapper');
+        const wrapperRect = wrapper.getBoundingClientRect();
+        const viewportWidth = window.innerWidth;
+        const dropdownWidth = dropdown.offsetWidth;
+
+        // Calculate if left-aligned dropdown would overflow
+        const leftAlignedRight = wrapperRect.left + dropdownWidth;
+        const wouldOverflowRight = leftAlignedRight > viewportWidth;
+
+        // Calculate if right-aligned dropdown would overflow
+        const rightAlignedLeft = wrapperRect.right - dropdownWidth;
+        const wouldOverflowLeft = rightAlignedLeft < 0;
+
+        // Prefer left alignment unless it overflows and right alignment fits
+        this.alignRight = wouldOverflowRight && !wouldOverflowLeft;
+    }
+    handleResize() {
+        if (this.isOpen) {
+            this.checkDropdownAlignment();
+        }
+    }
+    attachClickOutsideListener() {
+        document.addEventListener('click', this.handleClickOutside);
+    }
+    removeClickOutsideListener() {
+        document.removeEventListener('click', this.handleClickOutside);
+    }
+    handleClickOutside(event) {
+        if (!this.contains(event.target)) {
+            this.isOpen = false;
+        }
+    }
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        this.removeClickOutsideListener();
+        window.removeEventListener('resize', this.handleResize);
+        this.isOpen = false;
+    }
+}
+customElements.define('dropdown-control', DropdownControl);
 
 /*
  * CAROUSELS
  */
 
-/* helper functions for snapping carousel scroll targets */
+// helper functions for snapping carousel scroll targets
 function scrollToNearestXScrollTarget(scrollContainer, behavior, offset) {
     if (!behavior) { behavior = 'smooth'; }
     const nearest = nearestXScrollTarget(scrollContainer, offset);
@@ -69,9 +178,81 @@ function nearestXScrollTarget(scrollContainer, offset) {
     return scrollTargets[elemIndex];
 }
 
-/* click handlers for attached carousel navigation controls */
+// carousel custom element class
+class SnappingCarousel extends LitElement {
+    static properties = {
+        _snapTimeout: { state: true }
+    };
+    constructor() {
+        super();
+        this._snapTimeout = null;
+    }
+    createRenderRoot() {
+        return this; // no shadow DOM
+    }
+    connectedCallback() {
+        super.connectedCallback();
+
+        this.handleResize = this.handleResize.bind(this);
+        window.addEventListener('resize', this.handleResize);
+
+        this.handleScroll = this.handleScroll.bind(this);
+        this.addEventListener('scroll', this.handleScroll, { passive: true });
+
+        this.handleClearSnapTimeout = this.handleClearSnapTimeout.bind(this);
+        this.addEventListener('clear-snap-timeout', this.handleClearSnapTimeout);
+    }
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        window.removeEventListener('resize', this.handleResize);
+        this.removeEventListener('scroll', this.handleScroll);
+        this.removeEventListener('clear-snap-timeout', this.handleClearSnapTimeout);
+        clearTimeout(this._snapTimeout);
+    }
+    handleResize() {
+        // it is possible to sometimes see scroll briefly become misaligned with scroll snap positions
+        // during viewport resize on certain browsers; let's work around that
+        scrollToNearestXScrollTarget(this, 'instant');
+    }
+    handleScroll() {
+        // browser bugs mean snapping scroll container can sometimes get stuckin a non-snapped position;
+        // this handler for the scroll event forces an eventual snap
+        clearTimeout(this._snapTimeout);
+        this._snapTimeout = window.setTimeout(() => {
+            scrollToNearestXScrollTarget(this);
+        }, 750);
+    }
+    handleClearSnapTimeout() {
+        clearTimeout(this._snapTimeout);
+    }
+}
+customElements.define('snapping-carousel', SnappingCarousel);
+
+// carousel slide custom element class
+//  NOTE: doesn't actually achieve anything over <div>, but intent is clearer and leaves open the possibility of custom behaviour
+class SnappingCarouselSlide extends LitElement {
+    constructor() {
+        super();
+    }
+    createRenderRoot() {
+        return this; // no shadow DOM
+    }
+    connectedCallback() {
+        super.connectedCallback();
+    }
+    disconnectedCallback() {
+        super.disconnectedCallback();
+    }
+}
+customElements.define('snapping-carousel-slide', SnappingCarouselSlide);
+
+/*
+ * CAROUSEL NAVIGATION
+ */
+
+// attached navigation custom element classes
 function carouselNavigateRelativeToAncestor(button, next) {
-    const slide = button.closest(".snapping-carousel-slide");
+    const slide = button.closest("snapping-carousel-slide");
     if (!slide) {
         throw Error("click handler for slide navigation button cannot find current carousel slide");
     }
@@ -79,7 +260,7 @@ function carouselNavigateRelativeToAncestor(button, next) {
     if (!adjacent) {
         throw Error("click handler for slide navigation button cannot find adjacent carousel slide");
     }
-    const carousel = button.closest(".snapping-carousel");
+    const carousel = button.closest("snapping-carousel");
     if (!carousel) {
         throw Error("click handler for slide navigation button cannot find associated carousel");
     }
@@ -90,26 +271,44 @@ function carouselNavigateRelativeToAncestor(button, next) {
         behavior: 'smooth'
     });
 }
-for (const previousSlideButton of document.querySelectorAll(".attach-snapping-carousel-navigation-left")) {
-    previousSlideButton.addEventListener('click', function() {
-        carouselNavigateRelativeToAncestor(previousSlideButton, false);
-    });
-}
-for (const nextSlideButton of document.querySelectorAll(".attach-snapping-carousel-navigation-right")) {
-    nextSlideButton.addEventListener('click', function() {
-        carouselNavigateRelativeToAncestor(nextSlideButton, true);
-    });
-}
-
-/* event handlers for permanent carousel navigation controls */
-function getCarouselByDataAttr(button) {
-    const carouselAttr = button.dataset.carousel;
-    if (!carouselAttr) {
-        throw Error("slide navigation button is missing a data-carousel attribute (should specify an element selector to obtain the associated carousel)");
+class AttachSnappingCarouselNavigation extends LitElement {
+    constructor() {
+        super();
     }
-    const carousel = document.querySelector(carouselAttr);
+    createRenderRoot() {
+        return this; // no shadow DOM
+    }
+    connectedCallback() {
+        super.connectedCallback();
+        this.handleClick = this.handleClick.bind(this);
+        this.addEventListener('click', this.handleClick);
+    }
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        this.removeEventListener('click', this.handleClick);
+    }
+}
+class AttachSnappingCarouselNavigationLeft extends AttachSnappingCarouselNavigation {
+    handleClick() {
+        carouselNavigateRelativeToAncestor(this, false);
+    }
+}
+customElements.define('attach-snapping-carousel-navigation-left', AttachSnappingCarouselNavigationLeft);
+class AttachSnappingCarouselNavigationRight extends AttachSnappingCarouselNavigation {
+    handleClick() {
+        carouselNavigateRelativeToAncestor(this, true);
+    }
+}
+customElements.define('attach-snapping-carousel-navigation-right', AttachSnappingCarouselNavigationRight);
+
+/* permanent carousel navigation cuastom element classes */
+function getCarouselBySelector(selectorValue) {
+    const carousel = document.querySelector(selectorValue);
     if (!carousel) {
-        throw Error("click handler for navigation button could not find the carousel specified by the data-carousel attribute (is it a valid selector?)");
+        throw Error("could not resolve the selector specified by the navigation button carousel attribute (is it a valid selector?)");
+    }
+    if (carousel.tagName !== "SNAPPING-CAROUSEL") {
+        throw Error("selector specified by the navigation button carousel attribute resolves but does not point to a <snapping-carousel> element");
     }
     return carousel;
 }
@@ -117,87 +316,113 @@ function carouselNavigate(carousel, next) {
     carousel.dispatchEvent(new CustomEvent('clear-snap-timeout', { detail: { } }));
     scrollToNearestXScrollTarget(carousel, 'smooth', next ? 1 : -1);
 }
-for (const previousSlideButton of document.querySelectorAll(".carousel-previous-button")) {
-    const carousel = getCarouselByDataAttr(previousSlideButton);
-    previousSlideButton.addEventListener('click', function() {
-        carouselNavigate(carousel, false);
-    });
-    carousel.addEventListener('scroll', function() {
-        previousSlideButton.disabled = !(nearestXScrollTarget(carousel)?.previousElementSibling);
-    }, { passive: true });
-    previousSlideButton.disabled = !(nearestXScrollTarget(carousel)?.previousElementSibling);
-}
-for (const nextSlideButton of document.querySelectorAll(".carousel-next-button")) {
-    const carousel = getCarouselByDataAttr(nextSlideButton);
-    nextSlideButton.addEventListener('click', function() {
-        carouselNavigate(carousel, true);
-    });
-    carousel.addEventListener('scroll', function() {
-        nextSlideButton.disabled = !(nearestXScrollTarget(carousel)?.nextElementSibling);
-    }, { passive: true });
-    nextSlideButton.disabled = !(nearestXScrollTarget(carousel)?.nextElementSibling);
-}
-
-/* browser bugs mean snapping scroll container can sometimes get stuckin a non-snapped position;
- * attach a handler to the scroll event that forces an eventual snap */
-for (const carousel of document.querySelectorAll(".snapping-carousel")) {
-    let snapTimeout = null;
-    carousel.addEventListener('scroll', function() {
-        if (snapTimeout !== null) {
-            clearTimeout(snapTimeout);
-        }
-        snapTimeout = window.setTimeout(() => {
-            scrollToNearestXScrollTarget(carousel);
-        }, 750);
-    }, { passive: true });
-    carousel.addEventListener('clear-snap-timeout', () => {
-        // allow manually clearing the timeout
-        clearTimeout(snapTimeout);
-    });
-}
-
-/* also possible to sometimes see scroll briefly become misaligned with scroll snap positions during viewport resize on certain browsers;
- * let's work around that */
-window.addEventListener('resize', function() {
-    for (const scrollContainer of document.querySelectorAll(".snapping-carousel")) {
-        scrollToNearestXScrollTarget(scrollContainer, 'instant');
+class CarouselAdjacentButton extends LitElement {
+    static properties = {
+        carousel: { type: String },
+        _carousel: { state: true }
+    };
+    constructor() {
+        super();
     }
-});
+    createRenderRoot() {
+        return this; // no shadow DOM
+    }
+    connectedCallback() {
+        super.connectedCallback();
+        this._carousel = getCarouselBySelector(this.carousel);
+
+        this.handleClick = this.handleClick.bind(this);
+        this.addEventListener('click', this.handleClick);
+
+        this.handleCarouselScroll = this.handleCarouselScroll.bind(this);
+        this._carousel.addEventListener('scroll', this.handleCarouselScroll, { passive: true });
+
+        this.handleCarouselScroll();
+    }
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        this.removeEventListener('click', this.handleClick);
+        this._carousel.removeEventListener('scroll', this.handleCarouselScroll);
+    }
+}
+class CarouselPreviousButton extends CarouselAdjacentButton {
+    handleClick() {
+        carouselNavigate(this._carousel, false);
+    }
+    handleCarouselScroll() {
+        this.classList.toggle('disabled', !(nearestXScrollTarget(this._carousel)?.previousElementSibling));
+    }
+}
+customElements.define('carousel-previous-button', CarouselPreviousButton);
+class CarouselNextButton extends CarouselAdjacentButton {
+    handleClick() {
+        carouselNavigate(this._carousel, true);
+    }
+    handleCarouselScroll() {
+        this.classList.toggle('disabled', !(nearestXScrollTarget(this._carousel)?.nextElementSibling));
+    }
+}
+customElements.define('carousel-next-button', CarouselNextButton);
 
 /*
  * SCROLL CONTAINERS
  */
 
-/* allow scrolling through horizontal scroll containers via vertical mouse wheel */
-const scrollContainers = document.querySelectorAll(".scroll-container-horizontal");
-let preventingHorizontalScrollTimer = null;
-for (const scrollContainer of scrollContainers) {
-    scrollContainer.addEventListener("wheel", function(e) {
+// vertical scroll container custom element class
+class ScrollContainerVertical extends LitElement {
+    constructor() {
+        super();
+    }
+    createRenderRoot() {
+        return this; // no shadow DOM
+    }
+    connectedCallback() {
+        super.connectedCallback();
+    }
+    disconnectedCallback() {
+        super.disconnectedCallback();
+    }
+}
+customElements.define('scroll-container-vertical', ScrollContainerVertical);
+
+// horizontal scroll container custom element class
+class ScrollContainerHorizontal extends LitElement {
+    static properties = {
+        _preventingHorizontalScrollTimer: { state: true }
+    };
+    constructor() {
+        super();
+    }
+    createRenderRoot() {
+        return this; // no shadow DOM
+    }
+    connectedCallback() {
+        super.connectedCallback();
+        this.handleWheel = this.handleWheel.bind(this);
+        this.addEventListener("wheel", this.handleWheel);
+    }
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        this.removeEventListener("wheel", this.handleWheel);
+        clearTimeout(this._preventingHorizontalScrollTimer);
+        this._preventingHorizontalScrollTimer = null;
+    }
+    handleWheel(e) {
+        // allow scrolling through horizontal scroll containers via vertical mouse wheel
         if (Math.abs(e.deltaX) > 0) {
-            clearTimeout(preventingHorizontalScrollTimer);
-            preventingHorizontalScrollTimer = window.setTimeout(() => {
-                preventingHorizontalScrollTimer = null;
+            clearTimeout(this._preventingHorizontalScrollTimer);
+            this._preventingHorizontalScrollTimer = window.setTimeout(() => {
+                this._preventingHorizontalScrollTimer = null;
             }, 4000);
             return;
         }
-        if (preventingHorizontalScrollTimer === null && Math.abs(e.deltaY) > 0) {
+        if (this._preventingHorizontalScrollTimer === null && Math.abs(e.deltaY) > 0) {
             e.preventDefault();
-            scrollContainer.scrollLeft += e.deltaY;
+            this.scrollLeft += e.deltaY;
         }
-    });
+    }
 }
-
-/*
- * SELECT INPUTS
- */
-
-/* allow styling based on the width of select elements, by setting the length of the currently-selected item as an attribute */
-for (const select of document.querySelectorAll("select:not([multiple])")) {
-    select.style.setProperty('--selected-text-length', select.options[select.selectedIndex].text.length);
-    select.addEventListener('change', function() {
-        select.style.setProperty('--selected-text-length', select.options[select.selectedIndex].text.length);
-    });
-}
+customElements.define('scroll-container-horizontal', ScrollContainerHorizontal);
 
 })();
 
