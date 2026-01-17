@@ -49,6 +49,7 @@ html {
     --overlay-surface-bg: rgba(40, 40, 40, 1.0);
     --surface-bg-active: rgba(20, 20, 20, 0.8);
     --surface-border-radius: 16px;
+    --overlay-surface-border-radius: 12px;
     --surface-content-padding: 1rem;
     --surface-content-padding-tight: 0.5rem;
     --surface-circular-diameter: 3rem;
@@ -219,6 +220,7 @@ attach-snapping-carousel-navigation-right {
 }
 .overlay-surface {
     background-color: var(--overlay-surface-bg);
+    border-radius: var(--overlay-surface-border-radius);
     -webkit-backdrop-filter: none;
     backdrop-filter:         none;
     box-shadow:
