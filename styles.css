@@ -507,11 +507,11 @@ snapping-carousel-slide:first-child attach-snapping-carousel-navigation-left {
  **/
 snapping-carousel::before {
     content: '';
-    margin-right: -100%
+    margin-right: calc((var(--slides-count) - 1) * -100%);
 }
 snapping-carousel-slide {
-    margin-left: 100%;
-    margin-right: -100%;
+    margin-left: calc((var(--slides-count) - 1) * 100%);
+    margin-right: calc((var(--slides-count) - 1) * -100%);
 }
 
 /* breapoint utils */

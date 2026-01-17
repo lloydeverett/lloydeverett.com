@@ -1,8 +1,6 @@
 (function() {
 
-const LitElement = Lit.LitElement;
-const html = Lit.html;
-const css = Lit.css;
+const { LitElement, html, css } = window.lit;
 
 //  TODO: component for bottom bar
 
@@ -181,7 +179,8 @@ function nearestXScrollTarget(scrollContainer, offset) {
 // carousel custom element class
 class SnappingCarousel extends LitElement {
     static properties = {
-        _snapTimeout: { state: true }
+        _snapTimeout: { state: true },
+        _observer: { state: true }
     };
     constructor() {
         super();
@@ -201,6 +200,24 @@ class SnappingCarousel extends LitElement {
 
         this.handleClearSnapTimeout = this.handleClearSnapTimeout.bind(this);
         this.addEventListener('clear-snap-timeout', this.handleClearSnapTimeout);
+
+        this._observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            if (mutation.type === 'childList') {
+              // Update component state or trigger re-render
+              this.handleChildrenChanged();
+            }
+          });
+        });
+        this._observer.observe(this, {
+            childList: true,
+            subtree: false
+        });
+
+        this.handleChildrenChanged();
+    }
+    firstUpdated() {
+        this.handleChildrenChanged();
     }
     disconnectedCallback() {
         super.disconnectedCallback();
@@ -208,6 +225,9 @@ class SnappingCarousel extends LitElement {
         this.removeEventListener('scroll', this.handleScroll);
         this.removeEventListener('clear-snap-timeout', this.handleClearSnapTimeout);
         clearTimeout(this._snapTimeout);
+        if (this._observer) {
+            this._observer.disconnect();
+        }
     }
     handleResize() {
         // it is possible to sometimes see scroll briefly become misaligned with scroll snap positions
@@ -221,6 +241,9 @@ class SnappingCarousel extends LitElement {
         this._snapTimeout = window.setTimeout(() => {
             scrollToNearestXScrollTarget(this);
         }, 750);
+    }
+    handleChildrenChanged() {
+        this.style.setProperty('--slides-count', this.children.length);
     }
     handleClearSnapTimeout() {
         clearTimeout(this._snapTimeout);
