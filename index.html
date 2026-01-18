@@ -30,7 +30,7 @@
     <div class="parallax parallax-4"></div>
     <div class="parallax parallax-5"></div>
     <div class="parallax parallax-6"></div>
-    <div class="surface layout-horizontal layout-align-center layout-contain no-user-select toolbar toolbar-top">
+    <div class="surface layout-horizontal layout-align-center no-user-select toolbar toolbar-top layout-contain">
         <div>
             <span class="mdi-cube-outline icon-right-pad"></span>
             <select id="theme-select" name="theme-select">
@@ -41,20 +41,19 @@
             <select id="parallax-theme-select" name="parallax-theme-select">
                 <!-- populate in JS -->
             </select>
-            <dropdown-control>
+            <dropdown-control overflow-breakpoint="md">
                 <span slot="control" class="mdi-dots-horizontal"></span>
                 <div slot="content">
                     <div class="overlay-surface">
-                        Hello world
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="float-toolbar" name="float-toolbar" checked>
+                            <label for="float-toolbar">Floating Toolbars</label>
+                        </div>
                     </div>
                 </div>
             </dropdown-control>
         </div>
         <div class="spacer"></div>
-        <div class="checkbox-item">
-            <input type="checkbox" id="float-toolbar" name="float-toolbar" checked>
-            <label for="float-toolbar">Floating Toolbars</label>
-        </div>
         <div>
             <a href="parallax-demo.html">
                 <span class="mdi-clock icon-right-pad"></span>
@@ -241,7 +240,7 @@
             </snapping-carousel-slide>
         </snapping-carousel>
     </div>
-    <div class="surface layout-horizontal layout-align-center layout-contain no-user-select toolbar toolbar-bottom">
+    <div class="surface layout-horizontal layout-align-center no-user-select toolbar toolbar-bottom layout-contain">
         <carousel-previous-button class="mdi-chevron-left no-md" carousel="#content-carousel"></carousel-previous-button>
         <div class="spacer"></div>
         <span class="stylized">Form controls example</span>

@@ -48,23 +48,27 @@ class DropdownControl extends LitElement {
     `;
     static properties = {
         isOpen: { type: Boolean },
-        alignRight: { type: Boolean }
+        overflowBreakpoint: { type: String, attribute: "overflow-breakpoint" },
+        _alignRight: { type: Boolean, state: true },
+        _overflowing: { type: Boolean, state: true }
     };
     constructor() {
         super();
         this.isOpen = false;
-        this.alignRight = false;
+        this._alignRight = false;
+        this._overflowing = false;
         this.handleClickOutside = this.handleClickOutside.bind(this);
         this.handleResize = this.handleResize.bind(this);
     }
     render() {
         return html`
             <div class="control-wrapper">
+                <span>${this._overflowing ? "overflowing" : "not"}</span>
                 <div class="control-container" @click="${this.toggleDropdown}">
                     <slot name="control"></slot>
                 </div>
                 <div
-                    class="dropdown ${this.isOpen ? 'open' : ''} ${this.alignRight ? 'align-right' : 'align-left'}"
+                    class="dropdown ${this.isOpen ? 'open' : ''} ${this._alignRight ? 'align-right' : 'align-left'}"
                     @click="${(e) => e.stopPropagation()}"
                 >
                     <div class="dropdown-content">
@@ -81,11 +85,9 @@ class DropdownControl extends LitElement {
             requestAnimationFrame(() => {
                 this.checkDropdownAlignment();
                 this.attachClickOutsideListener();
-                window.addEventListener('resize', this.handleResize);
             });
         } else {
             this.removeClickOutsideListener();
-            window.removeEventListener('resize', this.handleResize);
         }
     }
     checkDropdownAlignment() {
@@ -106,11 +108,16 @@ class DropdownControl extends LitElement {
         const wouldOverflowLeft = rightAlignedLeft < 0;
 
         // Prefer left alignment unless it overflows and right alignment fits
-        this.alignRight = wouldOverflowRight && !wouldOverflowLeft;
+        this._alignRight = wouldOverflowRight && !wouldOverflowLeft;
     }
     handleResize() {
         if (this.isOpen) {
             this.checkDropdownAlignment();
+        }
+        if (this.overflowBreakpoint) {
+            this._overflowing = getComputedStyle(document.documentElement).getPropertyValue('--breakpoint').includes(this.overflowBreakpoint + ';');
+        } else {
+            this._overflowing = false;
         }
     }
     attachClickOutsideListener() {
@@ -123,6 +130,11 @@ class DropdownControl extends LitElement {
         if (!this.contains(event.target)) {
             this.isOpen = false;
         }
+    }
+    connectedCallback() {
+        super.connectedCallback();
+        window.addEventListener('resize', this.handleResize);
+        this.handleResize();
     }
     disconnectedCallback() {
         super.disconnectedCallback();
@@ -218,6 +230,11 @@ class SnappingCarousel extends LitElement {
     }
     firstUpdated() {
         this.handleChildrenChanged();
+        this.scrollTo({
+            left: 0,
+            top: this.scrollTop,
+            behavior: 'instant'
+        });
     }
     disconnectedCallback() {
         super.disconnectedCallback();

@@ -154,9 +154,6 @@ input[type="color"] {
     width: 3em;
     height: 1.5em;
 }
-.toolbar {
-    z-index: 1000;
-}
 .toolbar select, .toolbar select:hover, .toolbar select:focus {
     border: none;
     padding-left: 0;
@@ -259,6 +256,9 @@ attach-snapping-carousel-navigation-right:hover {
 .surface h2 {
     font-size: 1em;
     font-weight: 400;
+}
+.toolbar {
+    z-index: 1000;
 }
 .form-group {
     display: flex;
@@ -396,8 +396,7 @@ scroll-container-horizontal {
     flex: 1;
 }
 .layout-contain {
-    contain: size layout;
-    container-type: size;
+    contain: size;
 }
 .margin-x-auto {
     margin-left: auto;
@@ -541,6 +540,9 @@ snapping-carousel-slide {
         position: relative;
         margin-right: 0;
     }
+    html {
+        --breakpoint: "sm;";
+    }
 }
 @media (min-width: 577px) /* >= md */ {
     .no-md {
@@ -557,6 +559,9 @@ snapping-carousel-slide {
     }
     .md-obey-max-height  {
         max-height: var(--max-height);
+    }
+    html {
+        --breakpoint: "sm;md;";
     }
 }
 
