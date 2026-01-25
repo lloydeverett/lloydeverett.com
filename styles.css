@@ -201,6 +201,7 @@ input[type="color"] {
 }
 .surface,
 .overlay-surface,
+dropdown-control::part(dropdown-content),
 attach-snapping-carousel-navigation-left,
 attach-snapping-carousel-navigation-right {
     background-color: var(--surface-bg);
@@ -215,11 +216,14 @@ attach-snapping-carousel-navigation-right {
     flex-direction: column;
     padding: var(--surface-content-padding);
 }
-.overlay-surface {
+.overlay-surface,
+dropdown-control::part(dropdown-content) {
     background-color: var(--overlay-surface-bg);
     border-radius: var(--overlay-surface-border-radius);
     -webkit-backdrop-filter: none;
     backdrop-filter:         none;
+    padding-top: var(--surface-content-padding-tight);
+    padding-bottom: var(--surface-content-padding-tight);
     box-shadow:
         inset 0 0 0 1px rgba(255, 255, 255, 0.15), /* inner white border/highlight */
         0 0 0 0.5px rgba(0, 0, 0, 0.65),           /* outer subtle black border */
@@ -325,6 +329,9 @@ scroll-container-horizontal {
     font-size: 0.8rem;
     margin-left: var(--content-margin);
     margin-right: var(--content-margin);
+    padding-top: 0;
+    padding-bottom: 0;
+    height: calc(2 * var(--surface-content-padding));
     transition:
         margin var(--transition-duration) var(--transition-timing-function),
         border var(--transition-duration) var(--transition-timing-function),
@@ -332,6 +339,14 @@ scroll-container-horizontal {
 }
 .toolbar > * {
     flex-shrink: 0;
+}
+.toolbar > * {
+    height: 100%;
+}
+.toolbar span, .toolbar select, .toolbar carousel-previous-button, .toolbar carousel-next-button, .toolbar label {
+    display: inline-block;
+    padding-top: calc(0.5 * var(--surface-content-padding));
+    padding-bottom: calc(0.5 * var(--surface-content-padding));
 }
 .toolbar:not(.floating-toolbars .toolbar) {
     margin-left: -1px;
@@ -433,6 +448,13 @@ scroll-container-horizontal {
 .gapless {
     gap: 0;
 }
+.inline-block-nowrap {
+    display: inline-block;
+    white-space: nowrap;
+}
+.mb {
+    margin-bottom: var(--surface-content-padding-tight);
+}
 
 snapping-carousel {
     display: flex;
@@ -516,21 +538,27 @@ snapping-carousel-slide {
 }
 
 /* breapoint utils */
-.obey-width  {
+.obey-width:not(#dummy) {
     width: var(--width);
 }
-.obey-height  {
+.obey-height:not(#dummy) {
     height: var(--height);
 }
-.obey-max-width  {
+.obey-max-width:not(#dummy) {
     max-width: var(--max-width);
 }
-.obey-max-height  {
+.obey-max-height:not(#dummy) {
     max-height: var(--max-height);
 }
 @media (max-width: 576px) /* < md */ {
-    .md {
+    .md:not(#dummy) {
         display: none;
+    }
+    .md-no-obey-width:not(#dummy) {
+        width: var(--width);
+    }
+    .md-no-obey-height:not(#dummy) {
+        height: var(--height);
     }
     *:has(> attach-snapping-carousel-navigation-left.md) {
         position: relative;
@@ -545,20 +573,29 @@ snapping-carousel-slide {
     }
 }
 @media (min-width: 577px) /* >= md */ {
-    .no-md {
+    .no-md:not(#dummy) {
         display: none;
     }
-    .md-obey-width  {
+    .md-obey-width:not(#dummy) {
         width: var(--width);
     }
-    .md-obey-height  {
+    .md-obey-height:not(#dummy) {
         height: var(--height);
     }
-    .md-obey-max-width  {
+    .md-obey-max-width:not(#dummy) {
         max-width: var(--max-width);
     }
-    .md-obey-max-height  {
+    .md-obey-max-height:not(#dummy) {
         max-height: var(--max-height);
+    }
+    .md-flex-direction-vertical {
+        flex-direction: column;
+    }
+    .md-flex-direction-horizontal {
+        flex-direction: row;
+    }
+    .md-no-mb {
+        margin-bottom: 0;
     }
     html {
         --breakpoint: "sm;md;";

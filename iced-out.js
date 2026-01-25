@@ -12,18 +12,19 @@ class DropdownControl extends LitElement {
     static styles = css`
         .control-wrapper {
             position: relative;
-            display: inline;
+            display: flex;
+            flex-direction: row;
             width: 100%;
         }
         .control-container {
-            display: contents;
+            position: relative;
         }
         .dropdown {
             position: absolute;
-            top: 100%;
+            top: 75%;
             z-index: 1000;
             display: none;
-            min-width: 200px;
+            min-width: 250px;
             max-width: 90vw;
             margin: -0.25rem;
             margin-top: 0;
@@ -40,7 +41,7 @@ class DropdownControl extends LitElement {
             right: 0;
             left: auto;
         }
-        .dropdown-content {
+        .dropdown-content-wrapper {
             padding: 0.25rem;
             overflow-y: auto;
             max-height: 400px;
@@ -63,16 +64,19 @@ class DropdownControl extends LitElement {
     render() {
         return html`
             <div class="control-wrapper">
-                <span>${this._overflowing ? "overflowing" : "not"}</span>
+                ${this._overflowing ? html`<slot name="overflow"></slot>` : null}
                 <div class="control-container" @click="${this.toggleDropdown}">
-                    <slot name="control"></slot>
-                </div>
-                <div
-                    class="dropdown ${this.isOpen ? 'open' : ''} ${this._alignRight ? 'align-right' : 'align-left'}"
-                    @click="${(e) => e.stopPropagation()}"
-                >
-                    <div class="dropdown-content">
-                        <slot name="content"></slot>
+                    ${this._overflowing ? html`<slot name="control-overflow"></slot>` : html`<slot name="control-no-overflow"></slot>`}
+                    <div
+                        class="dropdown ${this.isOpen ? 'open' : ''} ${this._alignRight ? 'align-right' : 'align-left'}"
+                        @click="${(e) => e.stopPropagation()}"
+                    >
+                        <div class="dropdown-content-wrapper">
+                            <div class="dropdown-content" part="dropdown-content">
+                                ${this._overflowing ? null : html`<slot name="overflow"></slot>`}
+                                <slot name="content"></slot>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

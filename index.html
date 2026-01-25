@@ -30,23 +30,31 @@
     <div class="parallax parallax-6"></div>
     <div class="surface layout-horizontal layout-align-center no-user-select toolbar toolbar-top layout-contain">
         <div>
-            <span class="mdi-cube-outline icon-right-pad"></span>
-            <select id="theme-select" name="theme-select">
-                <option value="iced-out-retroglass">iced-out-retroglass</option>
-                <option value="iced-out-everforest">iced-out-everforest</option>
-            </select>
-            <span class="mdi-image-filter icon-right-pad"></span>
-            <select id="parallax-theme-select" name="parallax-theme-select">
-                <!-- populate in JS -->
-            </select>
             <dropdown-control overflow-breakpoint="md">
-                <span slot="control" class="mdi-dots-horizontal"></span>
+                <div slot="overflow" class="layout-vertical gapless md-flex-direction-horizontal">
+                    <div class="inline-block-nowrap icon-right-pad">
+                        <span class="mdi-cube-outline icon-right-pad"></span>
+                        <select id="theme-select" name="theme-select" style="--width: 92%;" class="md-no-obey-width">
+                            <option value="iced-out-retroglass">iced-out-retroglass</option>
+                            <option value="iced-out-everforest">iced-out-everforest</option>
+                        </select>
+                    </div>
+                    <div class="inline-block-nowrap icon-right-pad">
+                        <span class="mdi-image-filter icon-right-pad"></span>
+                        <select id="parallax-theme-select" name="parallax-theme-select" style="--width: 92%;" class="md-no-obey-width">
+                            <!-- populate in JS -->
+                        </select>
+                    </div>
+                </div>
+                <span slot="control-overflow" class="mdi-dots-horizontal"></span>
+                <div slot="control-no-overflow" >
+                    <span class="mdi-settings"></span>
+                    <span class="mdi-chevron-down"></span>
+                </div>
                 <div slot="content">
-                    <div class="overlay-surface">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="float-toolbar" name="float-toolbar" checked>
-                            <label for="float-toolbar">Floating Toolbars</label>
-                        </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="float-toolbar" name="float-toolbar" checked>
+                        <label for="float-toolbar">Floating Toolbars</label>
                     </div>
                 </div>
             </dropdown-control>
@@ -69,7 +77,7 @@
                     <attach-snapping-carousel-navigation-left class="md"></attach-snapping-carousel-navigation-left>
                     <attach-snapping-carousel-navigation-right class="md"></attach-snapping-carousel-navigation-right>
                     <span style="font-size: 4rem; line-height: 4rem;" class="mdi-cube-outline icon-right-pad"></span>
-                    <span style="font-size: 2.5rem; line-height: 2.5rem;">iced-out.css</span>
+                    <span style="font-size: 2.5rem; line-height: 2.5rem; user-select: none;">iced-out.css</span>
                 </div>
             </snapping-carousel-slide>
             <snapping-carousel-slide>

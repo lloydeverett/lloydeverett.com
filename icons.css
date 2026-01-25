@@ -12,8 +12,10 @@
 
 :root {
     --font-family-mdi:              "Material Design Icons";
+    --mdi-chevron-down:             "\f140";
     --mdi-chevron-left:             "\f141";
     --mdi-chevron-right:            "\f142";
+    --mdi-chevron-up:               "\f143";
     --mdi-clock:                    "\f150";
     --mdi-cube-outline:             "\f1a7";
     --mdi-image-filter:             "\f2ef";
@@ -31,6 +33,12 @@
     --seti-lua:                     "\e520";
 }
 
+.mdi-chevron-down:before {
+    font-family: var(--font-family-mdi);
+    font-style: normal;
+    content: var(--mdi-chevron-down);
+}
+
 .mdi-chevron-left:before {
     font-family: var(--font-family-mdi);
     font-style: normal;
@@ -43,6 +51,12 @@
     font-style: normal;
     font-size: 1.2em;
     content: var(--mdi-chevron-right);
+}
+
+.mdi-chevron-up:before {
+    font-family: var(--font-family-mdi);
+    font-style: normal;
+    content: var(--mdi-chevron-up);
 }
 
 .mdi-clock:before {
