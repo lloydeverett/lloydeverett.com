@@ -33,6 +33,11 @@ class NavigationBar extends LitElement {
             display: block;
             overflow-x: auto;
             height: 100%;
+            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+            scrollbar-width: none;  /* Firefox, Safari 18.2+, Chromium 121+ */
+        }
+        :host::-webkit-scrollbar {
+            display: none;  /* Older Safari and Chromium */
         }
         .slides {
             display: flex;

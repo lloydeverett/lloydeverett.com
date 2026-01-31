@@ -459,11 +459,16 @@ scroll-container-horizontal {
 
 snapping-carousel {
     display: flex;
+    overflow-x: auto;
     flex-direction: row;
-    overflow-x: scroll;
     overflow-y: visible;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox, Safari 18.2+, Chromium 121+ */
+}
+snapping-carousel::-webkit-scrollbar {
+    display: none;  /* Older Safari and Chromium */
 }
 
 snapping-carousel-slide {
