@@ -2,7 +2,121 @@
 
 const { LitElement, html, css } = window.lit;
 
-//  TODO: component for bottom bar
+/*
+ * Utility functions
+ */
+
+function getCarouselBySelector(selectorValue) {
+    const carousel = document.querySelector(selectorValue);
+    if (!carousel) {
+        throw Error("could not resolve the selector specified by the carousel attribute (is it a valid selector?)");
+    }
+    if (carousel.tagName !== "SNAPPING-CAROUSEL") {
+        throw Error("selector specified by the carousel attribute resolves but does not point to a <snapping-carousel> element");
+    }
+    return carousel;
+}
+
+/*
+ * NAVIGATION BAR
+ */
+
+class NavigationBar extends LitElement {
+    static properties = {
+        carousel: { type: String },
+        _carousel: { state: true },
+        _observer: { state: true },
+        _activeSlide: { state: true }
+    }
+    static styles = css`
+        :host {
+            display: block;
+            overflow-x: auto;
+            height: 100%;
+        }
+        .slides {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            font-style: italic;
+            gap: 2rem;
+            height: 100%;
+        }
+        .slide-title {
+            width: 12rem;
+            height: 100%;
+            flex-shrink: 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            color: gray;
+            transition: color var(--transition-duration) var(--transition-timing-function);
+        }
+        .slide-title > span {
+            width: calc(100%);
+            display: inline-block;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow-x: hidden;
+        }
+        .slide-title-active {
+            color: white;
+        }
+        .slide-title::before {
+            position: absolute;
+            content: '';
+            left: 0;
+            right: 0;
+            bottom: 2px;
+            border-bottom: 1px solid transparent;
+        }
+        .slide-title-active::before {
+            border-color: white;
+        }
+    `;
+    connectedCallback() {
+        super.connectedCallback();
+        this._carousel = getCarouselBySelector(this.carousel);
+
+        this.handleCarouselScroll = this.handleCarouselScroll.bind(this);
+        this._carousel.addEventListener('scroll', this.handleCarouselScroll, { passive: true });
+
+        this._observer = new MutationObserver((mutations) => {
+            this.requestUpdate();
+        });
+        this._observer.observe(this._carousel, {
+            childList: true,
+            subtree: false
+        });
+
+        window.setTimeout(() => {
+            this.handleCarouselScroll();
+        }, 0);
+    }
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        this._carousel.removeEventListener('scroll', this.handleCarouselScroll);
+        if (this._observer) {
+            this._observer.disconnect();
+        }
+    }
+    handleCarouselScroll() {
+        this._activeSlide = nearestXScrollTarget(this._carousel);
+    }
+    render() {
+        return html`
+            <div class="slides">
+                ${Array.from(this._carousel.children).map(e => html`
+                    <div class="slide-title ${this._activeSlide == e ? "slide-title-active" : ""}"><span>${e.getAttribute("title") ?? "Untitled"}</span></div>
+                `)}
+            </div>
+        `;
+    }
+}
+customElements.define('navigation-bar', NavigationBar);
 
 /*
  * PARALLAX
@@ -298,8 +412,10 @@ class SnappingCarousel extends LitElement {
 customElements.define('snapping-carousel', SnappingCarousel);
 
 // carousel slide custom element class
-//  NOTE: doesn't actually achieve anything over <div>, but intent is clearer and leaves open the possibility of custom behaviour
 class SnappingCarouselSlide extends LitElement {
+    static properties = {
+        title: { type: String },
+    }
     constructor() {
         super();
     }
@@ -371,16 +487,6 @@ class AttachSnappingCarouselNavigationRight extends AttachSnappingCarouselNaviga
 customElements.define('attach-snapping-carousel-navigation-right', AttachSnappingCarouselNavigationRight);
 
 /* permanent carousel navigation cuastom element classes */
-function getCarouselBySelector(selectorValue) {
-    const carousel = document.querySelector(selectorValue);
-    if (!carousel) {
-        throw Error("could not resolve the selector specified by the navigation button carousel attribute (is it a valid selector?)");
-    }
-    if (carousel.tagName !== "SNAPPING-CAROUSEL") {
-        throw Error("selector specified by the navigation button carousel attribute resolves but does not point to a <snapping-carousel> element");
-    }
-    return carousel;
-}
 function carouselNavigate(carousel, next) {
     carousel.dispatchEvent(new CustomEvent('clear-snap-timeout', { detail: { } }));
     scrollToNearestXScrollTarget(carousel, 'smooth', next ? 1 : -1);
@@ -406,7 +512,9 @@ class CarouselAdjacentButton extends LitElement {
         this.handleCarouselScroll = this.handleCarouselScroll.bind(this);
         this._carousel.addEventListener('scroll', this.handleCarouselScroll, { passive: true });
 
-        this.handleCarouselScroll();
+        window.setTimeout(() => {
+            this.handleCarouselScroll();
+        }, 0);
     }
     disconnectedCallback() {
         super.disconnectedCallback();

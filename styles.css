@@ -50,6 +50,7 @@ html {
     --surface-bg-active: rgba(20, 20, 20, 0.8);
     --surface-border-radius: 16px;
     --overlay-surface-border-radius: 12px;
+    --surface-content-padding-loose: 2rem;
     --surface-content-padding: 1rem;
     --surface-content-padding-tight: 0.5rem;
     --surface-circular-diameter: 3rem;
