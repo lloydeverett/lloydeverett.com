@@ -5,6 +5,31 @@ const { LitElement, html, css } = window.lit;
 //  TODO: component for bottom bar
 
 /*
+ * PARALLAX
+ */
+
+class ParallaxBackground extends LitElement {
+    constructor() {
+        super();
+        this.style.display = "contents";
+    }
+    createRenderRoot() {
+        return this; // no shadow DOM
+    }
+    render() {
+        return html`
+            <div class="parallax parallax-1"></div>
+            <div class="parallax parallax-2"></div>
+            <div class="parallax parallax-3"></div>
+            <div class="parallax parallax-4"></div>
+            <div class="parallax parallax-5"></div>
+            <div class="parallax parallax-6"></div>
+        `;
+    }
+}
+customElements.define('parallax-background', ParallaxBackground);
+
+/*
  * DROPDOWNS
  */
 
