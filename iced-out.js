@@ -44,7 +44,7 @@ class NavigationBar extends LitElement {
             height: 100%;
         }
         .slide-title {
-            width: 12rem;
+            width: 13rem;
             height: 100%;
             flex-shrink: 0;
             text-align: center;
