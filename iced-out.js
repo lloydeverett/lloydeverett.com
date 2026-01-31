@@ -119,7 +119,7 @@ class NavigationBar extends LitElement {
             <div class="slides">
                 ${Array.from(this._carousel.children).map(e => html`
                     <div class="slide-title ${this._activeSlide == e ? "slide-title-active" : ""}" @click=${() => this.handleTitleClick(e)}>
-                        <span>${e.getAttribute("title") ?? "Untitled"}</span>
+                        <span>${e.slideTitle ?? "Untitled"}</span>
                     </div>
                 `)}
             </div>
@@ -424,7 +424,7 @@ customElements.define('snapping-carousel', SnappingCarousel);
 // carousel slide custom element class
 class SnappingCarouselSlide extends LitElement {
     static properties = {
-        title: { type: String },
+        slideTitle: { type: String, attribute: "slide-title" },
     }
     constructor() {
         super();
