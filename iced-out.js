@@ -44,6 +44,7 @@ class NavigationBar extends LitElement {
             height: 100%;
         }
         .slide-title {
+            cursor: pointer;
             width: 13rem;
             height: 100%;
             flex-shrink: 0;
@@ -106,11 +107,20 @@ class NavigationBar extends LitElement {
     handleCarouselScroll() {
         this._activeSlide = nearestXScrollTarget(this._carousel);
     }
+    handleTitleClick(slide) {
+        this._carousel.scrollTo({
+            left: slide.offsetLeft,
+            top: slide.offsetTop,
+            behavior: 'smooth'
+        });
+    }
     render() {
         return html`
             <div class="slides">
                 ${Array.from(this._carousel.children).map(e => html`
-                    <div class="slide-title ${this._activeSlide == e ? "slide-title-active" : ""}"><span>${e.getAttribute("title") ?? "Untitled"}</span></div>
+                    <div class="slide-title ${this._activeSlide == e ? "slide-title-active" : ""}" @click=${() => this.handleTitleClick(e)}>
+                        <span>${e.getAttribute("title") ?? "Untitled"}</span>
+                    </div>
                 `)}
             </div>
         `;
