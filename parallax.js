@@ -7,6 +7,7 @@
  */
 
 const frameInterval = 1000 / 24; /* 24fps */
+let intervalId = null;
 
 function advanceTime(interval) {
     const animations = Array.from(document.querySelectorAll('.parallax'))
@@ -28,8 +29,6 @@ function startInterval() {
     }, frameInterval);
 }
 
-let intervalId = startInterval();
-
 function updateAnimationState() {
     if (document.hidden || document.body.classList.contains('parallax-paused')) {
         clearInterval(intervalId);
@@ -38,6 +37,8 @@ function updateAnimationState() {
         intervalId = startInterval();
     }
 }
+
+updateAnimationState();
 
 // ensure we pause the annimation when the page is not visible (e.g. browser is minimised)
 document.addEventListener('visibilitychange', () => {
