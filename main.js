@@ -70,7 +70,9 @@ floatToolbarInput.addEventListener("change", function() {
 for (const button of document.querySelectorAll(".play-pause-toggle")) {
     button.addEventListener('click', function() {
         body.classList.toggle("parallax-paused");
-        document.dispatchEvent(new CustomEvent('update-parallax-state', { detail: { } }));
+        if (window.parallax?.updateAnimationState) {
+            window.parallax?.updateAnimationState();
+        }
     });
 }
 

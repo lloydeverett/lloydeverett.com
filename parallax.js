@@ -8,23 +8,29 @@
 
 const frameInterval = 1000 / 24; /* 24fps */
 
+function advanceTime(interval) {
+    const animations = Array.from(document.querySelectorAll('.parallax'))
+                           .flatMap(e => e.getAnimations());
+    for (const animation of animations) {
+        animation.currentTime += interval;
+        while (animation.currentTime > animation.effect.getComputedTiming().duration) {
+            animation.currentTime -= animation.effect.getComputedTiming().duration;
+        }
+        while (animation.currentTime < 0) {
+            animation.currentTime += animation.effect.getComputedTiming().duration;
+        }
+    }
+}
+
 function startInterval() {
     return setInterval(function() {
-        const animations = Array.from(document.querySelectorAll('.parallax'))
-                               .flatMap(e => e.getAnimations());
-        for (const animation of animations) {
-            animation.currentTime += frameInterval;
-            if (animation.currentTime > animation.effect.getComputedTiming().duration) {
-                animation.currentTime = 0;
-            }
-        }
+        advanceTime(frameInterval);
     }, frameInterval);
 }
 
 let intervalId = startInterval();
 
 function updateAnimationState() {
-    console.log('update');
     if (document.hidden || document.body.classList.contains('parallax-paused')) {
         clearInterval(intervalId);
         intervalId = null;
@@ -38,10 +44,10 @@ document.addEventListener('visibilitychange', () => {
     updateAnimationState();
 });
 
-// custom event for manually triggering update
-document.addEventListener('update-parallax-state', () => {
-    updateAnimationState();
-});
+window.parallax = {
+    updateAnimationState: updateAnimationState,
+    advanceTime: advanceTime
+};
 
 })();
 

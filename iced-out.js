@@ -367,6 +367,7 @@ function nearestXScrollTarget(scrollContainer, offset) {
 // carousel custom element class
 class SnappingCarousel extends LitElement {
     static properties = {
+        scrollParallax: { type: Number, attribute: "scroll-parallax" },
         _snapTimeout: { state: true },
         _observer: { state: true }
     };
@@ -427,13 +428,19 @@ class SnappingCarousel extends LitElement {
         // during viewport resize on certain browsers; let's work around that
         scrollToNearestXScrollTarget(this, 'instant');
     }
-    handleScroll() {
+    handleScroll(e) {
         // browser bugs mean snapping scroll container can sometimes get stuckin a non-snapped position;
         // this handler for the scroll event forces an eventual snap
         clearTimeout(this._snapTimeout);
         this._snapTimeout = window.setTimeout(() => {
             scrollToNearestXScrollTarget(this);
         }, 750);
+
+        // scroll parallax bg if attribtue is set
+        if (typeof this._lastScrollLeft === 'number' && this.scrollParallax) {
+            window.parallax.advanceTime((this.scrollLeft - this._lastScrollLeft) * this.scrollParallax);
+        }
+        this._lastScrollLeft = this.scrollLeft;
     }
     handleChildrenChanged() {
         this.style.setProperty('--slides-count', this.children.length);
