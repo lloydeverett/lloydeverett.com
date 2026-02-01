@@ -368,9 +368,16 @@ function nearestXScrollTarget(scrollContainer, offset) {
 class SnappingCarousel extends LitElement {
     static properties = {
         scrollParallax: { type: Number, attribute: "scroll-parallax" },
+        renderFunction: { type: Object },
         _snapTimeout: { state: true },
         _observer: { state: true }
     };
+    render() {
+        if (!this.renderFunction) {
+            return;
+        }
+        return this.renderFunction(html);
+    }
     constructor() {
         super();
         this._snapTimeout = null;

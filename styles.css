@@ -200,19 +200,19 @@ input[type="color"] {
     padding-left: 0;
     padding-right: 0;
 }
-.toolbar input[type="checkbox"] {
+.toolbar input[type="checkbox"], .themed-checkbox input[type="checkbox"] {
     display: none;
 }
-.toolbar input[type="checkbox"] + label {
+.toolbar input[type="checkbox"] + label, .themed-checkbox input[type="checkbox"] + label {
     position: relative;
 }
-.toolbar input[type="checkbox"] + label::before {
+.toolbar input[type="checkbox"] + label::before, .themed-checkbox input[type="checkbox"] + label::before {
     font-family: var(--font-family-mdi);
     content: var(--mdi-checkbox-blank-outline);
     padding-right: 0.5rem;
     font-style: normal;
 }
-.toolbar input[type="checkbox"]:checked + label::before {
+.toolbar input[type="checkbox"]:checked + label::before, .themed-checkbox input[type="checkbox"]:checked + label::before {
     content: var(--mdi-checkbox-marked);
 }
 .play-pause-toggle::before {
@@ -287,7 +287,11 @@ attach-snapping-carousel-navigation-right:hover {
     border: 0;
     border-bottom: var(--layout-border);
 }
-.surface h2 {
+h1, .h1 {
+    font-size: 1.5em;
+    font-weight: 400;
+}
+h2, .h2 {
     font-size: 1em;
     font-weight: 400;
 }
