@@ -175,8 +175,7 @@ input[type="color"] {
     cursor: pointer;
 }
 .toolbar button, .toolbar carousel-previous-button, .toolbar carousel-next-button {
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0;
     border: none;
     background: transparent;
     cursor: default;
@@ -215,6 +214,20 @@ input[type="color"] {
 }
 .toolbar input[type="checkbox"]:checked + label::before {
     content: var(--mdi-checkbox-marked);
+}
+.play-pause-toggle::before {
+    font-family: var(--font-family-mdi);
+    padding-right: 0.5rem;
+    content: var(--mdi-pause);
+}
+.play-pause-toggle::after {
+    content: 'Pause';
+}
+.parallax-paused .play-pause-toggle::before {
+    content: var(--mdi-play);
+}
+.parallax-paused .play-pause-toggle::after {
+    content: 'Play';
 }
 .surface,
 .overlay-surface,

@@ -62,7 +62,7 @@ body {
 }
 
 @media (scripting: none) {
-    .parallax {
+    body:not(.parallax-paused) .parallax {
         /* can't slow down framerate without JS, so just leave it up to the browser in this case */
         animation-play-state: running;
     }

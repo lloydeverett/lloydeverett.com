@@ -66,5 +66,13 @@ floatToolbarInput.addEventListener("change", function() {
     body.classList.toggle("floating-toolbars", this.checked);
 });
 
+/* play/pause button */
+for (const button of document.querySelectorAll(".play-pause-toggle")) {
+    button.addEventListener('click', function() {
+        body.classList.toggle("parallax-paused");
+        document.dispatchEvent(new CustomEvent('update-parallax-state', { detail: { } }));
+    });
+}
+
 })();
 

@@ -24,45 +24,53 @@
 <body class="layout-vertical gapless parallax-theme-orange-clouds">
     <parallax-background></parallax-background>
     <div class="surface layout-horizontal layout-align-center no-user-select toolbar toolbar-top layout-contain">
-        <div>
-            <dropdown-control overflow-breakpoint="md">
-                <div slot="overflow" class="layout-vertical gapless md-flex-direction-horizontal">
-                    <div class="inline-block-nowrap icon-right-pad">
-                        <span class="mdi-cube-outline icon-right-pad"></span>
-                        <select id="theme-select" name="theme-select" style="--width: 92%;" class="md-no-obey-width">
-                            <option value="iced-out-retroglass">iced-out-retroglass</option>
-                            <option value="iced-out-everforest">iced-out-everforest</option>
-                        </select>
+        <div class="stretch layout-horizontal gapless">
+            <div>
+                <dropdown-control overflow-breakpoint="md">
+                    <div slot="overflow" class="layout-vertical gapless md-flex-direction-horizontal">
+                        <div class="inline-block-nowrap icon-right-pad">
+                            <span class="mdi-cube-outline icon-right-pad"></span>
+                            <select id="theme-select" name="theme-select" style="--width: 92%;" class="md-no-obey-width">
+                                <option value="iced-out-retroglass">iced-out-retroglass</option>
+                                <option value="iced-out-everforest">iced-out-everforest</option>
+                            </select>
+                        </div>
+                        <div class="inline-block-nowrap icon-right-pad">
+                            <span class="mdi-image-filter icon-right-pad"></span>
+                            <select id="parallax-theme-select" name="parallax-theme-select" style="--width: 92%;" class="md-no-obey-width">
+                                <!-- populate in JS -->
+                            </select>
+                        </div>
                     </div>
-                    <div class="inline-block-nowrap icon-right-pad">
-                        <span class="mdi-image-filter icon-right-pad"></span>
-                        <select id="parallax-theme-select" name="parallax-theme-select" style="--width: 92%;" class="md-no-obey-width">
-                            <!-- populate in JS -->
-                        </select>
+                    <span slot="control-overflow" class="mdi-dots-horizontal"></span>
+                    <div slot="control-no-overflow" >
+                        <span class="mdi-settings"></span>
+                        <span class="mdi-chevron-down"></span>
                     </div>
-                </div>
-                <span slot="control-overflow" class="mdi-dots-horizontal"></span>
-                <div slot="control-no-overflow" >
-                    <span class="mdi-settings"></span>
-                    <span class="mdi-chevron-down"></span>
-                </div>
-                <div slot="content">
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="float-toolbar" name="float-toolbar" checked>
-                        <label for="float-toolbar">Floating Toolbars</label>
+                    <div slot="content">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="float-toolbar" name="float-toolbar" checked>
+                            <label for="float-toolbar">Floating Toolbars</label>
+                        </div>
                     </div>
-                </div>
-            </dropdown-control>
+                </dropdown-control>
+            </div>
+            <div class="spacer"></div>
         </div>
-        <div class="spacer"></div>
-        <div>
-            <a href="parallax-demo.html">
-                <span class="mdi-clock icon-right-pad"></span>
-                <span class="toolbar-clock-text right-pad"></span>
-            </a>
-            <a href="https://github.com/lloydeverett/lloydeverett.com">
-                <span class="mdi-github-circle"></span>
-            </a>
+        <div class="layout-horizontal gapless">
+            <button class="play-pause-toggle"></button>
+        </div>
+        <div class="stretch layout-horizontal gapless">
+            <div class="spacer"></div>
+            <div>
+                <a href="parallax-demo.html">
+                    <span class="mdi-clock icon-right-pad"></span>
+                    <span class="toolbar-clock-text right-pad"></span>
+                </a>
+                <a href="https://github.com/lloydeverett/lloydeverett.com">
+                    <span class="mdi-github-circle"></span>
+                </a>
+            </div>
         </div>
     </div>
     <div class="layout-horizontal layout-align-center layout-justify-center stretch layout-contain">

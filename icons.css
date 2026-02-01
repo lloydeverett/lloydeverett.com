@@ -29,6 +29,8 @@
     --mdi-dots-vertical:            "\f1d9";
     --mdi-dots-horizontal-circle:   "\f7c2";
     --mdi-dots-vertical-circle:     "\f7c3";
+    --mdi-pause:                    "\f3e4";
+    --mdi-play:                     "\f40a";
     --font-family-seti:             "Seti Icons";
     --seti-lua:                     "\e520";
 }
@@ -134,6 +136,18 @@
     font-family: var(--font-family-mdi);
     font-style: normal;
     content: var(--mdi-dots-vertical-circle);
+}
+
+.mdi-pause:before {
+    font-family: var(--font-family-mdi);
+    font-style: normal;
+    content: var(--mdi-pause);
+}
+
+.mdi-play:before {
+    font-family: var(--font-family-mdi);
+    font-style: normal;
+    content: var(--mdi-play);
 }
 
 .seti-lua:before {

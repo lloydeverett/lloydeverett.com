@@ -23,14 +23,24 @@ function startInterval() {
 
 let intervalId = startInterval();
 
-// ensure we pause the annimation when the page is not visible (e.g. browser is minimised)
-document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
+function updateAnimationState() {
+    console.log('update');
+    if (document.hidden || document.body.classList.contains('parallax-paused')) {
         clearInterval(intervalId);
         intervalId = null;
-    } else {
+    } else if (intervalId === null) {
         intervalId = startInterval();
     }
+}
+
+// ensure we pause the annimation when the page is not visible (e.g. browser is minimised)
+document.addEventListener('visibilitychange', () => {
+    updateAnimationState();
+});
+
+// custom event for manually triggering update
+document.addEventListener('update-parallax-state', () => {
+    updateAnimationState();
 });
 
 })();
