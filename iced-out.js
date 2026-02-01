@@ -42,24 +42,40 @@ class NavigationBar extends LitElement {
         .slides {
             display: flex;
             flex-direction: row;
-            justify-content: center;
             align-items: center;
             font-style: italic;
-            gap: 2rem;
             height: 100%;
         }
+        .spacer {
+            flex: 1;
+        }
         .slide-title {
+            position: relative;
             cursor: pointer;
             width: 13rem;
+            flex: none;
             height: 100%;
             flex-shrink: 0;
             text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            position: relative;
             color: gray;
             transition: color var(--transition-duration) var(--transition-timing-function);
+            --border-color: rgba(80, 80, 80, 0.75);
+            --border-inset: var(--content-margin);
+        }
+        .slide-title::after {
+            content: '';
+            position: absolute;
+            top: var(--border-inset);
+            bottom: var(--border-inset);
+            left: 0;
+            right: 0;
+            border-left: 1px solid var(--border-color);
+        }
+        .slide-title:not(:has(~ .slide-title))::after {
+            border-right: 1px solid var(--border-color);
         }
         .slide-title > span {
             width: calc(100%);
@@ -122,11 +138,13 @@ class NavigationBar extends LitElement {
     render() {
         return html`
             <div class="slides">
+                <div class="spacer"></div>
                 ${Array.from(this._carousel.children).map(e => html`
                     <div class="slide-title ${this._activeSlide == e ? "slide-title-active" : ""}" @click=${() => this.handleTitleClick(e)}>
                         <span>${e.slideTitle ?? "Untitled"}</span>
                     </div>
                 `)}
+                <div class="spacer"></div>
             </div>
         `;
     }

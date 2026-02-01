@@ -181,9 +181,25 @@ input[type="color"] {
     background: transparent;
     cursor: default;
 }
+.toolbar carousel-previous-button {
+    position: absolute;
+    padding-left: var(--surface-content-padding);
+    padding-right: var(--surface-content-padding);
+    left: 0;
+}
+.toolbar carousel-next-button {
+    position: absolute;
+    padding-left: var(--surface-content-padding);
+    padding-right: var(--surface-content-padding);
+    right: 0;
+}
 .toolbar carousel-previous-button.disabled, .toolbar carousel-next-button.disabled {
     visibility: hidden;
     pointer-events: none;
+}
+.toolbar:has(> navigation-bar) {
+    padding-left: 0;
+    padding-right: 0;
 }
 .toolbar input[type="checkbox"] {
     display: none;
@@ -262,9 +278,6 @@ attach-snapping-carousel-navigation-right:hover {
     font-size: 1em;
     font-weight: 400;
 }
-.toolbar {
-    z-index: 1000;
-}
 .form-group {
     display: flex;
     flex-direction: column;
@@ -327,6 +340,8 @@ scroll-container-horizontal {
     color: var(--text-subdued-color);
 }
 .toolbar {
+    position: relative;
+    z-index: 1000;
     font-size: 0.8rem;
     margin-left: var(--content-margin);
     margin-right: var(--content-margin);
@@ -382,7 +397,7 @@ scroll-container-horizontal {
     flex-direction: column;
     gap: var(--surface-content-padding-tight);
 }
-.layout-vertical-tight-with-margin {
+.layout-vertical-tight-with-Margin {
     margin: var(--surface-content-padding-tight) 0;
 }
 .layout-horizontal, .layout-horizontal-with-margin {
